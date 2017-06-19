@@ -65,5 +65,5 @@
   ### Bonus Features (TBD)
   - [ ] Search Messages
   - [ ] Notifications
-  - [ ] Emojis
-  - [ ] Giphys
+  - [ ] Post Emojis
+  - [ ] Post Giphys
