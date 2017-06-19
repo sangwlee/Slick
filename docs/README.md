@@ -1,17 +1,9 @@
-HerokuLink
-
-
-
-Minimum Viable Product
-
-
-
-
-
-  Bonus: Search Messages
-  Bonus: Notifications
-
   # SLICK
+
+  SLICK is a web clone of a popular messaging application called SLACK. At its completion,
+  SLICK will have implemented the essental fucntions of SLACK (live chat, channels, direct messages
+  teams or multi-person DM).
+
 
   [Heroku link][heroku] **Note:** This should be a link to your production site
 
@@ -19,18 +11,6 @@ Minimum Viable Product
 
   [heroku]: https://slick-aa.herokuapp.com/
   [trello]:
-
-  ## Minimum Viable Product
-
-  GREENHOUSE is a web application inspired by Indiegogo built using Ruby on Rails
-  and React/Redux.  By the end of Week 9, this app will, at a minimum, satisfy the
-  following criteria with smooth, bug-free navigation, adequate seed data and
-  sufficient CSS styling:
-
-  - [ ] Live chat
-  - [ ] Channels
-  - [ ] Direct Message
-  - [ ] Teams or multi-person DM
 
   ## Design Docs
   * [View Wireframes][wireframes]
@@ -83,3 +63,5 @@ Minimum Viable Product
   ### Bonus Features (TBD)
   - [ ] Search Messages
   - [ ] Notifications
+  - [ ] Emojis
+  - [ ] Giphys
