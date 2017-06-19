@@ -3,7 +3,7 @@
 ## HTML API
 
 #### Root
-- `GET /` - loads SlackOff application
+- `GET /` - loads application
 
 ## JSON API
 

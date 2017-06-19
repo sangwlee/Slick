@@ -6,11 +6,11 @@
   and channels. In addition, SLACK will also have implemented authentication system that is
   commonly seen among many web application today.
 
-  https://slick-aa.herokuapp.com/
+  Heroku: https://slick-aa.herokuapp.com/
 
-  [Trello link]
+  Trello: https://trello.com/b/hNl1uezS/slick
 
-  [trello]:
+
 
   ## Design Docs
   * [View Wireframes][wireframes]
@@ -52,14 +52,14 @@
 
   **Objective:** Adding onto the result from phase 5, in phase 6, the application should be able to create chatting system of multiple direct-messages.
 
-  ### Phase 7: MAIN PAGE SETUP(2 days)
+  ### Phase 7: MAIN PAGE SETUP(1 days)
 
   **Objective:** With the MVP's completed (live chat, channel, direct message, multiple-person DM), the object of phase 7 is to set up the main page. During this page,
   much time will be spent to accomplish satisfactory styling. In addition, flawless navigation through frontpage and mainpage should be attained.
 
   ### Phase 8: STYLING & FINAL TOUCH (1 day)
 
-  **Objective:** In this last phase, much of essential functionalities of application will have been implemented, tested, and styled. During this time, minor features, such as creating a channel, switching right column (between details and replies) will be attempted for implementation. However, main goal of this last phase is to ensure that the main features operates without bugs and that styling is presentable. 
+  **Objective:** In this last phase, much of essential functionalities of application will have been implemented, tested, and styled. During this time, minor features, such as creating a channel, switching right column (between details and replies) will be attempted for implementation. However, main goal of this last phase is to ensure that the main features operates without bugs and that styling is presentable.
 
 
   ### Bonus Features (TBD)

@@ -1,53 +1,53 @@
 currentUser: {
   id: 1,
-  username: 'slackoff-bot3000',
-  email: 'sbot3000@gmail.com',
-  photo_url: 'slackoff.io/user/slackoff-bot3000/photo'
+  username: 'slick-bot',
+  email: 'sbot@gmail.com',
+  photo_url: 'slick.io/user/slick-bot/photo'
 },
 
 channels: {
   1: {
     name: 'general',
-    description: 'winter is coming',
+    description: 'general chat',
     private: false
   },
 
   2: {
-    name: 'direct-chat-45hsash45q',
+    name: 'direct-chat-123',
     private: true
   }
 },
 
 users: {
   1: {
-    id: 2,
-    username: 'Jon Snow',
-    email: 'iknownothing@gmail.com',
-    photo_url: 'slackoff.io/user/jonsnow/photo'
+    id: 1,
+    username: 'Harry Potter',
+    email: 'hpotter@gmail.com',
+    photo_url: ''
   },
 
   2: {
-    id: 3,
-    username: 'Hodor',
-    email: 'hodor@hodor.hodor',
-    photo_url: 'slackoff.io/user/hodor/photo'
+    id: 2,
+    username: 'Voldemort',
+    email: 'hewhomustnotbenamed@gmail.com',
+    photo_url: ''
   }
 },
 
 messages: {
   1: {
-    id: 41,
+    id: 1,
     type: 'normal',
     user_id: 1,
     channel_id: 1,
-    content: 'lolplz'
+    content: 'hello'
   },
 
   2: {
-    id: 47,
+    id: 2,
     type: 'link',
     user_id: 2,
     channel_id: 1,
-    content: 'lolcats.com'
+    content: 'bye'
   }
 }
