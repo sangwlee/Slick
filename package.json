@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --watch --progress"
+    "start": "webpack --watch --progress",
+    "postinstall": "webpack"
   },
   "repository": {
     "type": "git",
@@ -33,5 +34,9 @@
     "react-router": "^4.1.1",
     "redux": "^3.7.0",
     "webpack": "^2.6.1"
+  },
+  "engines": {
+    "node": "4.1.1",
+    "npm": "2.1.x"
   }
 }
