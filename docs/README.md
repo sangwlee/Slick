@@ -1,14 +1,14 @@
   # SLICK
 
-  SLICK is clone of popular web application, SLACK. SLICK, a fullstack project, will be developed
+  SLICK is clone of popular web application, SLACK. SLICK will be developed
   using skills and knowledges learned during App Academy's curriculum. When completed,
   SLICK will be able to perform essential functions of SLACK - live chat, team chat, direct messages,
   and channels. In addition, SLACK will also have implemented authentication system that is
   commonly seen among many web application today.
 
-  [Heroku link][https://slick-aa.herokuapp.com/]
+  https://slick-aa.herokuapp.com/
 
-  [Trello link][trello]
+  [Trello link]
 
   [trello]:
 
