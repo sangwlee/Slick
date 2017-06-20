@@ -27,32 +27,33 @@ class Signup extends React.Component {
       <div className="signup-container">
         <h3>First Time?</h3>
         <form onSubmit={this.handleSubmit}>
-          <label>Yourname:
+          <label><span className="shiftSpace">Yourname</span>
             <input onChange={this.handleChange('firstname')} type='text'/>
             <input onChange={this.handleChange('lastname')} type='text'/>
           </label>
 
           <br/>
 
-          <label>Username:
-            <input onChange={this.handleChange('username')} type='text'/>
+          <label>Username
+            <input className="longerInput" onChange={this.handleChange('username')} type='text'/>
           </label>
 
           <br/>
+          <br/>
 
-          <label className="emailInput">Email:
-            <input onChange={this.handleChange('email')} type='text'/>
+          <label className="emailInput"><span className="emailLabel">Email</span>
+            <input className="longerInput" onChange={this.handleChange('email')} type='text'/>
           </label>
 
           <br />
 
-          <label>Password:
-            <input onChange={this.handleChange('password')} type='password'/>
+          <label><span className="shiftSpace">Password</span>
+            <input className="longerInput" onChange={this.handleChange('password')} type='password'/>
           </label>
 
           <br/>
 
-          <input type="submit" value="JOIN"/>
+          <input className="join-button" type="submit" value="JOIN"/>
         </form>
         <ul className="errorMessages">
           {

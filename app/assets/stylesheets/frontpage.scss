@@ -4,19 +4,22 @@
   font-family: sans-serif;
 
   ul {
+    position: relative;
+    top: 290px;
+    left: 50px;
 
     li {
-      font-size: 50px;
+      font-size: 150px;
       font-family: 'Crushed', cursive;
-      color: $bluepurple;
+      color: $skyblue;
     }
 
     li:first-child {
-      color: black;
+      color: $lightpurple;
     }
 
     li:last-child {
-      color: black;
+      color: $bluepurple;
     }
   }
 
@@ -25,9 +28,8 @@
 .front-page-header-container {
   display: flex;
   justify-content: space-between;
-  // border-bottom: 1px solid gray;
+  border-bottom: 5px solid $bluepurple;
   padding: 15px 15px 15px 0px;
-  background-color: $skyblue;
 }
 
 .front-page-body-container {
@@ -43,9 +45,9 @@
 
 .login-container {
   span {
-    padding-right: 220px;
-    color: white;
-    font-size: 20px;
+    padding-right: 240px;
+    color: $bluepurple;
+    font-size: 16px;
   }
 
   form {
@@ -54,16 +56,24 @@
       padding: 5px 20px 5px 5px;
       border-radius: 5px;
       font-size: 25px;
+      border: 1px solid $bluepurple;
+      color: black;
     }
 
     input:last-child {
       padding-right: 5px;
+      color: white;
+      background-color: $bluepurple;
     }
   }
 
 }
 
 .signup-container {
+  position: relative;
+  right: 230px;
+  color: $lightpurple;
+
   h3 {
     font-size: 50px;
   }
@@ -72,18 +82,38 @@
     margin-right: 10px;
     padding: 5px 20px 5px 5px;
     border-radius: 5px;
+    border: 1px solid $lightpurple;
     margin: 3px;
   }
+  //
+  // input:last-child {
+  //   color: white;
+  // }
+
+
 }
 
-.emailInput {
-  padding-right: 50px;
+.emailLabel {
+  padding-right: 32px;
 }
 
 .slicklogo {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   padding-left: 15px;
   padding-right: 15px;
-  border-radius: 50%;
+  border-radius: 100%;
+}
+
+.longerInput {
+  width: 385px;
+}
+
+.shiftSpace {
+  padding-right: 2px;
+}
+
+.join-button {
+  width: 485px;
+  color: white;
 }
