@@ -12,7 +12,7 @@ class FrontPage extends React.Component{
     return(
       <div className="front-page-container">
         <section className="front-page-header-container">
-          <h1><img className="slicklogo" class="logo" src="assets/slicklogo.img" alt="slick"/>Slick</h1>
+          <h1><img className="slicklogo" src="assets/slicklogo.img" alt="slick"/>Slick</h1>
           <LoginContainer />
         </section>
         <section className="front-page-body-container">

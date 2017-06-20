@@ -40,7 +40,7 @@ class Signup extends React.Component {
 
           <br/>
 
-          <label class="emailInput">Email:
+          <label className="emailInput">Email:
             <input onChange={this.handleChange('email')} type='text'/>
           </label>
 
