@@ -1,0 +1,89 @@
+.front-page-container {
+  background-color: lightgray;
+  height: 100vh;
+  font-family: sans-serif;
+
+  ul {
+
+    li {
+      font-size: 50px;
+      font-family: 'Crushed', cursive;
+      color: $bluepurple;
+    }
+
+    li:first-child {
+      color: black;
+    }
+
+    li:last-child {
+      color: black;
+    }
+  }
+
+}
+
+.front-page-header-container {
+  display: flex;
+  justify-content: space-between;
+  // border-bottom: 1px solid gray;
+  padding: 15px 15px 15px 0px;
+  background-color: $skyblue;
+}
+
+.front-page-body-container {
+  display: flex;
+  justify-content: space-between;
+
+  ul {
+    li {
+      list-style-type: none;
+    }
+  }
+}
+
+.login-container {
+  span {
+    padding-right: 220px;
+    color: white;
+    font-size: 20px;
+  }
+
+  form {
+    input {
+      margin-right: 10px;
+      padding: 5px 20px 5px 5px;
+      border-radius: 5px;
+      font-size: 25px;
+    }
+
+    input:last-child {
+      padding-right: 5px;
+    }
+  }
+
+}
+
+.signup-container {
+  h3 {
+    font-size: 50px;
+  }
+
+  input {
+    margin-right: 10px;
+    padding: 5px 20px 5px 5px;
+    border-radius: 5px;
+    margin: 3px;
+  }
+}
+
+.emailInput {
+  padding-right: 50px;
+}
+
+.slicklogo {
+  width: 60px;
+  height: 60px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 50%;
+}

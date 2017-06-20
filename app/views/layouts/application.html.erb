@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>FullStack</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Slick</title>
 
-<%= yield %>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <link href="https://fonts.googleapis.com/css?family=Crushed" rel="stylesheet">
+  </head>
 
-</body>
+  <body>
+    <%= yield %>
+  </body>
+</html>
+
+  </head>
+  <body>
+
+    <%= yield %>
+
+  </body>
 </html>
