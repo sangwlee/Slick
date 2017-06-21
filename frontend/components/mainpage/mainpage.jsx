@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import LeftColumn from './left_column/left_column';
+import MiddleRightColumn from './middle_right_column/middle_right_column';
 
 class MainPage extends React.Component{
   constructor(props) {
@@ -8,8 +10,9 @@ class MainPage extends React.Component{
 
   render() {
     return(
-      <div>
-        <h1>Welcome, {this.props.currentUser.firstname}!</h1>
+      <div className="main-page-container">
+        <div className="main-page-left-column"><LeftColumn /></div>
+        <div className="main-page-middle-right-column"><MiddleRightColumn /></div>
       </div>
     );
   }

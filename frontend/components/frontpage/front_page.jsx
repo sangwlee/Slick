@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import LoginContainer from './login/login_container';
 import SignupContainer from './signup/signup_container';
 
@@ -31,4 +31,4 @@ class FrontPage extends React.Component{
   }
 }
 
-export default FrontPage;
+export default withRouter(FrontPage);
