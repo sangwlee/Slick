@@ -102,7 +102,7 @@
     color: white;
   }
 
-  input:focus {
+  .signup-turn-color:focus {
     color: $skyblue;
   }
 }
@@ -180,4 +180,13 @@ div hr {
   vertical-align: 50%;
   margin-top: 20px;
   font-family: 'Gloria Hallelujah', cursive;
+}
+
+.login-button, .join-button {
+  cursor: pointer;
+}
+
+#button:active {
+  position: relative;
+  top: 1px;
 }
