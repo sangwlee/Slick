@@ -68,7 +68,7 @@
       border-radius: 5px;
       font-size: 25px;
       border: 1px solid $bluepurple;
-      color: black;
+      color: $bluepurple;
     }
 
     input:last-child {
@@ -83,7 +83,6 @@
 .signup-container {
   position: relative;
   right: 13%;
-  // margin-right: 100%;
   color: $lightpurple;
 
   h3 {
@@ -152,17 +151,6 @@
   border-radius: 100%;
 }
 
-.background-img {
-  position: relative;
-  right: 23%;
-  // bottom: 40%;
-  // left: 10%;
-  top: 80px;
-  width: 32%;
-  height: 32%;
-  // z-index: +1;
-}
-
 .longerInput {
   width: 385px;
 }
@@ -170,10 +158,6 @@
 .join-button {
   width: 98%;
   color: white;
-}
-
-.between-border {
-  border-bottom: 1px solid $lightpurple;
 }
 
 div hr {
@@ -188,15 +172,6 @@ div hr {
   font-size: 13.5px;
   color: red;
   // padding-top: 2px;
-}
-
-#landing-wrapper {
-  display: table;
-  width: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('background2.jpg');
-  background-position: center top;
-  height: 350px;
-  color: white;
 }
 
 .welcome-message {
