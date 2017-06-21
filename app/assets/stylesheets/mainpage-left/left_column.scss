@@ -1,0 +1,19 @@
+.left-column-container {
+  height: 100%;
+  padding: 10px;
+  padding-left: 15px;
+  list-style-type: none;
+  
+
+  li {
+    height: 30%;
+  }
+
+  li:first-child {
+    height: 8%;
+  }
+
+  li:last-child {
+    height: 62%;
+  }
+}

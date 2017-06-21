@@ -11,7 +11,7 @@ class LeftColumn extends React.Component {
   render() {
     return(
       <div>
-        <ul>
+        <ul className="left-column-container">
           <li><ProfileContainer /></li>
           <li><ChannelsContainer /></li>
           <li><DirectMessagesContainer /></li>

@@ -14,5 +14,11 @@
 //  */
 @import "base/reset.scss";
 @import "base/colors.scss";
+
 @import "frontpage.scss";
-@import "api/*";
+@import "mainpage.scss";
+
+@import "mainpage-left/left_column.scss";
+@import "mainpage-left/profile.scss";
+@import "mainpage-left/channels.scss";
+@import "mainpage-left/direct_messages.scss";

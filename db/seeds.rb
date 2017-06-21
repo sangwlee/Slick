@@ -78,3 +78,7 @@ subscription3 = Subscription.create(user_id: user3.id, channel_id: channel2.id)
 subscription4 = Subscription.create(user_id: user4.id, channel_id: channel2.id)
 subscription5 = Subscription.create(user_id: user5.id, channel_id: channel2.id)
 subscription6 = Subscription.create(user_id: user6.id, channel_id: channel2.id)
+
+subscription7 = Subscription.create(user_id: user1.id, channel_id: channel1.id)
+subscription8 = Subscription.create(user_id: user2.id, channel_id: channel1.id)
+subscription9 = Subscription.create(user_id: user3.id, channel_id: channel1.id)

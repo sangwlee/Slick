@@ -7,7 +7,11 @@ class Profile extends React.Component {
 
   render() {
     return(
-      <h1>Hello from Profile!</h1>
+      <div className="profile-container">
+        <span>Welcome, {this.props.currentUser.firstname}.</span>
+        <br/>
+        <span>@{this.props.currentUser.username}</span>
+      </div>
     );
   }
 }

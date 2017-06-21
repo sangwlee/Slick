@@ -7,7 +7,7 @@ class Channels extends React.Component {
 
   render() {
     return(
-      <h1>Hello from Channels!</h1>
+      <h1>CHANNELS</h1>
     );
   }
 }

@@ -7,7 +7,7 @@ import FrontPage from './frontpage/front_page';
 import MainPage from './mainpage/mainpage';
 
 export const App = () => (
-  <div>
+  <div className="container">
     <Route exact path="/" component={FrontPage} />
     <Route path="/main" component={MainPage} />
   </div>

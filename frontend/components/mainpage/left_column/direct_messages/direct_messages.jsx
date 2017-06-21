@@ -7,7 +7,7 @@ class DirectMessages extends React.Component {
 
   render() {
     return(
-      <h1>Hello from DirectMessages!</h1>
+      <h1>DIRECT MESSAGES</h1>
     );
   }
 }
