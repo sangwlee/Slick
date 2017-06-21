@@ -104,27 +104,27 @@
   }
 
   input:focus {
-    color: black;
+    color: $skyblue;
   }
 }
 
 .signup-container:hover {
   transition: color .5s ease-in-out;
-  color: $bluepurple;
+  color: $skyblue;
 
   input {
     transition: border .5s ease-in-out;
-    border: 1px solid $bluepurple;
+    border: 1px solid $skyblue;
   }
 
   .join-button {
     transition: background-color .5s ease-in-out;
-    background-color: $bluepurple;
+    background-color: $skyblue;
   }
 
   div hr {
     transition: border .5s ease-in-out;
-    border: 0.1px solid $bluepurple;
+    border: 0.1px solid $skyblue;
   }
 }
 
