@@ -10,4 +10,11 @@
 #
 
 class Subscription < ActiveRecord::Base
+  validates :user, :channel, presence: true
+
+  belongs_to :user
+  belongs_to :channel
+
+
+  # has_many :messages, through: :channel
 end

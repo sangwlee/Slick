@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
   validates :username, :email, :password_digest, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
+  has_many :messages
+  has_many :subscriptions
+  has_many :channels, through: :subscriptions
+
   def self.find_by_credentials(username, password)
     @user = User.find_by(username: username)
     @user if @user && @user.is_password?(password)
