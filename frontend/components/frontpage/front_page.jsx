@@ -10,16 +10,19 @@ class FrontPage extends React.Component{
 
   render() {
     return(
-      <div className="front-page-container">
+      <div className="front-page-container landing-wrapper">
         <section className="front-page-header-container">
-          <h1><img className="slicklogo" src="assets/slicklogo.img" alt="slick"/></h1>
+          <h1>
+            <img className="slicklogo" src="assets/slicklogo.img" alt="slick"/>
+            <span className="welcome-message">Welcome to Slick!</span>
+          </h1>
           <LoginContainer />
         </section>
         <section className="front-page-body-container">
-          <ul>
-            <li>start</li>
-            <li>your</li>
-            <li>communication</li>
+          <ul className="motto">
+            <li>START</li>
+            <li>YOUR</li>
+            <li>COMMUNICATION</li>
           </ul>
           <SignupContainer className="sign-up-container"/>
         </section>

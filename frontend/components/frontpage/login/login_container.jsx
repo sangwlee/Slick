@@ -4,7 +4,8 @@ import { login } from '../../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   loggedIn: Boolean(state.session.currentUser),
-  errors: state.session.errors
+  login_errors: state.session.login_errors,
+  signup_errors: state.session.signup_errors
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,16 +1,22 @@
 .front-page-container {
   background-color: white;
-  height: 100vh;
+  height: 100%;
   font-family: sans-serif;
 
-  ul {
+  background: url('background.png');
+  background-size: 10% 15%;
+  background-repeat: no-repeat;
+  background-position: 55% 95%;
+
+  ul.motto {
     position: relative;
-    top: 290px;
+    bottom: 10%;
+    top: 30%;
     left: 50px;
 
     li {
       font-size: 150px;
-      font-family: 'Crushed', cursive;
+      font-family: 'Indie Flower', cursive;
       color: $skyblue;
     }
 
@@ -30,15 +36,20 @@
   justify-content: space-between;
   border-bottom: 5px solid $bluepurple;
   padding: 15px 15px 15px 0px;
+  background-color: white;
 }
 
 .front-page-body-container {
   display: flex;
   justify-content: space-between;
 
-  ul {
+  ul.motto {
     li {
       list-style-type: none;
+    }
+
+    li:first-child {
+      margin-top: 10%;
     }
   }
 }
@@ -71,7 +82,8 @@
 
 .signup-container {
   position: relative;
-  right: 230px;
+  right: 13%;
+  // margin-right: 100%;
   color: $lightpurple;
 
   h3 {
@@ -84,17 +96,52 @@
     border-radius: 5px;
     border: 1px solid $lightpurple;
     margin: 3px;
+    color: $lightpurple;
   }
-  //
-  // input:last-child {
-  //   color: white;
-  // }
 
+  .join-button {
+    color: white;
+  }
 
+  input:focus {
+    color: black;
+  }
 }
 
-.emailLabel {
-  padding-right: 32px;
+.signup-container:hover {
+  transition: color .5s ease-in-out;
+  color: $bluepurple;
+
+  input {
+    transition: border .5s ease-in-out;
+    border: 1px solid $bluepurple;
+  }
+
+  .join-button {
+    transition: background-color .5s ease-in-out;
+    background-color: $bluepurple;
+  }
+
+  div hr {
+    transition: border .5s ease-in-out;
+    border: 0.1px solid $bluepurple;
+  }
+}
+
+.shift-your-name {
+  margin-right: 0px;
+}
+
+.shift-username {
+  margin-right: 3px;
+}
+
+.shift-email {
+  margin-right: 36px;
+}
+
+.shift-password {
+  margin-right: 6px;
 }
 
 .slicklogo {
@@ -105,15 +152,57 @@
   border-radius: 100%;
 }
 
+.background-img {
+  position: relative;
+  right: 23%;
+  // bottom: 40%;
+  // left: 10%;
+  top: 80px;
+  width: 32%;
+  height: 32%;
+  // z-index: +1;
+}
+
 .longerInput {
   width: 385px;
 }
 
-.shiftSpace {
-  padding-right: 2px;
+.join-button {
+  width: 98%;
+  color: white;
 }
 
-.join-button {
-  width: 485px;
+.between-border {
+  border-bottom: 1px solid $lightpurple;
+}
+
+div hr {
+  border: 0.1px solid $lightpurple;
+  width: 98%;
+  margin-right: 41%;
+}
+
+.error-messages {
+  list-style-type: none;
+  font-family: sans-serif;
+  font-size: 13.5px;
+  color: red;
+  // padding-top: 2px;
+}
+
+#landing-wrapper {
+  display: table;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('background2.jpg');
+  background-position: center top;
+  height: 350px;
   color: white;
+}
+
+.welcome-message {
+  color: $bluepurple;
+  font-size: 25px;
+  vertical-align: 50%;
+  margin-top: 20px;
+  font-family: 'Gloria Hallelujah', cursive;
 }

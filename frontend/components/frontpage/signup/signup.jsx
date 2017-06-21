@@ -4,10 +4,20 @@ import { withRouter } from 'react-router';
 class Signup extends React.Component {
   constructor(props){
     super(props);
-    this.state = { username: '', password: '', email: '', firstname: '', lastname: ''};
+    this.state = { username: '', password: '', email: '', firstname: 'First', lastname: 'Last'};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.empty = this.empty.bind(this);
+  }
+
+  empty(type) {
+    // debugger
+    return (e) => {
+      if (e.currentTarget.value !== 'First' || e.currentTarget.value !== 'Last') {
+        this.setState({[type]: ''});
+      }
+    };
   }
 
   handleChange(type) {
@@ -27,27 +37,26 @@ class Signup extends React.Component {
       <div className="signup-container">
         <h3>First Time?</h3>
         <form onSubmit={this.handleSubmit}>
-          <label><span className="shiftSpace">Yourname</span>
-            <input onChange={this.handleChange('firstname')} type='text'/>
-            <input onChange={this.handleChange('lastname')} type='text'/>
+          <label><span className="shift-your-name">Your name</span>
+            <input onClick={this.empty('firstname')} onChange={this.handleChange('firstname')} type='text' value={this.state.firstname}/>
+            <input onClick={this.empty('lastname')} onChange={this.handleChange('lastname')} type='text' value={this.state.lastname}/>
           </label>
 
           <br/>
 
-          <label>Username
+          <label><span className="shift-username">Username</span>
             <input className="longerInput" onChange={this.handleChange('username')} type='text'/>
           </label>
 
-          <br/>
-          <br/>
+          <div><hr /></div>
 
-          <label className="emailInput"><span className="emailLabel">Email</span>
+          <label><span className="shift-email">Email</span>
             <input className="longerInput" onChange={this.handleChange('email')} type='text'/>
           </label>
 
           <br />
 
-          <label><span className="shiftSpace">Password</span>
+          <label><span className="shift-password">Password</span>
             <input className="longerInput" onChange={this.handleChange('password')} type='password'/>
           </label>
 
@@ -55,10 +64,10 @@ class Signup extends React.Component {
 
           <input className="join-button" type="submit" value="JOIN"/>
         </form>
-        <ul className="errorMessages">
+        <ul>
           {
-            this.props.errors.map((error, idx) => (
-            <li className="errorMessages" key={idx}>{error}</li>
+            this.props.signup_errors.map((error, idx) => (
+            <li className="error-messages" key={idx}>{error}</li>
             ))
           }
         </ul>

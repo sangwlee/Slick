@@ -32,9 +32,9 @@ class Login extends React.Component {
           <input onChange={this.handleChange('password')} type='password'/>
           <input type="submit" value="Log In"/>
         </form>
-        <ul>
+        <ul className="error-messages">
           {
-            this.props.errors.map((error, idx) => (
+            this.props.login_errors.map((error, idx) => (
               <li key={idx}>{error}</li>
             ))
           }
