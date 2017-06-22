@@ -1,18 +1,11 @@
 import { merge } from 'lodash';
 import {
-  RECEIVE_CURRENT_USER,
-  RECEIVE_ERRORS,
-  RECEIVE_LOGIN_ERRORS,
-  RECEIVE_SIGNUP_ERRORS
-} from '../actions/session_actions';
 
-const defaultState = Object.freeze({
-  currentUser: null,
-  login_errors: [],
-  signup_errors: []
-});
+} from '../actions/messages_actions';
 
-export const SessionReducer = (state = defaultState, action) => {
+const defaultState = Object.freeze({});
+
+export const MessagesReducer = (state = defaultState, action) => {
   Object.freeze(state);
 
   switch (action.type) {

@@ -5,10 +5,9 @@
 #  id          :integer          not null, primary key
 #  name        :string           not null
 #  description :string           not null
-#  private     :boolean          default(FALSE)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#
+#  kind        :string           not null
 
 class Channel < ActiveRecord::Base
   validates :name, :description, presence: true

@@ -11,7 +11,14 @@ import {
 document.addEventListener('DOMContentLoaded', () => {
   let store;
   if (window.currentUser) {
-    const preloadedState = { session: { currentUser: window.currentUser, login_errors: [], signup_errors: [] } };
+    const preloadedState = {
+      session: { currentUser: window.currentUser, login_errors: [], signup_errors: [] },
+      channels: {},
+      users: {},
+      messages: {},
+      currentChannel: null,
+      currentUser: window.currentUser,
+    };
     store = configureStore(preloadedState);
     // delete window.currentUser;
   } else {
@@ -21,3 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store}/>, root);
 });
+
+// combineReducers({
+//   session: SessionReducer,
+//   channels: ChannelsReducer,
+//   users: UsersReducer,
+//   messages: MessagesReducer,
+//   currentChannel: null,
+//   currentUser: null,
+// });
