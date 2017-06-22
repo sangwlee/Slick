@@ -20,9 +20,12 @@ class Api::MessagesController < ApplicationController
     @message = Message.new
   end
 
+  def show
+    @message = Message.find(params[:id])
+  end
+
   def create
     @message = Message.new(message_params)
-
     if @message.save
       render json: @message
     else
@@ -43,6 +46,7 @@ class Api::MessagesController < ApplicationController
   def destroy
     @message = Message.find(params[:id])
     @message.destroy
+    render :index
   end
 
   private

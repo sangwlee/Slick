@@ -4,23 +4,10 @@ class Api::SubscriptionsController < ApplicationController
     render json: @subscriptions
   end
 
-  def new
-    @subscription = Subscription.new
-  end
-
   def create
     @subscription = Subscription.new(subscription_params)
+    debugger
     if @subscription.save
-      render json: @subscription
-    else
-      render json: @subscription.errors.full_messages, status: 422
-    end
-  end
-
-  def update
-    @subscription = Subscription.find(params[:id])
-
-    if @subscription.update(subscription_params)
       render json: @subscription
     else
       render json: @subscription.errors.full_messages, status: 422
@@ -30,6 +17,7 @@ class Api::SubscriptionsController < ApplicationController
   def destroy
     @subscription = Subscription.find(params[:id])
     @subscription.destroy
+    render :index
   end
 
   private

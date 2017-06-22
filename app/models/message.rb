@@ -12,7 +12,7 @@
 #
 
 class Message < ActiveRecord::Base
-  validates :kind, :user, :channel, presence: true
+  validates :kind, :user_id, :channel_id, presence: true
 
   belongs_to :user
   belongs_to :channel

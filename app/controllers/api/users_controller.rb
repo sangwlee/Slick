@@ -7,13 +7,12 @@ class Api::UsersController < ApplicationController
         .includes(:user)
         .where(channel_id: params[:channel_id])
         .each {|subs| users << subs.user}
-
       @users = users
     else
 
       @users = User.all
     end
-    
+
     render json: @users
   end
 
@@ -38,6 +37,7 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    # debugger
 
     if @user.update(user_params)
       render json: @user
@@ -49,6 +49,7 @@ class Api::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+    render :index
   end
 
   private

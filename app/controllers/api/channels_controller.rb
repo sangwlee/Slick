@@ -49,11 +49,12 @@ class Api::ChannelsController < ApplicationController
   def destroy
     @channel = Channel.find(params[:id])
     @channel.destroy
+    render :index
   end
 
   private
   def channel_params
-    params.require(:channel).permit(:name, :description, :private)
+    params.require(:channel).permit(:name, :description, :kind)
   end
 end
 
