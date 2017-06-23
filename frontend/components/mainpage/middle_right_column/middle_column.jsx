@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import ChannelDetailContainer from './channel_detail/channel_detail_container';
 import MessagesContainer from './messages/messages_container';
@@ -14,10 +15,10 @@ class MiddleRightColumn extends React.Component {
   render() {
     return(
       <div>
-        <ul>
-          <li><ChannelDetailContainer /></li>
-          <li><MessagesContainer /></li>
-          <li><InputContainer /></li>
+        <ul className="middle-column-container">
+          <li className="channel-detail-container"><ChannelDetailContainer /></li>
+          <li className="messages-container"><MessagesContainer /></li>
+          <li className="input-container"><InputContainer /></li>
         </ul>
 
         <RightColumn column_type="details"/>
@@ -26,4 +27,4 @@ class MiddleRightColumn extends React.Component {
   }
 }
 
-export default MiddleRightColumn;
+export default withRouter(MiddleRightColumn);

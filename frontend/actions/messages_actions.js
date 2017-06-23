@@ -4,6 +4,7 @@ export const RECEIVE_ALL_MESSAGES = "RECEIVE_ALL_MESSAGES";
 export const RECEIVE_SINGLE_MESSAGE = "RECEIVE_SINGLE_MESSAGE";
 export const RECEIVE_ALL_MESSAGES_OF_USER = "RECEIVE_ALL_MESSAGES_OF_USER";
 export const RECEIVE_MESSAGE_ERRORS = "RECEIVE_MESSAGE_ERRORS";
+export const RECEIVE_ALL_MESSAGES_OF_CHANNEL = "RECEIVE_ALL_MESSAGES_OF_CHANNEL";
 
 // REGULAR ACTIONS
 export const receiveMessageErrors = errors => {
@@ -26,9 +27,17 @@ export const receiveSingleMessage = message => {
     message
   };
 };
+
 export const receiveAllMessagesOfUser = messages => {
   return {
     type: RECEIVE_ALL_MESSAGES_OF_USER,
+    messages
+  };
+};
+
+export const receiveAllMessagesOfChannel = messages => {
+  return {
+    type: RECEIVE_ALL_MESSAGES_OF_CHANNEL,
     messages
   };
 };
@@ -49,6 +58,12 @@ export const requestSingleMessage = message_id => dispatch => {
 export const requestAllMessagesOfUser = user_id => dispatch => {
   return MessagesUtil.fetchAllMessagesOfUser(user_id)
     .then(messages => dispatch(receiveAllMessagesOfUser(messages)))
+    .fail(err => dispatch(receiveMessageErrors(err.responseJSON)));
+};
+
+export const requestAllMessagesOfChannel = channel_id => dispatch => {
+  return MessagesUtil.fetchAllMessagesOfChannel(channel_id)
+    .then(messages => dispatch(receiveAllMessagesOfChannel(messages)))
     .fail(err => dispatch(receiveMessageErrors(err.responseJSON)));
 };
 

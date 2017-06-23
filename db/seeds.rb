@@ -69,9 +69,20 @@ channel7 = Channel.create(name: 'mortal enemies', description: 'Harry - Voldemor
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 
+# the trio convo
 message1 = Message.create(content: 'Hi Harry!', kind: 'normal', user_id: user4.id, channel_id: channel6.id)
-message1 = Message.create(content: 'Hi Hermione!', kind: 'normal', user_id: user1.id, channel_id: channel6.id)
-message1 = Message.create(content: 'What about me?!', kind: 'normal', user_id: user5.id, channel_id: channel6.id)
+message2 = Message.create(content: 'Hi Hermione!', kind: 'normal', user_id: user1.id, channel_id: channel6.id)
+message3 = Message.create(content: 'What about me?!', kind: 'normal', user_id: user5.id, channel_id: channel6.id)
+
+# mortal enemies convo
+message1 = Message.create(content: 'Avada Kedavra!', kind: 'normal', user_id: user9.id, channel_id: channel7.id)
+message1 = Message.create(content: 'Avada Kedavra!!', kind: 'normal', user_id: user1.id, channel_id: channel7.id)
+message1 = Message.create(content: 'Avada Kedavra!!!', kind: 'normal', user_id: user9.id, channel_id: channel7.id)
+message1 = Message.create(content: 'Avada Kedavra!!!!', kind: 'normal', user_id: user1.id, channel_id: channel7.id)
+message1 = Message.create(content: 'Avada Kedavra!!!!!', kind: 'normal', user_id: user9.id, channel_id: channel7.id)
+message1 = Message.create(content: 'Avada Kedavra!!!!!!', kind: 'normal', user_id: user1.id, channel_id: channel7.id)
+message1 = Message.create(content: 'Avada Kedavra!!!!!!!', kind: 'normal', user_id: user9.id, channel_id: channel7.id)
+message1 = Message.create(content: 'Avada Kedavra!!!!!!!!', kind: 'normal', user_id: user1.id, channel_id: channel7.id)
 
 # SUBSCRIPTIONS
 #  id         :integer          not null, primary key

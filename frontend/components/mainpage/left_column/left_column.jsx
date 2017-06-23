@@ -1,7 +1,6 @@
 import React from 'react';
 import ProfileContainer from './profile/profile_container';
 import ChannelsContainer from './channels/channels_container';
-import DirectMessagesContainer from './direct_messages/direct_messages_container';
 
 class LeftColumn extends React.Component {
   constructor(props) {
@@ -12,9 +11,8 @@ class LeftColumn extends React.Component {
     return(
       <div>
         <ul className="left-column-container">
-          <li><ProfileContainer /></li>
-          <li><ChannelsContainer /></li>
-          <li><DirectMessagesContainer /></li>
+          <li className='profile-container'><ProfileContainer /></li>
+          <li className='channels-container'><ChannelsContainer /></li>
         </ul>
       </div>
     );

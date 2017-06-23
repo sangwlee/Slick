@@ -4,6 +4,8 @@ import { AuthRoute } from '../util/route_util';
 import FrontPage from './frontpage/front_page';
 import MainPageContainer from './mainpage/mainpage_container';
 
+import MessagesContainer from './mainpage/middle_right_column/messages/messages_container';
+
 export const App = () => (
   <div className="container">
     <Route exact path="/" component={FrontPage} />

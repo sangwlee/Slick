@@ -4,6 +4,7 @@ import {
   RECEIVE_SINGLE_MESSAGE,
   RECEIVE_ALL_MESSAGES_OF_USER,
   RECEIVE_MESSAGE_ERRORS,
+  RECEIVE_ALL_MESSAGES_OF_CHANNEL,
 } from '../actions/messages_actions';
 
 const defaultState = Object.freeze({
@@ -16,13 +17,15 @@ export const MessagesReducer = (state = defaultState, action) => {
 
   switch (action.type) {
     case RECEIVE_ALL_MESSAGES:
-      return merge({}, state, action.messages);
+      return merge({}, defaultState, action.messages);
     case RECEIVE_SINGLE_MESSAGE:
-      return Object.assign({}, state, action.message);
+      return Object.assign({}, defaultState, action.message);
     case RECEIVE_ALL_MESSAGES_OF_USER:
-      return Object.assign({}, state, action.messages);
+      return Object.assign({}, defaultState, action.messages);
+      case RECEIVE_ALL_MESSAGES_OF_CHANNEL:
+      return Object.assign({}, defaultState, action.messages);
     case RECEIVE_MESSAGE_ERRORS:
-      return Object.assign({}, state, { errors: action.errors });
+      return Object.assign({}, defaultState, { errors: action.errors });
     default:
       return state;
   }

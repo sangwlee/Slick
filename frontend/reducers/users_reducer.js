@@ -15,13 +15,13 @@ export const UsersReducer = (state = defaultState, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_USER_ERRORS:
-      return merge({}, state, { errors: action.errors });
+      return merge({}, defaultState, { errors: action.errors });
     case RECEIVE_ALL_USERS:
-      return merge({}, state, action.users);
+      return merge({}, defaultState, action.users);
     case RECEIVE_SINGLE_USER:
-      return merge({}, state, action.user);
+      return merge({}, defaultState, action.user);
     case RECEIVE_ALL_USERS_OF_CHANNEL:
-      return merge({}, state, action.users);
+      return merge({}, defaultState, action.users);
     default:
       return state;
   }
