@@ -10,6 +10,10 @@ class MainPage extends React.Component{
     super(props);
   }
 
+  componentDidMount() {
+    this.props.requestAllChannelsOfUser(this.props.currentUser.id);
+  }
+
   render() {
     return(
       <div className="main-page-container">

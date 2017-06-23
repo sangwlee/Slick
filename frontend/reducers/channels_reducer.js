@@ -7,8 +7,8 @@ import {
 } from '../actions/channels_actions';
 
 const defaultState = Object.freeze({
-  channels: [],
-  errors: []
+  // channels: {},
+  // errors: {}
 });
 
 export const ChannelsReducer = (state = defaultState, action) => {
@@ -16,14 +16,14 @@ export const ChannelsReducer = (state = defaultState, action) => {
 
   switch (action.type) {
     case RECEIVE_ALL_CHANNELS:
-      return merge({}, state, { channels: action.channels });
+      return merge({}, state, action.channels);
     case RECEIVE_SINGLE_CHANNEL:
-      return merge({}, state, { channels: action.channel });
+      return merge({}, state, action.channel);
     case RECEIVE_ALL_CHANNELS_OF_USER:
       // debugger
-      return merge({}, state, { channels: action.channels });
+      return merge({}, state, action.channels);
     case RECEIVE_CHANNEL_ERRORS:
-      return Object.assign({}, {errors: action.errors});
+      return Object.assign({}, action.errors);
     default:
       return state;
   }

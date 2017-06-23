@@ -7,8 +7,8 @@ import {
 } from '../actions/users_actions';
 
 const defaultState = Object.freeze({
-  users: {},
-  errors: {}
+  // users: {},
+  // errors: {}
 });
 
 export const UsersReducer = (state = defaultState, action) => {
@@ -17,11 +17,11 @@ export const UsersReducer = (state = defaultState, action) => {
     case RECEIVE_USER_ERRORS:
       return merge({}, state, { errors: action.errors });
     case RECEIVE_ALL_USERS:
-      return merge({}, state, { users: action.users });
+      return merge({}, state, action.users);
     case RECEIVE_SINGLE_USER:
-      return merge({}, state, { users: action.user });
+      return merge({}, state, action.user);
     case RECEIVE_ALL_USERS_OF_CHANNEL:
-      return merge({}, state, { users: action.users });
+      return merge({}, state, action.users);
     default:
       return state;
   }

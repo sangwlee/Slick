@@ -1,4 +1,3 @@
-json.array! @users do |user|
-  debugger
+json.set! @users do |user|
   json.partial! './api/users/user', user: user
 end

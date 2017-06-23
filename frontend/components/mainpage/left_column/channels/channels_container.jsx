@@ -1,19 +1,23 @@
 import { connect } from 'react-redux';
 import Channels from './channels';
-import { requestAllChannelsOfUser } from '../../../../actions/channels_actions';
+import selector from '../../../../util/selector';
 
 const mapStateToProps = state => {
-  debugger
+  let channels = [];
+  selector(state.channels).forEach( channel => {
+    if (channel.kind === 'public' || channel.kind === 'private') {
+      channels.push(channel);
+    }
+  });
+
   return {
     currentUser : state.session.currentUser,
-    channels: state.channels.channels || []
+    channels
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  // debugger
   return {
-    requestAllChannelsOfUser: user_id => dispatch(requestAllChannelsOfUser(user_id)),
   };
 };
 
