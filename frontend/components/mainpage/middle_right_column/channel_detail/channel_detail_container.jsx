@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import ChannelDetail from './channel_detail';
-import { requestSingleChannel } from '../../../../actions/channels_actions';
+import { requestCurrentChannel } from '../../../../actions/channels_actions';
 
 const mapStateToProps = state => ({
-  currentChannel: state.channels
+  currentChannel: state.currentChannel
 });
 
 const mapDispatchToProps = dispatch => ({
-  requestSingleChannel: channel_id => dispatch(requestSingleChannel(channel_id))
+  requestCurrentChannel: channel_id => dispatch(requestCurrentChannel(channel_id))
 });
 
 export default connect(

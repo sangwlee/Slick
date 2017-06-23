@@ -5,6 +5,7 @@ import { requestAllMessagesOfChannel } from '../../../../actions/messages_action
 
 const mapStateToProps = state => {
   let channels = [];
+  // debugger
   selector(state.channels).forEach( channel => {
     if (channel.kind === 'public' || channel.kind === 'private') {
       channels.push(channel);

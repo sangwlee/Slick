@@ -16,7 +16,7 @@ class MiddleRightColumn extends React.Component {
     return(
       <div className='middle-right-container'>
         <ul className='middle-container'>
-          <li className='channel-detail-container'><ChannelDetailContainer /></li>
+          <li className='channel-detail-container'><Route exact path="/main/:channelId" component={ChannelDetailContainer}/></li>
           <li>MESSAGES</li>
           <li className='messages-container messages'><Route exact path="/main/:channelId" component={MessagesContainer}/></li>
           <li className='input-container'><InputContainer /></li>

@@ -10,21 +10,18 @@ class ChannelDetail extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
       let newChannelId = parseInt(nextProps.match.params.channelId);
-      this.props.requestSingleChannel(newChannelId);
+      this.props.requestCurrentChannel(newChannelId);
     }
   }
 
   render() {
+    debugger
     return(
       <h1>
-        {
-          selector(this.props.channels).map( channel => {
-            <ul>
-              <li>{channel.name}</li>
-              <li>{channel.description}</li>
-            </ul>
-          })
-        }
+        <ul>
+          <li>{this.props.currentChannel.name}</li>
+          <li>{this.props.currentChannel.description}</li>
+        </ul>
       </h1>
     );
   }

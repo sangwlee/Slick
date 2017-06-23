@@ -11,6 +11,7 @@ class MainPage extends React.Component{
   }
 
   componentDidMount() {
+    // debugger
     this.props.requestAllChannelsOfUser(this.props.currentUser.id);
   }
 
