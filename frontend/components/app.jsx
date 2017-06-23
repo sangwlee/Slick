@@ -9,6 +9,6 @@ import MessagesContainer from './mainpage/middle_right_column/messages/messages_
 export const App = () => (
   <div className="container">
     <Route exact path="/" component={FrontPage} />
-    <Route path="/main" component={MainPageContainer} />
+    <Route path="/main/" component={MainPageContainer} />
   </div>
 );

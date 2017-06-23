@@ -1,4 +1,5 @@
 import React from 'react';
+import selector from '../../../../../util/selector';
 
 class Details extends React.Component {
   constructor(props) {
@@ -6,8 +7,24 @@ class Details extends React.Component {
   }
 
   render() {
+    const users = selector(this.props.users);
+    const usersCount = users.length;
+    const usersList = users.map( user => {
+      return <li key={user.id}>{user.username}</li>;
+    });
+
     return(
-      <h1>Hello from Details!</h1>
+      <div>
+        <ul>
+          <li>{this.props.currentChannel.name}</li>
+          <li>{this.props.currentChannel.description}</li>
+          <li>{this.props.currentChannel.created_at}</li>
+        </ul>
+        <ul>
+          <li>{usersCount} Members</li>
+          {usersList}
+        </ul>
+      </div>
     );
   }
 }

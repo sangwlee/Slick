@@ -6,13 +6,12 @@ class Channels extends React.Component {
   constructor(props) {
     super(props);
 
-    this.requestAllMessagesOfChannel = this.requestAllMessagesOfChannel.bind(this);
+    this.requestAllUsersOfChannel = this.requestAllUsersOfChannel.bind(this);
   }
 
-  requestAllMessagesOfChannel(channel_id) {
-    return (e) => {
-      e.preventDefault();
-      this.props.requestAllMessagesOfChannel(channel_id);
+  requestAllUsersOfChannel(channel_id) {
+    return () => {
+      this.props.requestAllUsersOfChannel(channel_id);
     };
   }
 
@@ -25,6 +24,7 @@ class Channels extends React.Component {
             {
               selector(this.props.channels).map(channel =>
                 <li
+                  onClick={this.requestAllUsersOfChannel(channel.id)}
                   key={channel.id}>
                   <Link to={`/main/${channel.id}`}>#{channel.name}</Link>
                 </li>
@@ -38,6 +38,7 @@ class Channels extends React.Component {
             {
               selector(this.props.directMessages).map(directMessage =>
                 <li
+                  onClick={this.requestAllUsersOfChannel(directMessage.id)}
                   key={directMessage.id}>
                   <Link to={`/main/${directMessage.id}`}>#{directMessage.name}</Link>
                 </li>

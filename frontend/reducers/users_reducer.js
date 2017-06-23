@@ -21,6 +21,7 @@ export const UsersReducer = (state = defaultState, action) => {
     case RECEIVE_SINGLE_USER:
       return merge({}, defaultState, action.user);
     case RECEIVE_ALL_USERS_OF_CHANNEL:
+      // debugger
       return merge({}, defaultState, action.users);
     default:
       return state;

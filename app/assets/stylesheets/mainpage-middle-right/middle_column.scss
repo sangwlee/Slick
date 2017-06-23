@@ -1,3 +1,21 @@
 .channel-detail-container {
   height: 8%;
 }
+
+.channel-detail-container {
+  height: 6%;
+}
+
+.messages-container {
+  height: 85%;
+  // max-height: 830px;
+  overflow: scroll;
+  // width: 660%;
+  width: 1200px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.input-container {
+  height: 6%;
+}

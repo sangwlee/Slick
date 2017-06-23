@@ -12,7 +12,6 @@ export const CurrentChannelReducer = (state = defaultState, action) => {
 
   switch (action.type) {
     case RECEIVE_CURRENT_CHANNEL:
-    debugger
       return merge({}, state, action.channel);
     default:
       return state;

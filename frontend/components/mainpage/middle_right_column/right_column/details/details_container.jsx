@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import Details from './details';
 
 const mapStateToProps = state => ({
-  state
+  currentChannel: state.currentChannel,
+  users: state.users
 });
 
 const mapDispatchToProps = dispatch => ({
