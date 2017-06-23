@@ -7,7 +7,13 @@ class ChannelDetail extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    let newChannelId = parseInt(this.props.match.params.channelId);
+    this.props.requestCurrentChannel(newChannelId);
+  }
+
   componentWillReceiveProps(nextProps) {
+    // debugger
     if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
       let newChannelId = parseInt(nextProps.match.params.channelId);
       this.props.requestCurrentChannel(newChannelId);

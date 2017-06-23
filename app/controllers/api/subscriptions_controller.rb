@@ -6,7 +6,7 @@ class Api::SubscriptionsController < ApplicationController
 
   def create
     @subscription = Subscription.new(subscription_params)
-    debugger
+    # debugger
     if @subscription.save
       render json: @subscription
     else

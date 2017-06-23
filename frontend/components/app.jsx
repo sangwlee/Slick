@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { AuthRoute } from '../util/route_util';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import FrontPage from './frontpage/front_page';
 import MainPageContainer from './mainpage/mainpage_container';
 
@@ -8,7 +8,7 @@ import MessagesContainer from './mainpage/middle_right_column/messages/messages_
 
 export const App = () => (
   <div className="container">
-    <Route exact path="/" component={FrontPage} />
-    <Route path="/main/" component={MainPageContainer} />
+    <AuthRoute exact path="/" component={FrontPage} />
+    <ProtectedRoute path="/main/" component={MainPageContainer} />
   </div>
 );

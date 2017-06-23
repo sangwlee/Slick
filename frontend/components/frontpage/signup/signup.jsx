@@ -1,23 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 
+
 class Signup extends React.Component {
   constructor(props){
     super(props);
-    this.state = { username: '', password: '', email: '', firstname: 'First', lastname: 'Last'};
+    this.state = { username: '', password: '', email: '', firstname: '', lastname: ''};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.empty = this.empty.bind(this);
-  }
-
-  empty(type) {
-    // debugger
-    return (e) => {
-      if (e.currentTarget.value !== 'First' || e.currentTarget.value !== 'Last') {
-        this.setState({[type]: ''});
-      }
-    };
   }
 
   handleChange(type) {
@@ -29,7 +20,10 @@ class Signup extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    this.props.signup(user).then(() => this.props.history.push('/main'));
+    this.props.signup(user)
+      .then(()=> this.props.history.push('/main/1'));
+    // debugger
+    // this.props.createSubscription(this.props.currentUser.id, 1);
   }
 
   render() {
@@ -38,8 +32,8 @@ class Signup extends React.Component {
         <h3>First Time?</h3>
         <form onSubmit={this.handleSubmit}>
           <label><span className="shift-your-name">Your name</span>
-            <input className="signup-turn-color" onClick={this.empty('firstname')} onChange={this.handleChange('firstname')} type='text' value={this.state.firstname}/>
-            <input className="signup-turn-color" onClick={this.empty('lastname')} onChange={this.handleChange('lastname')} type='text' value={this.state.lastname}/>
+            <input className="signup-turn-color" placeholder="First" onChange={this.handleChange('firstname')} type='text' value={this.state.firstname}/>
+            <input className="signup-turn-color" placeholder="Last" onChange={this.handleChange('lastname')} type='text' value={this.state.lastname}/>
           </label>
 
           <br/>

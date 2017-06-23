@@ -3,15 +3,20 @@ import { Link, withRouter } from 'react-router-dom';
 import LeftColumn from './left_column/left_column';
 import MiddleRightColumn from './middle_right_column/middle_right_column';
 
-
-
 class MainPage extends React.Component{
   constructor(props) {
     super(props);
   }
 
+  componentWillMount() {
+    this.props.createSubscription(
+      {user_id: this.props.currentUser.id,
+        channel_id: 1
+      }
+    );
+  }
+
   componentDidMount() {
-    // debugger
     this.props.requestAllChannelsOfUser(this.props.currentUser.id);
   }
 

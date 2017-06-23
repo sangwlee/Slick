@@ -2,12 +2,37 @@
   display: flex;
   justify-content: space-between;
   height: 100vh;
-  max-height: 100vh;
-  max-width: 100%;
+  width: 100%;
 
   ul {
     li {
-      list-style-type: none;
+  list-style-type: none;
     }
   }
+}
+
+.middle-container {
+  height: 100vh;
+  width: 75%;
+}
+
+.right-container {
+  width: 25%;
+}
+
+.channel-detail-container {
+  height: 6%;
+}
+
+.messages-container {
+  height: 86.5%;
+  // max-height: 830px;
+  overflow: scroll;
+  // width: 660%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.input-container {
+  height: 7.5%;
 }

@@ -2,10 +2,19 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import LoginContainer from './login/login_container';
 import SignupContainer from './signup/signup_container';
+import { login } from '../../actions/session_actions';
+import { connect } from 'react-redux';
 
 class FrontPage extends React.Component{
   constructor(props) {
     super(props);
+
+  this.guestLogin = this.guestLogin.bind(this);
+  }
+
+  guestLogin() {
+    this.props.login({username: 'voldemort', password: 'voldemort'})
+      .then(()=> this.props.history.push('/main/1'));
   }
 
   render() {
@@ -26,9 +35,21 @@ class FrontPage extends React.Component{
           </ul>
           <SignupContainer className="sign-up-container"/>
         </section>
+        <button onClick={this.guestLogin}>Log in as Voldemort</button>
       </div>
     );
   }
 }
 
-export default withRouter(FrontPage);
+const mapDispatchToProps = dispatch => {
+  return {
+    login: userData => dispatch(login(userData))
+  };
+};
+
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(FrontPage)
+);

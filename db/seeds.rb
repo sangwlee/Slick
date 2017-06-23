@@ -126,3 +126,15 @@ subscription20 = Subscription.create(user_id: user5.id, channel_id: channel6.id)
 # Mortal Enemies Subscriptions
 subscription21 = Subscription.create(user_id: user1.id, channel_id: channel7.id)
 subscription22 = Subscription.create(user_id: user9.id, channel_id: channel7.id)
+
+# General Chat Subscriptions
+subscription23 = Subscription.create(user_id: user0.id, channel_id: channel0.id)
+subscription24 = Subscription.create(user_id: user1.id, channel_id: channel0.id)
+subscription25 = Subscription.create(user_id: user2.id, channel_id: channel0.id)
+subscription26 = Subscription.create(user_id: user3.id, channel_id: channel0.id)
+subscription27 = Subscription.create(user_id: user4.id, channel_id: channel0.id)
+subscription28 = Subscription.create(user_id: user5.id, channel_id: channel0.id)
+subscription29 = Subscription.create(user_id: user6.id, channel_id: channel0.id)
+subscription30 = Subscription.create(user_id: user7.id, channel_id: channel0.id)
+subscription31 = Subscription.create(user_id: user8.id, channel_id: channel0.id)
+subscription32 = Subscription.create(user_id: user9.id, channel_id: channel0.id)

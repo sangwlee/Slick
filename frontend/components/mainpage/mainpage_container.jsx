@@ -1,6 +1,10 @@
 import { connect } from 'react-redux';
 import MainPage from './mainpage';
-import { requestAllChannelsOfUser } from '../../actions/channels_actions';
+import {
+  requestAllChannelsOfUser,
+  createSubscription,
+} from '../../actions/channels_actions';
+
 
 const mapStateToProps = state => {
   return {
@@ -10,7 +14,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    requestAllChannelsOfUser: user_id => dispatch(requestAllChannelsOfUser(user_id)),
+    requestAllChannelsOfUser: user_id =>
+      dispatch(requestAllChannelsOfUser(user_id)),
+    createSubscription: (user_id, channel_id) =>
+      dispatch(createSubscription(user_id, channel_id)),
   };
 };
 

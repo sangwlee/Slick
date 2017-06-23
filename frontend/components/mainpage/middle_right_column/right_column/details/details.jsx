@@ -1,9 +1,14 @@
 import React from 'react';
 import selector from '../../../../../util/selector';
+import { withRouter } from 'react-router-dom';
 
 class Details extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    this.props.requestAllUsersOfChannel(this.props.currentChannel.id);
   }
 
   render() {
@@ -29,4 +34,4 @@ class Details extends React.Component {
   }
 }
 
-export default Details;
+export default withRouter(Details);

@@ -107,6 +107,10 @@
   }
 }
 
+input::placeholder {
+  color: lightgray;
+}
+
 .signup-container:hover {
   transition: color .5s ease-in-out;
   color: $skyblue;
@@ -114,11 +118,13 @@
   input {
     transition: border .5s ease-in-out;
     border: 1px solid $skyblue;
+    color: $skyblue;
   }
 
   .join-button {
     transition: background-color .5s ease-in-out;
     background-color: $skyblue;
+    color: white;
   }
 
   div hr {

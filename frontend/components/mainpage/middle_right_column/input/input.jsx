@@ -6,24 +6,24 @@ class Input extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: 'Write a message!',
+      content: '',
       kind: 'normal',
       channel_id: null,
       user_id: this.props.currentUser.id};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.empty = this.empty.bind(this);
+    // this.empty = this.empty.bind(this);
   }
 
-  empty(type) {
-    return (e) => {
-      if (e.currentTarget.value !== 'First' ||
-      e.currentTarget.value !== 'Last') {
-        this.setState({[type]: ''});
-      }
-    };
-  }
+  // empty(type) {
+  //   return (e) => {
+  //     if (e.currentTarget.value !== 'First' ||
+  //     e.currentTarget.value !== 'Last') {
+  //       this.setState({[type]: ''});
+  //     }
+  //   };
+  // }
 
   handleChange(type) {
     return (e) => {
@@ -52,7 +52,7 @@ class Input extends React.Component {
         <h1>INPUT</h1>
         <form onSubmit={this.handleSubmit}>
           <input
-            onClick={this.empty('content')}
+            placeholder="Write a message!"
             onChange={this.handleChange('content')}
             type="text"
             value={this.state.content}>
