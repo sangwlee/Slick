@@ -23,8 +23,12 @@ class MainPage extends React.Component{
   render() {
     return(
       <div className="main-page-container">
-        <div className="main-page-left-column"><LeftColumn /></div>
-        <div className="main-page-middle-right-column"><MiddleRightColumn /></div>
+        <div
+          className="main-page-left-column"><LeftColumn />
+        </div>
+        <div className="main-page-middle-right-column">
+          <MiddleRightColumn />
+        </div>
       </div>
     );
   }

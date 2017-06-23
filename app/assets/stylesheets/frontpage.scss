@@ -196,3 +196,20 @@ div hr {
   position: relative;
   top: 1px;
 }
+
+.guest-button {
+  float: right;
+  margin-right: 3%;
+  border-style: dashed;
+  background-color: darken($bluepurple, .5);
+  color: white;
+  padding: 12px;
+  border-radius: 5px;
+  border: 2px solid darkgray;
+  cursor: pointer;
+}
+
+.voldemort {
+  font-size: 20px;
+  font-family: 'Mystery Quest', cursive;
+}

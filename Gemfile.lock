@@ -67,6 +67,8 @@ GEM
     faye-websocket (0.10.7)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hiredis (0.6.1)
@@ -195,6 +197,7 @@ DEPENDENCIES
   binding_of_caller
   byebug
   coffee-rails (~> 4.1.0)
+  font-awesome-sass
   jbuilder (~> 2.0)
   jquery-rails
   pg (~> 0.15)

@@ -1,2 +1,14 @@
-.profile-container {
+.welcoming {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+}
+
+.welcoming-container {
+  padding: 5px 0px 5px 6px;
+}
+
+.welcoming-container:hover {
+  border-top-right-radius: 5px;
+  background-color: darken($skyblue, 50);
 }

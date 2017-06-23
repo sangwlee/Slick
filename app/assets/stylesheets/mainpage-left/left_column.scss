@@ -1,10 +1,22 @@
 .left-column-container {
   height: 100%;
   list-style-type: none;
+
+  h1:hover {
+    cursor: pointer;
+  }
+
+  a:hover {
+    cursor: pointer;
+  }
 }
 
 .profile-container {
   height: 60px;
+}
+
+.profile-container:hover {
+  cursor: pointer;
 }
 
 .channels-container {

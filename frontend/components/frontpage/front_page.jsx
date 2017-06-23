@@ -22,8 +22,13 @@ class FrontPage extends React.Component{
       <div className="front-page-container landing-wrapper">
         <section className="front-page-header-container">
           <h1>
-            <img className="slicklogo" src="assets/slicklogo.img" alt="slick"/>
-            <span className="welcome-message">Welcome to Slick!</span>
+            <img
+              className="slicklogo"
+              src="assets/slicklogo.img"
+              alt="slick"/>
+            <span className="welcome-message">
+              Welcome to Slick!
+            </span>
           </h1>
           <LoginContainer />
         </section>
@@ -35,7 +40,12 @@ class FrontPage extends React.Component{
           </ul>
           <SignupContainer className="sign-up-container"/>
         </section>
-        <button onClick={this.guestLogin}>Log in as Voldemort</button>
+        <button
+          id='button'
+          className="guest-button"
+          onClick={this.guestLogin}>
+          Login as <span className="voldemort">Voldemort</span>
+        </button>
       </div>
     );
   }

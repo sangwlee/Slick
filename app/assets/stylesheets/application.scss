@@ -20,8 +20,11 @@
 
 @import "mainpage-left/left_column.scss";
 @import "mainpage-left/profile.scss";
-@import "mainpage-left/channels.scss";
-@import "mainpage-left/direct_messages.scss";
+@import "./mainpage-left/channels.scss";
 
-@import "mainpage-middle-right/middle_column.scss";
 @import "mainpage-middle-right/middle_right_column.scss";
+@import "mainpage-middle-right/middle_column.scss";
+@import "mainpage-middle-right/channel_detail.scss";
+
+@import "font-awesome-sprockets";
+@import "font-awesome";

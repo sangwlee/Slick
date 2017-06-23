@@ -9,9 +9,9 @@ class Profile extends React.Component {
   render() {
     return(
       <div className="profile-container">
-        <ul>
-          <li>Welcome, {this.props.currentUser.firstname}.</li>
-          <li>@{this.props.currentUser.username}</li>
+        <ul className="welcoming-container">
+          <li className="welcoming">Welcome, {this.props.currentUser.firstname}.</li>
+          <li className="profile-username">@{this.props.currentUser.username}</li>
         </ul>
       </div>
     );

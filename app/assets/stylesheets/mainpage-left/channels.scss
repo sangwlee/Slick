@@ -1,0 +1,46 @@
+.channel-list {
+
+  li {
+    padding: 2px 0px 3px 13px;
+  }
+
+  a {
+    color: lightgray;
+    text-decoration: none;
+    font-size: 15px;
+  }
+
+  li:hover {
+    // border: 1px solid black;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-right: 10px;
+    background-color: darken($skyblue, 50);
+  }
+}
+
+.pound-sign {
+  font-weight: lighter;
+  color: darken(lightgray, 15)
+}
+
+.channel-directmessage-heading {
+  font-size: 16px;
+  padding-left: 11px;
+  padding-bottom: 1px;
+}
+
+.channel-directmessage-heading:hover {
+  color: white;
+  font-weight: bold;
+}
+
+.channel-unique a {
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.selected {
+  background-color: red;
+}

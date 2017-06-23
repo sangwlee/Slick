@@ -13,7 +13,6 @@ class ChannelDetail extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // debugger
     if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
       let newChannelId = parseInt(nextProps.match.params.channelId);
       this.props.requestCurrentChannel(newChannelId);
@@ -21,11 +20,17 @@ class ChannelDetail extends React.Component {
   }
 
   render() {
+    let users = selector(this.props.users);
+    let numbUsers = users.length;
+
     return(
       <h1>
         <ul>
           <li>{this.props.currentChannel.name}</li>
-          <li>{this.props.currentChannel.description}</li>
+          <li>
+            <i className="fa fa-user-o"></i>
+            {this.props.currentChannel.description}{" " + numbUsers}
+          </li>
         </ul>
       </h1>
     );
