@@ -18,6 +18,8 @@
 .middle-container {
   height: 100%;
   width: 75%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .right-container {

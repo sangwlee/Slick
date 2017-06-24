@@ -12,6 +12,7 @@ class Details extends React.Component {
   }
 
   render() {
+    // debugger
     const users = selector(this.props.users);
     const usersCount = users.length;
     const usersList = users.map( user => {
@@ -19,7 +20,7 @@ class Details extends React.Component {
     });
 
     return(
-      <div>
+      <div className="right-column-detail-div">
         <ul>
           <li>{this.props.currentChannel.name}</li>
           <li>{this.props.currentChannel.description}</li>

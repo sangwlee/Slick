@@ -17,7 +17,6 @@ class MiddleRightColumn extends React.Component {
     return(
       <div className='middle-right-container'>
         <MiddleColumn />
-        <RightColumn className='right-container' column_type="details"/>
       </div>
     );
   }

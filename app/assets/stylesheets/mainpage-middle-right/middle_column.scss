@@ -4,13 +4,12 @@
 }
 
 .channel-detail-container {
-  height: 6%;
-  // width: 100%;
+  height: 5.9%;
+  border-bottom: 1px solid lightgray;
 }
 
 .messages-container {
   height: 86.5%;
-  // width: 100%;
   overflow: scroll;
   display: flex;
   flex-direction: column-reverse;
@@ -18,5 +17,4 @@
 
 .input-container {
   height: 7.5%;
-  // width: 100%;
 }

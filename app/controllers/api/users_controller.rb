@@ -12,8 +12,8 @@ class Api::UsersController < ApplicationController
 
       @users = User.all
     end
-
-    render json: @users
+    # 
+    # render json: @users
   end
 
   def new

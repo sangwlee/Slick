@@ -27,16 +27,20 @@ class Input extends React.Component {
     this.state.channel_id = channelId;
     const messageData = Object.assign({}, this.state);
     this.props.createMessage(messageData)
-    .then(() =>this.setState({content: ''}));
+      .then(() => {
+        this.setState({content: ''});
+      });
   }
 
   render() {
+    const placeholderMessage = (this.props.currentChannel) ? this.props.currentChannel.name : 'write a message'
+
     return(
       <div>
-        <h1>INPUT</h1>
         <form onSubmit={this.handleSubmit}>
           <input
-            placeholder="Write a message!"
+            className='input-message'
+            placeholder={placeholderMessage}
             onChange={this.handleChange('content')}
             type="text"
             value={this.state.content}>

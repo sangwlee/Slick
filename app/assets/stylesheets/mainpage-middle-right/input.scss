@@ -1,0 +1,31 @@
+.input-message {
+  width: 95%;
+  height: 40px;
+  border: 1.5px solid darkgray;
+  margin-left: 20px;
+  margin-top: 15px;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-weight: lighter;
+  color: black;
+
+
+}
+
+input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: darkgray;
+}
+// :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+//    color:    #909;
+//    opacity:  1;
+// }
+// ::-moz-placeholder { /* Mozilla Firefox 19+ */
+//    color:    #909;
+//    opacity:  1;
+// }
+// :-ms-input-placeholder { /* Internet Explorer 10-11 */
+//    color:    #909;
+// }
+// ::-ms-input-placeholder { /* Microsoft Edge */
+//    color:    #909;
+// }

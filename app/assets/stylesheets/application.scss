@@ -12,6 +12,9 @@
 //  *
 //  *= require_self
 //  */
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 @import "base/reset.scss";
 @import "base/colors.scss";
 
@@ -25,6 +28,7 @@
 @import "mainpage-middle-right/middle_right_column.scss";
 @import "mainpage-middle-right/middle_column.scss";
 @import "mainpage-middle-right/channel_detail.scss";
+@import "mainpage-middle-right/messages.scss";
+@import "mainpage-middle-right/input.scss";
 
-@import "font-awesome-sprockets";
-@import "font-awesome";
+@import 'mainpage-middle-right/right-column/details.scss';
