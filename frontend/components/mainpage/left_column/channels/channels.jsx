@@ -25,9 +25,9 @@ class Channels extends React.Component {
               selector(this.props.channels).map(channel =>
                 <li
                   onClick={this.requestAllUsersOfChannel(channel.id)}
-                  key={channel.id}>
+                  key={channel.created_at}>
                   <NavLink
-                    to={`/main/${channel.id}`}
+                    exact to={`/main/${channel.id}`}
                     activeClassName="selected">
                     <span className="pound-sign">#</span>
                     {"  " + channel.name}
@@ -44,9 +44,9 @@ class Channels extends React.Component {
               selector(this.props.directMessages).map(directMessage =>
                 <li
                   onClick={this.requestAllUsersOfChannel(directMessage.id)}
-                  key={directMessage.id}>
+                  key={directMessage.created_at}>
                   <NavLink
-                    to={`/main/${directMessage.id}`}
+                    exact to={`/main/${directMessage.id}`}
                     activeClassName="selected">
                     <span className="pound-sign">@</span>
                     {"  " + directMessage.name}

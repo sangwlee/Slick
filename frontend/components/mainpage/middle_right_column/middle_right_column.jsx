@@ -6,6 +6,7 @@ import MessagesContainer from './messages/messages_container';
 import InputContainer from './input/input_container';
 
 import RightColumn from './right_column/right_column';
+import MiddleColumn from './middle_column';
 
 class MiddleRightColumn extends React.Component {
   constructor(props) {
@@ -15,12 +16,7 @@ class MiddleRightColumn extends React.Component {
   render() {
     return(
       <div className='middle-right-container'>
-        <ul className='middle-container'>
-          <li className='channel-detail-container'><Route exact path="/main/:channelId" component={ChannelDetailContainer}/></li>
-          <li className='messages-container messages'><Route exact path="/main/:channelId" component={MessagesContainer}/></li>
-          <li className='input-container'><InputContainer /></li>
-        </ul>
-
+        <MiddleColumn />
         <RightColumn className='right-container' column_type="details"/>
       </div>
     );

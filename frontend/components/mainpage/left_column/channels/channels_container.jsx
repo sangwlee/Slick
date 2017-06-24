@@ -24,6 +24,8 @@ const mapStateToProps = state => {
     }
   });
 
+  // debugger
+
   return {
     currentUser : state.session.currentUser,
     channels,

@@ -1,3 +1,22 @@
-.middle-column-container {
-  height: 100vh;
+.middle-ul {
+  width: 100%;
+  height: 100%;
+}
+
+.channel-detail-container {
+  height: 6%;
+  // width: 100%;
+}
+
+.messages-container {
+  height: 86.5%;
+  // width: 100%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.input-container {
+  height: 7.5%;
+  // width: 100%;
 }

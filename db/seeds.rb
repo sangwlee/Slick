@@ -57,8 +57,8 @@ channel4 = Channel.create(name: 'professors only', description: 'Chat Room for P
 channel5 = Channel.create(name: 'death eaters', description: 'Chat Room for Death Eaters', kind: 'private')
 
 # DIRECT MESSAGES
-channel6 = Channel.create(name: 'the trio', description: 'Harry - Ron - Hermione', kind: 'dm')
-channel7 = Channel.create(name: 'mortal enemies', description: 'Harry - Voldemort', kind: 'dm')
+channel6 = Channel.create(name: 'hgranger, rweasely', description: 'Harry - Ron - Hermione', kind: 'dm')
+channel7 = Channel.create(name: 'voldemort', description: 'Harry - Voldemort', kind: 'dm')
 
 # MESSAGES
 #  id         :integer          not null, primary key

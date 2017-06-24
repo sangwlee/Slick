@@ -8,7 +8,8 @@ class Api::SubscriptionsController < ApplicationController
     @subscription = Subscription.new(subscription_params)
     # debugger
     if @subscription.save
-      render json: @subscription
+      @user = User.find(subscription_params[:user_id])
+      render json: @user
     else
       render json: @subscription.errors.full_messages, status: 422
     end

@@ -8,7 +8,7 @@ class Details extends React.Component {
   }
 
   componentDidMount() {
-    this.props.requestAllUsersOfChannel(this.props.currentChannel.id);
+    // this.props.requestAllUsersOfChannel(this.props.currentChannel.id);
   }
 
   render() {

@@ -6,7 +6,13 @@ class Messages extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    // debugger
+    this.props.requestAllMessagesOfChannel(parseInt(this.props.match.params.channelId));
+  }
+
   componentWillReceiveProps(nextProps) {
+    // debugger
     if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
       let newChannelId = parseInt(nextProps.match.params.channelId);
       this.props.requestAllMessagesOfChannel(newChannelId);

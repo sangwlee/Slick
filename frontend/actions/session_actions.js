@@ -1,4 +1,5 @@
 import * as APIUtil from '../util/session_api_util';
+import { createSubscription } from './channels_actions';
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
@@ -31,7 +32,8 @@ export const logout = () => dispatch => (
 );
 
 export const signup = (user) => dispatch => {
-  return APIUtil.signup(user).then(res => dispatch(receiveCurrentUser(res)),
-    err => dispatch(receiveSignupErrors(err.responseJSON))
-  );
+  return APIUtil.signup(user)
+    .then(user => dispatch(createSubscription({user_id: user.id, channel_id: 1})))
+    .then(user => dispatch(receiveCurrentUser(user)))
+    .fail(err => dispatch(receiveSignupErrors(err.responseJSON)));
 };

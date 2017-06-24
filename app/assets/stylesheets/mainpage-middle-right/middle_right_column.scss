@@ -1,3 +1,7 @@
+// .middle-column-container {
+//   height: 100vh;
+// }
+
 .middle-right-container {
   display: flex;
   justify-content: space-between;
@@ -12,27 +16,11 @@
 }
 
 .middle-container {
-  height: 100vh;
+  height: 100%;
   width: 75%;
 }
 
 .right-container {
+  height: 100%;
   width: 25%;
-}
-
-.channel-detail-container {
-  height: 6%;
-}
-
-.messages-container {
-  height: 86.5%;
-  // max-height: 830px;
-  overflow: scroll;
-  // width: 660%;
-  display: flex;
-  flex-direction: column-reverse;
-}
-
-.input-container {
-  height: 7.5%;
 }
