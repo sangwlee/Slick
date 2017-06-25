@@ -25,7 +25,6 @@ class Messages extends React.Component {
   }
 
   time(date) {
-    debugger
     let yr = parseInt(date.slice(0,4));
     let mo = parseInt(date.slice(6, 8));
     let day = parseInt(date.slice(8, 10));
@@ -58,12 +57,16 @@ class Messages extends React.Component {
 
     hr = (hr > 12) ? (hr - 12) : hr;
 
+    if (amPm === "AM" && hr === 0) {
+      hr = 12;
+    }
+
     let timePosting = `${hr}:${date.slice(14, 16)} ${amPm} | ${ago}`;
     return timePosting;
   }
 
   render() {
-    // debugger
+    debugger
     let users = this.props.users;
 
     return(
