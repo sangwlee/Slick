@@ -31,7 +31,8 @@ class Channels extends React.Component {
     return(
       <div>
         <ul>
-          <h1 className="channel-directmessage-heading">CHANNELS
+          <h1 className="channel-directmessage-heading">
+            <span className="channels-icon">CHANNELS</span>
             <i className="fa fa-plus-circle" aria-hidden="true"></i>
           </h1>
           <ul className="channel-list channel-unique">
@@ -52,7 +53,10 @@ class Channels extends React.Component {
           </ul>
         </ul>
         <ul>
-          <h1 className="channel-directmessage-heading">DIRECT MESSAGES</h1>
+          <h1 className="channel-directmessage-heading">
+            <span className="dm-icon">DIRECT MESSAGES</span>
+            <i className="fa fa-plus-circle" aria-hidden="true"></i>
+          </h1>
           <ul className="channel-list">
             {
               selector(this.props.directMessages).map(directMessage =>

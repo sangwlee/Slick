@@ -17,7 +17,7 @@
     li {
       font-size: 150px;
       font-family: 'Indie Flower', cursive;
-      color: $skyblue;
+      color: darken($skyblue, 30);
     }
 
     li:first-child {
@@ -25,7 +25,7 @@
     }
 
     li:last-child {
-      color: $bluepurple;
+      color: darken($skyblue, 50);
     }
   }
 
@@ -34,7 +34,7 @@
 .front-page-header-container {
   display: flex;
   justify-content: space-between;
-  border-bottom: 5px solid $bluepurple;
+  border-bottom: 5px solid darken($skyblue, 50);
   padding: 15px 15px 15px 0px;
   background-color: white;
 }
@@ -57,7 +57,7 @@
 .login-container {
   span {
     padding-right: 240px;
-    color: $bluepurple;
+    color: darken($skyblue, 50);
     font-size: 16px;
   }
 
@@ -67,14 +67,14 @@
       padding: 5px 20px 5px 5px;
       border-radius: 5px;
       font-size: 25px;
-      border: 1px solid $bluepurple;
-      color: $bluepurple;
+      border: 1px solid darken($skyblue, 50);
+      color: darken($skyblue, 50);
     }
 
     input:last-child {
       padding-right: 5px;
       color: white;
-      background-color: $bluepurple;
+      background-color: darken($skyblue, 50);
     }
   }
 
@@ -103,7 +103,7 @@
   }
 
   .signup-turn-color:focus {
-    color: $skyblue;
+    color: darken($skyblue, 30);
   }
 }
 
@@ -113,23 +113,23 @@ input::placeholder {
 
 .signup-container:hover {
   transition: color .5s ease-in-out;
-  color: $skyblue;
+  color: darken($skyblue, 30);
 
   input {
     transition: border .5s ease-in-out;
-    border: 1px solid $skyblue;
-    color: $skyblue;
+    border: 1px solid darken($skyblue, 30);
+    color: darken($skyblue, 30);
   }
 
   .join-button {
     transition: background-color .5s ease-in-out;
-    background-color: $skyblue;
+    background-color: darken($skyblue, 30);
     color: white;
   }
 
   div hr {
     transition: border .5s ease-in-out;
-    border: 0.1px solid $skyblue;
+    border: 0.1px solid darken($skyblue, 30);
   }
 }
 
@@ -181,7 +181,7 @@ div hr {
 }
 
 .welcome-message {
-  color: $bluepurple;
+  color: darken($skyblue, 30);
   font-size: 25px;
   vertical-align: 50%;
   margin-top: 20px;
@@ -201,7 +201,7 @@ div hr {
   float: right;
   margin-right: 3%;
   border-style: dashed;
-  background-color: darken($bluepurple, .5);
+  background-color: darken($skyblue, 50);
   color: white;
   padding: 12px;
   border-radius: 5px;
