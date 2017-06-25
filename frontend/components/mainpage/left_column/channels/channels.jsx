@@ -1,25 +1,46 @@
 import React from 'react';
 import selector from '../../../../util/selector';
 import { Link, Route, withRouter, NavLink } from 'react-router-dom';
-// import Modal from 'react-native-modal';
+
+// import Modal from 'react-modal';
+// import NewChannel from './new_channel';
+
+// const appElement = document.getElementByid('root');
+
+// const customStyles = {
+// content : {
+//   top                   : '50%',
+//   left                  : '50%',
+//   right                 : 'auto',
+//   bottom                : 'auto',
+//   marginRight           : '-50%',
+//   transform             : 'translate(-50%, -50%)'
+// }
+// };
 
 class Channels extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isModalVisible: false };
+    this.state = { modalIsOpen: false };
 
     this.requestAllUsersOfChannel = this.requestAllUsersOfChannel.bind(this);
-    this._showModal = this._showModal.bind(this);
-    this._hideModal = this._hideModal.bind(this);
+    // this.openModal = this.openModal.bind(this);
+    // this.afterOpenModal = this.afterOpenModal.bind(this);
+    // this.closeModal = this.closeModal.bind(this);
   }
 
-  _showModal() {
-    this.setState({ isModalVisible: true });
-  }
-
-  _hideModal() {
-    this.setState({isModalVisible: false});
-  }
+  // openModal() {
+  //   this.setState({modalIsOpen: true});
+  // }
+  //
+  // afterOpenModal() {
+  //   // references are now sync'd and can be accessed.
+  //   this.subtitle.style.color = '#f00';
+  // }
+  //
+  // closeModal() {
+  //   this.setState({modalIsOpen: false});
+  // }
 
   requestAllUsersOfChannel(channel_id) {
     return () => {
@@ -31,7 +52,8 @@ class Channels extends React.Component {
     return(
       <div>
         <ul>
-          <h1 className="channel-directmessage-heading">
+          <h1
+            className="channel-directmessage-heading">
             <span className="channels-icon">CHANNELS</span>
             <i className="fa fa-plus-circle" aria-hidden="true"></i>
           </h1>
@@ -80,4 +102,5 @@ class Channels extends React.Component {
   }
 }
 
+// ReactDom.render(<App />, appElement);
 export default withRouter(Channels);
