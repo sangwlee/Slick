@@ -1,7 +1,7 @@
 .channel-list {
 
   li {
-    padding: 2px 0px 3px 13px;
+    padding: 2px 0px 6px 25px;
   }
 
   a {
@@ -28,6 +28,7 @@
   font-size: 16px;
   padding-left: 11px;
   padding-bottom: 1px;
+  margin-bottom: 5px;
 }
 
 .channel-directmessage-heading:hover {
@@ -37,8 +38,8 @@
 
 .channel-unique a {
   color: white;
-  font-weight: bold;
-  font-size: 17px;
+  font-weight: lighter;
+  font-size: 15px;
 }
 
 .selected {

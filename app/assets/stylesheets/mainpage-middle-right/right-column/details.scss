@@ -1,4 +1,83 @@
 .right-column-detail-div {
-  width: 100%;
+  width: 25%;
   height: 100%;
+}
+
+.search-bar {
+  height: 5.9%;
+  border-bottom: 1px solid lightgray;
+}
+
+.right-column-container {
+  height: 94%;
+}
+
+.channel-detail-about {
+  padding: 20px 0px 25px 10px;
+  border-bottom: 1px solid lightgray;
+  background-color: lighten(lightgray, 15);
+  font-size: 18px;
+}
+
+.channel-detail-created-date {
+  padding: 20px 0px 30px 10px;
+  border-bottom: 1px solid lightgray;
+  font-style: italic;
+  color: gray;
+  font-size: 13.5px;
+  font-weight: lighter;
+}
+
+.channel-detail-heading {
+  padding: 20px 0px 25px 10px;
+  color: darken(darkgray, 25);
+  font-size: 19px;
+  font-weight: lighter;
+
+  span {
+    padding-left: 7px;
+  }
+
+  i {
+    color: $lightpurple;
+  }
+}
+
+.channel-description-heading {
+  padding-left: 10px;
+  color: darken(darkgray, 18);
+  font-size: 13px;
+}
+
+.channel-description-content {
+  padding-left: 10px;
+  color: darken(darkgray, 18);
+  font-size: 13px;
+  font-weight: lighter;
+  margin-top: 5px;
+}
+
+.channel-detail-members-list {
+
+  li:first-child {
+    padding: 20px 0px 10px 10px;
+    font-size: 20px;
+    color: darken($lightpurple, 10);
+    font-weight: bold;
+  }
+
+  li {
+    padding: 3px 0px 3px 10px;
+    font-weight: lighter;
+    color: darken(darkgray, 23);
+    margin: auto;
+  }
+
+  img {
+    border-radius: 3px;
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+  }
 }

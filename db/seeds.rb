@@ -24,19 +24,39 @@ Subscription.destroy_all
 #  lastname        :string
 #
 user0 = User.create(username: 'sortinghat', email: 'sortinghat@hogwarts.com', firstname: 'Sorting', lastname: 'Hat', password: 'sortinghat')
-
 user1 = User.create(username: 'hpotter', email: 'hpotter@hogwarts.com', firstname: 'Harry', lastname: 'Potter', password: 'hpotter')
 user2 = User.create(username: 'jpotter', email: 'jpotter@hogwarts.com', firstname: 'James', lastname: 'Potter', password: 'jpotter')
 user3 = User.create(username: 'lpotter', email: 'lpotter@hogwarts.com', firstname: 'Lily', lastname: 'Potter', password: 'lpotter')
-
 user4 = User.create(username: 'hgranger', email: 'hgranger@hogwarts.com', firstname: 'Hermione', lastname: 'Granger', password: 'hgranger')
 user5 = User.create(username: 'rweasely', email: 'rweasely@hogwarts.com', firstname: 'Ron', lastname: 'Weasely', password: 'rweasely')
-
 user6 = User.create(username: 'adumbledore', email: 'adumbledore@hogwarts.com', firstname: 'Albus', lastname: 'Dumbledore', password: 'adumbledore')
 user7 = User.create(username: 'ssnape', email: 'ssnape@hogwarts.com', firstname: 'Severus', lastname: 'Snape', password: 'ssnape')
-
 user8 = User.create(username: 'dmalfoy', email: 'dmalfoy@hogwarts.com', firstname: 'Draco', lastname: 'Malfoy', password: 'dmalfoy')
 user9 = User.create(username: 'voldemort', email: 'HeWhoMustNotBeNamed@hogwarts.com', firstname: 'Tom', lastname: 'Riddle', password: 'voldemort')
+
+# assign pictures
+user0.image = File.open("app/assets/images/seed_images/sortinghat.jpg")
+user1.image = File.open("app/assets/images/seed_images/hpotter.jpg")
+user2.image = File.open("app/assets/images/seed_images/jpotter.jpg")
+user3.image = File.open("app/assets/images/seed_images/lpotter.jpg")
+user4.image = File.open("app/assets/images/seed_images/hgranger.jpg")
+user5.image = File.open("app/assets/images/seed_images/rweasely.jpg")
+user6.image = File.open("app/assets/images/seed_images/adumbledore.jpg")
+user7.image = File.open("app/assets/images/seed_images/ssnape.jpg")
+user8.image = File.open("app/assets/images/seed_images/dmalfoy.jpg")
+user9.image = File.open("app/assets/images/seed_images/voldemort.jpg")
+
+user0.save!
+user1.save!
+user2.save!
+user3.save!
+user4.save!
+user5.save!
+user6.save!
+user7.save!
+user8.save!
+user9.save!
+
 
 # CHANNELS
 #  id          :integer          not null, primary key
