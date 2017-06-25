@@ -25,6 +25,10 @@ class Messages extends React.Component {
   }
 
   time(date) {
+    let monthNames = {1:31, 2:28, 3:31, 4:30, 5:31, 6:30,
+      7:31, 8:31, 9:30, 10:31, 11:30, 12:31
+    };
+
     let yr = parseInt(date.slice(0,4));
     let mo = parseInt(date.slice(6, 8));
     let day = parseInt(date.slice(8, 10));
@@ -32,6 +36,8 @@ class Messages extends React.Component {
     let min = parseInt(date.slice(14,16));
     let sec = parseInt(date.slice(17, 19));
     let amPm = (hr > 11) ? "PM" : "AM";
+
+    if (yr % 4 === 0) {monthNames[2] = 29;}
 
     let ago;
 
@@ -44,15 +50,20 @@ class Messages extends React.Component {
     let todaySec = today.getSeconds();
 
     if (todayYr - yr > 0) {ago = "more than a year ago";}
-    else if (todayMo - mo === 1) {ago = "a month ago";}
-    else if (todayMo - mo > 1) {ago = `${today - day} months ago`;}
-    else if (todayDate - day === 1) {ago = 'a day ago';}
-    else if (todayDate - day > 1) {ago = `${todayDate - day} days ago`;}
-    else if (todayHr - hr === 1) {ago = 'an hour ago';}
-    else if (todayHr - hr > 1) {ago = `${todayHr - hr} hours ago`;}
-    else if (todayMin - min === 1) {ago = `a minute ago`;}
-    else if (todayMin - min) {ago = `${todayMin - min} minutes ago`;}
-    else if (todaySec - sec) {ago = `${todaySec - sec} seconds ago`;}
+    else if (todayMo - mo === 1 && todayMo >= mo) {ago = "a month ago";}
+    else if (todayMo - mo > 1)
+    {ago = `${((todayMo - mo < 0) ? (todayMo - mo + 12) : (todayMo - mo))} months ago`;}
+    else if (todayDate - day === 1 && todayHr >= hr) {ago = 'a day ago';}
+    else if (todayDate - day > 1)
+    {ago = `${((todayDate - day < 0) ? (today - day + monthNames[mo]) : (today - day))} days ago`;}
+    else if (todayHr - hr === 1 && todayMin >= min) {ago = 'an hour ago';}
+    else if (todayHr - hr > 1)
+    {ago = `${((todayHr - hr < 0) ? (todayHr - hr + 24) : (todayHr - hr))} hours ago`;}
+    else if (todayMin - min === 1 && todaySec >= sec) {ago = `a minute ago`;}
+    else if (todayMin - min > 1)
+    {ago = `${((todayMin - min < 0) ? (todayMin - min + 60) : (todayMin - min))} minutes ago`;}
+    else if (todaySec - sec)
+    {ago = `${((todaySec - sec < 0) ? (todaySec - sec + 60) : (todaySec - sec))} seconds ago`;}
     else {ago = 'just now';}
 
     hr = (hr > 12) ? (hr - 12) : hr;
@@ -66,7 +77,7 @@ class Messages extends React.Component {
   }
 
   render() {
-    debugger
+    // debugger
     let users = this.props.users;
 
     return(
