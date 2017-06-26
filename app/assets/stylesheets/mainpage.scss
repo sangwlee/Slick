@@ -13,6 +13,9 @@
   background-color: darken($skyblue, 50);
   color: lightgray;
   max-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
 }
 
 .main-page-middle-right-column {

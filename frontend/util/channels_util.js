@@ -19,6 +19,13 @@ export const fetchAllChannelsOfUser = user_id => {
   });
 };
 
+export const fetchAllSubscriptionsOfChannel = channel_id => {
+  return $.ajax({
+    method: 'get',
+    url: `api/channels/${channel_id}/subscriptions`
+  });
+};
+
 export const createChannel = channel => {
   return $.ajax({
     method: 'post',

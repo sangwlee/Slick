@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :channels, only: [:index, :create, :update, :destroy, :show] do
       resources :users, only: [:index]
       resources :messages, only: [:index]
+      resources :subscriptions, only: [:index]
     end
   end
 

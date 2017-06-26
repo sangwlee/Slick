@@ -17,7 +17,7 @@ class MiddleColumn extends React.Component {
       <div  className='middle-container'>
         <ul className='middle-ul'>
           <li className='channel-detail-container'><Route exact path="/main/:channelId" component={ChannelDetailContainer}/></li>
-          <li className='messages-container'><Route exact path="/main/:channelId" component={MessagesContainer}/></li>
+          <li className='messages-container'><Route path="/main/:channelId" component={MessagesContainer}/></li>
           <li className='input-container'><InputContainer /></li>
         </ul>
         <RightColumn className='right-container' column_type="details"/>

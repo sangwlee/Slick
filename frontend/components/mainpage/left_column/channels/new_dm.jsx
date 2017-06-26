@@ -21,36 +21,31 @@ class NewDm extends React.Component {
       privateColor: 'black'
     };
 
-    // this.handleChange = this.handleChange.bind(this);
+    if (this.props.toUser) {
+      this.state.members = [this.props.currentUser, this.props.toUser];
+    }
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addMember = this.addMember.bind(this);
     this.removeMember = this.removeMember.bind(this);
-    // this.setPrivate = this.setPrivate.bind(this);
     this.setName = this.setName.bind(this);
   }
 
   setName() {
     const dmName = [];
     const members = this.state.members;
-    // const currentUserIndex = members.indexOf(this.props.currentUser);
-    // const otherMembers = members.splice(currentUserIndex, 1);
 
     this.state.members.forEach(member => {
       dmName.push(member.username);
     });
 
     let joinedName = dmName.join(", ");
-    if (joinedName.length > 20) {
-      joinedName = joinedName.slice(0, 20) + "...";
-    }
-
     return joinedName;
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.state.name = this.setName();
-    debugger;
     this.props.createChannel(this.state)
       .then(channel => {
         this.props.history.push(`/main/${channel.channel.id}`);})
@@ -74,12 +69,6 @@ class NewDm extends React.Component {
     };
   }
 
-  setPrivate() {
-    let changeTo = (this.state.kind === 'public') ? 'private' : 'public';
-    let colorChange = (this.state.privateColor === 'black') ? 'green' : 'black';
-    this.setState({kind: changeTo, privateColor: colorChange});
-  }
-
   componentWillUnmount() {
     this.props.requestAllChannelsOfUser(this.props.currentUser.id);
   }
@@ -101,7 +90,7 @@ class NewDm extends React.Component {
           </li>
           <li className="create-your-channel">DIRECT MESSAGE</li>
         </ul>
-          <li className='userslist-headings'>Members:</li>
+          <li className='userslist-headings'>Between:</li>
           <ul className="create-channel-userslist current-user-nullify-cursor">
             {this.state.members.map( user =>
                 <li

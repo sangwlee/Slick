@@ -18,9 +18,10 @@ class Messages extends React.Component {
     if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
       let newChannelId = parseInt(nextProps.match.params.channelId);
       this.props.requestAllMessagesOfChannel(newChannelId);
-    } else if (JSON.stringify(this.props.messages) !== JSON.stringify(nextProps.messages)) {
-      const channelId = parseInt(this.props.location.pathname.slice(6));
-      this.props.requestAllMessagesOfChannel(channelId);
+    // } else if (JSON.stringify(this.props.messages) !== JSON.stringify(nextProps.messages)) {
+    //   debugger
+    //   const channelId = parseInt(this.props.location.pathname.slice(6));
+    //   this.props.requestAllMessagesOfChannel(channelId);
     }
   }
 
@@ -84,21 +85,25 @@ class Messages extends React.Component {
       <div>
         <ul>
           {
-            selector(this.props.messages).map( message =>
-              <li className='individual-message-container' key={message.id}>
-                <img className='profile-pic' src={users[message.user_id].image_url}/>
-                <ul className='message-content-container'>
-                  <li>
-                    <span className='username'>
-                      {users[message.user_id].username}
-                    </span>
-                    <span className="timePosting">
-                      {this.time(message.created_at)}
-                    </span>
-                  </li>
-                  <li className="message-content">{message.content}</li>
-                </ul>
-              </li>
+            selector(this.props.messages).map( message => {
+              return (
+
+                <li className='individual-message-container' key={message.id}>
+                  <img className='profile-pic' src={users[message.user_id].image_url}/>
+                  <ul className='message-content-container'>
+                    <li>
+                      <span className='username'>
+                        {users[message.user_id].username}
+                      </span>
+                      <span className="timePosting">
+                        {this.time(message.created_at)}
+                      </span>
+                    </li>
+                    <li className="message-content">{message.content}</li>
+                  </ul>
+                </li>
+              )
+            }
             )
           }
         </ul>

@@ -2,15 +2,46 @@ import React from 'react';
 import selector from '../../../../../util/selector';
 import { withRouter } from 'react-router-dom';
 
+import Modal from 'react-modal';
+import NewDm from '../../../left_column/channels/new_dm';
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : '60%',
+    bottom                : 'auto',
+    marginRight           : '-30%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
 class Details extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {modalIsOpen: false, toUser: null};
 
     this.timePosting = this.timePosting.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    // this.props.requestAllUsersOfChannel(this.props.currentChannel.id);
+  openModal(type) {
+      this.setState({[type]: true});
+  }
+
+  handleClick(user) {
+    return () => {
+      this.setState({toUser: user});
+      this.openModal('modalIsOpen');
+    };
+  }
+
+  closeModal(type) {
+    return () => {
+      this.setState({[type]: false});
+    };
   }
 
   timePosting(date) {
@@ -32,7 +63,17 @@ class Details extends React.Component {
   }
 
   render() {
-    // debugger
+    const channelName = (name) => {
+      if (name) {
+        if (name.length > 35) {
+          return (name.slice(0, 35) + "...");
+        }
+
+        return name;
+      }
+    };
+
+    const currentChannelId = parseInt(this.props.location.pathname.slice(6));
     const users = selector(this.props.users);
     const usersCount = users.length;
 
@@ -41,12 +82,14 @@ class Details extends React.Component {
     const details = (kind === 'dm') ? 'Message Details' : 'Channel Details';
     const description = (kind === 'dm') ? 'Message Description' : 'Channel Description';
 
+    // debugger;
+
     return(
       <div className="right-column-detail-div">
         <li className="search-bar"></li>
         <div className="right-column-container">
           <ul>
-            <li className="channel-detail-about">{about}</li>
+            <li className="channel-detail-about">{channelName(about)}</li>
             <li
               className="channel-detail-heading">
               <i className="fa fa-info-circle"></i>
@@ -62,17 +105,31 @@ class Details extends React.Component {
               Created on {this.timePosting(this.props.currentChannel.created_at)}
             </li>
           </ul>
-          <ul className="channel-detail-members-list">
+          <ul
+            className="channel-detail-members-list">
             <li>{usersCount} Members</li>
             {
               users.map( user =>
-                <li key={user.id}>
+                <li
+                  onClick={this.handleClick(user)}
+                  key={user.id}>
                   <img src={user.image_url}/>
                   {user.username}
+
                 </li>
               )
             }
           </ul>
+          <Modal
+            onRequestClose={this.closeModal("modalIsOpen")}
+            style={customStyles}
+            contentLabel="Modal"
+            isOpen={this.state.modalIsOpen}
+            onClose={this.closeModal("modalIsOpen")}>
+            <NewDm
+              toUser={this.state.toUser}
+              closeModal={this.closeModal("modalIsOpen")}/>
+          </Modal>
         </div>
       </div>
     );

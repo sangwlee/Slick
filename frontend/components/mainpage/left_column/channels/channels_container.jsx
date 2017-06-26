@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Channels from './channels';
 import selector from '../../../../util/selector';
+import { withRouter } from 'react-router-dom';
 import {
   requestAllMessagesOfChannel
 } from '../../../../actions/messages_actions';
@@ -42,7 +43,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Channels);
+)(Channels));
