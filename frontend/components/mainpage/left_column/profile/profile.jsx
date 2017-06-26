@@ -39,16 +39,24 @@ class Profile extends React.Component {
       }
     };
 
+    // debugger
+
     return(
 
-      <div
-        className="profile-container">
+      <div className="profile-container">
         <ul
-          onClick={this.openModal}
+
           className="welcoming-container">
           <li className="welcoming">
-            <span>{welcomeMessage}</span>
-            <i className="profile-icon fa fa-chevron-circle-down" aria-hidden="true"></i>
+            <span>Welcome</span>
+            <i
+              onClick={this.openModal}
+              className="fa fa-cog profile-edit-icon"
+              aria-hidden="true"></i>
+            <i
+              onClick={this.props.logout}
+              className="fa fa-sign-out logout-icon"
+              aria-hidden="true"></i>
           </li>
           <li className="profile-username">@{this.props.currentUser.username}</li>
         </ul>
@@ -65,7 +73,6 @@ class Profile extends React.Component {
               <li>@{user.username}</li>
               <div></div>
               <li id='button' className="user-options">Edit Profile</li>
-              <li id='button' onClick={this.props.logout} className="user-options">Logout</li>
             </ul>
           </ul>
         </Modal>

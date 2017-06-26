@@ -1,5 +1,11 @@
+.channel-detail-container {
+  width: 100%;
+  // display: flex;
+//   justify-content: space-between
+}
+
 .channel-detail {
-  padding: 4px 0px 8px 20px;
+  padding: 5px 0px 8px 20px;
 }
 
 .channel-title {
@@ -16,4 +22,15 @@
   span {
     padding: 0px 10px 0px 10px;
   }
+}
+
+.invite-icon, .channel-setting-icon {
+  // float: right;
+  padding: 0px 0px
+}
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
 }

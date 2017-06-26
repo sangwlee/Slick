@@ -29,12 +29,12 @@ class ChannelDetail extends React.Component {
 
     return(
       <h1>
-        <ul className='channel-detail'>
-          <li className='channel-title'>#{this.props.currentChannel.name}</li>
-          <li className='channel-info'>
-            <i className="fa fa-user-o"></i> {numbUsers} <span>|</span> {this.props.currentChannel.description}
-          </li>
-        </ul>
+          <ul className='channel-detail'>
+            <li className='channel-title'>#{this.props.currentChannel.name}</li>
+            <li className='channel-info'>
+              <i className="fa fa-user-o"></i> {numbUsers} <span>|</span> {this.props.currentChannel.description}
+            </li>
+          </ul>
       </h1>
     );
   }

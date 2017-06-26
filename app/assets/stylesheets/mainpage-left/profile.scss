@@ -1,3 +1,12 @@
+.profile-container {
+  cursor: normal;
+
+  i:hover {
+    cursor: pointer;
+    color: white;
+  }
+}
+
 .welcoming {
   font-size: 18px;
   color: white;
@@ -18,11 +27,6 @@
 
 .welcoming-container:hover {
   border-top-right-radius: 5px;
-  background-color: darken($skyblue, 58);
-
-  i {
-    color: white;
-  }
 }
 
 .profile-username {
@@ -62,8 +66,9 @@
   }
 
   img {
-    width: 110px;
-    height: 110px;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
   }
 }
 
@@ -77,4 +82,18 @@
   background-color: $lightpurple;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.profile-edit-icon {
+  padding-left: 85px;
+  color: lightgray;
+}
+
+.logout-icon {
+  margin-left: 5px;
+  color: lightgray;
+}
+
+.img {
+  object-fit: cover;
 }

@@ -36,19 +36,24 @@ class Details extends React.Component {
     const users = selector(this.props.users);
     const usersCount = users.length;
 
+    const kind = this.props.currentChannel.kind;
+    const about = (kind === 'dm') ? `About @${this.props.currentChannel.name}` : `About #${this.props.currentChannel.name}`;
+    const details = (kind === 'dm') ? 'Message Details' : 'Channel Details';
+    const description = (kind === 'dm') ? 'Message Description' : 'Channel Description';
+
     return(
       <div className="right-column-detail-div">
         <li className="search-bar"></li>
         <div className="right-column-container">
           <ul>
-            <li className="channel-detail-about">About #{this.props.currentChannel.name}</li>
+            <li className="channel-detail-about">{about}</li>
             <li
               className="channel-detail-heading">
               <i className="fa fa-info-circle"></i>
-              <span>Channel Details</span>
+              <span>{details}</span>
             </li>
             <li className='channel-description-heading'>
-              Channel Description
+              {description}
             </li>
             <li className='channel-description-content'>
               {this.props.currentChannel.description}

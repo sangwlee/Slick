@@ -30,6 +30,17 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
 
     if @channel.save
+      params[:channel][:members]
+        .values.map {|user| user["id"]}
+        .map {|id_s| id_s.to_i }
+        .each do |user_id|
+
+          Subscription.create({user_id: user_id, channel_id: @channel.id})
+          # debugger
+      # params[:channel][:members].keys.map{|id| id.to_i }.each do |member|
+      #   Subscription.new(member.id, @channel.id)
+      end
+
       render json: @channel
     else
       render json: @channel.errors.full_messages, status: 422
@@ -54,7 +65,8 @@ class Api::ChannelsController < ApplicationController
 
   private
   def channel_params
-    params.require(:channel).permit(:name, :description, :kind)
+    # debugger
+    params.require(:channel).permit(:name, :description, :kind, :members)
   end
 end
 

@@ -9,33 +9,48 @@ import {
 import selector from '../../../../util/selector';
 import { merge } from 'lodash';
 
-class NewChannel extends React.Component {
+class NewDm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
-      description: '',
-      kind: 'public',
+      description: 'Direct Message',
+      kind: 'dm',
       members: [this.props.currentUser],
       created_channel: null,
       privateColor: 'black'
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addMember = this.addMember.bind(this);
     this.removeMember = this.removeMember.bind(this);
-    this.setPrivate = this.setPrivate.bind(this);
+    // this.setPrivate = this.setPrivate.bind(this);
+    this.setName = this.setName.bind(this);
   }
 
-  handleChange(type) {
-    return (e) => {
-      this.setState({[type]: e.currentTarget.value});
-    };
+  setName() {
+    const dmName = [];
+    const members = this.state.members;
+    // const currentUserIndex = members.indexOf(this.props.currentUser);
+    // const otherMembers = members.splice(currentUserIndex, 1);
+
+    this.state.members.forEach(member => {
+      dmName.push(member.username);
+    });
+
+    let joinedName = dmName.join(", ");
+    if (joinedName.length > 20) {
+      joinedName = joinedName.slice(0, 20) + "...";
+    }
+
+    return joinedName;
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    this.state.name = this.setName();
+    debugger;
     this.props.createChannel(this.state)
       .then(channel => {
         this.props.history.push(`/main/${channel.channel.id}`);})
@@ -84,30 +99,7 @@ class NewChannel extends React.Component {
               aria-hidden="true">
             </i>
           </li>
-          <li className="create-your-channel">CREATE A CHANNEL</li>
-          <li>Channel Name:</li>
-          <li>
-            <input
-              onChange={this.handleChange('name')}
-              type="text"
-              placeholder="Enter channel's name"
-          /></li>
-          <li>Channel Description:</li>
-          <li>
-            <input
-              onChange={this.handleChange('description')}
-              type="text"
-              placeholder="Describe channel"
-          /></li>
-        <button
-          className="private-button"
-          onClick={this.setPrivate}
-          style={{color:this.state.privateColor}}>
-          <i
-            className="fa fa-user-secret"
-            aria-hidden="true"></i>
-          <span>Make it private!</span>
-        </button>
+          <li className="create-your-channel">DIRECT MESSAGE</li>
         </ul>
           <li className='userslist-headings'>Members:</li>
           <ul className="create-channel-userslist current-user-nullify-cursor">
@@ -169,5 +161,5 @@ const mapDispatchToProps = dispatch => {
 export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-  )(NewChannel)
+  )(NewDm)
 )

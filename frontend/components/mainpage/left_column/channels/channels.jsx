@@ -4,6 +4,7 @@ import { Link, Route, withRouter, NavLink } from 'react-router-dom';
 
 import Modal from 'react-modal';
 import NewChannel from './new_channel';
+import NewDm from './new_dm';
 
 const customStyles = {
   content : {
@@ -19,19 +20,23 @@ const customStyles = {
 class Channels extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { modalIsOpen: false };
+    this.state = { channelModal: false, dmModal: false };
 
     this.requestAllUsersOfChannel = this.requestAllUsersOfChannel.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
-  openModal() {
-    this.setState({modalIsOpen: true});
+  openModal(type) {
+    return () => {
+      this.setState({[type]: true});
+    };
   }
 
-  closeModal() {
-    this.setState({modalIsOpen: false});
+  closeModal(type) {
+    return () => {
+      this.setState({[type]: false});
+    };
   }
 
   componentWillMount() {
@@ -49,17 +54,18 @@ class Channels extends React.Component {
       <div>
         <ul>
           <h1
-            onClick={this.openModal}
+            onClick={this.openModal("channelModal")}
             className="channel-directmessage-heading">
             <span className="channels-icon">CHANNELS</span>
             <i className="fa fa-plus-circle" aria-hidden="true"></i>
           </h1>
           <Modal
+            onRequestClose={this.closeModal("channelModal")}
             style={customStyles}
             contentLabel="Modal"
-            isOpen={this.state.modalIsOpen}
-            onClose={this.closeModal}>
-            <NewChannel closeModal={this.closeModal}/>
+            isOpen={this.state.channelModal}
+            onClose={this.closeModal("channelModal")}>
+            <NewChannel closeModal={this.closeModal('channelModal')}/>
           </Modal>
           <ul className="channel-list channel-unique">
             {
@@ -79,10 +85,20 @@ class Channels extends React.Component {
           </ul>
         </ul>
         <ul>
-          <h1 className="channel-directmessage-heading">
+          <h1
+            onClick={this.openModal('dmModal')}
+            className="channel-directmessage-heading">
             <span className="dm-icon">DIRECT MESSAGES</span>
             <i className="fa fa-plus-circle" aria-hidden="true"></i>
           </h1>
+          <Modal
+            onRequestClose={this.closeModal('dmModal')}
+            style={customStyles}
+            contentLabel="Modal"
+            isOpen={this.state.dmModal}
+            onClose={this.closeModal('dmModal')}>
+            <NewDm closeModal={this.closeModal('dmModal')}/>
+          </Modal>
           <ul className="channel-list">
             {
               selector(this.props.directMessages).map(directMessage =>
