@@ -1,18 +1,19 @@
 import { merge } from 'lodash';
 import {
-  RECEIVE_CURRENT_CHANNEL,
+  RECEIVE_ALL_CHANNELS,
+  RECEIVE_CHANNEL_ERRORS,
 } from '../actions/channels_actions';
 
 const defaultState = Object.freeze({
   // currentChannel: null,
 });
 
-export const CurrentChannelReducer = (state = defaultState, action) => {
+export const AllChannelsReducer = (state = defaultState, action) => {
   Object.freeze(state);
 
   switch (action.type) {
-    case RECEIVE_CURRENT_CHANNEL:
-      return merge({}, state, action.channel);
+    case RECEIVE_ALL_CHANNELS:
+      return merge({}, defaultState, action.channels);
     default:
       return state;
   }

@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
 import MainPage from './mainpage';
 import {
+  requestAllChannels,
   requestAllChannelsOfUser,
 } from '../../actions/channels_actions';
 import {
+  requestAllUsers,
   requestAllUsersOfChannel,
 } from '../../actions/users_actions';
 
@@ -11,7 +13,6 @@ import {
 const mapStateToProps = state => {
   return {
     currentUser: state.session.currentUser,
-    // currentChannel: state.currentChannel
   };
 };
 
@@ -19,8 +20,10 @@ const mapDispatchToProps = dispatch => {
   return {
     requestAllChannelsOfUser: user_id =>
       dispatch(requestAllChannelsOfUser(user_id)),
-    // requestAllUsersOfChannel: channel_id =>
-    //   dispatch(requestAllUsersOfChannel(channel_id))
+    requestAllChannels: () =>
+      dispatch(requestAllChannels()),
+    requestAllUsers: () =>
+      dispatch(requestAllUsers()),
   };
 };
 

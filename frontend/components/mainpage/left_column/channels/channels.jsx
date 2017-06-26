@@ -2,21 +2,19 @@ import React from 'react';
 import selector from '../../../../util/selector';
 import { Link, Route, withRouter, NavLink } from 'react-router-dom';
 
-// import Modal from 'react-modal';
-// import NewChannel from './new_channel';
+import Modal from 'react-modal';
+import NewChannel from './new_channel';
 
-// const appElement = document.getElementByid('root');
-
-// const customStyles = {
-// content : {
-//   top                   : '50%',
-//   left                  : '50%',
-//   right                 : 'auto',
-//   bottom                : 'auto',
-//   marginRight           : '-50%',
-//   transform             : 'translate(-50%, -50%)'
-// }
-// };
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : '60%',
+    bottom                : 'auto',
+    marginRight           : '-30%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
 class Channels extends React.Component {
   constructor(props) {
@@ -24,23 +22,21 @@ class Channels extends React.Component {
     this.state = { modalIsOpen: false };
 
     this.requestAllUsersOfChannel = this.requestAllUsersOfChannel.bind(this);
-    // this.openModal = this.openModal.bind(this);
-    // this.afterOpenModal = this.afterOpenModal.bind(this);
-    // this.closeModal = this.closeModal.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
-  // openModal() {
-  //   this.setState({modalIsOpen: true});
-  // }
-  //
-  // afterOpenModal() {
-  //   // references are now sync'd and can be accessed.
-  //   this.subtitle.style.color = '#f00';
-  // }
-  //
-  // closeModal() {
-  //   this.setState({modalIsOpen: false});
-  // }
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
+  componentWillMount() {
+      Modal.setAppElement('body');
+   }
 
   requestAllUsersOfChannel(channel_id) {
     return () => {
@@ -53,10 +49,18 @@ class Channels extends React.Component {
       <div>
         <ul>
           <h1
+            onClick={this.openModal}
             className="channel-directmessage-heading">
             <span className="channels-icon">CHANNELS</span>
             <i className="fa fa-plus-circle" aria-hidden="true"></i>
           </h1>
+          <Modal
+            style={customStyles}
+            contentLabel="Modal"
+            isOpen={this.state.modalIsOpen}
+            onClose={this.closeModal}>
+            <NewChannel closeModal={this.closeModal}/>
+          </Modal>
           <ul className="channel-list channel-unique">
             {
               selector(this.props.channels).map(channel =>
@@ -102,5 +106,4 @@ class Channels extends React.Component {
   }
 }
 
-// ReactDom.render(<App />, appElement);
 export default withRouter(Channels);

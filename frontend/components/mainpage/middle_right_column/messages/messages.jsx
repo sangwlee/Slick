@@ -51,16 +51,16 @@ class Messages extends React.Component {
 
     if (todayYr - yr > 0) {ago = "more than a year ago";}
     else if (todayMo - mo === 1 && todayMo >= mo) {ago = "a month ago";}
-    else if (todayMo - mo > 1)
+    else if (Math.abs(todayMo - mo) > 1)
     {ago = `${((todayMo - mo < 0) ? (todayMo - mo + 12) : (todayMo - mo))} months ago`;}
     else if (todayDate - day === 1 && todayHr >= hr) {ago = 'a day ago';}
-    else if (todayDate - day > 1)
+    else if (Math.abs(todayDate - day) > 1)
     {ago = `${((todayDate - day < 0) ? (today - day + monthNames[mo]) : (today - day))} days ago`;}
     else if (todayHr - hr === 1 && todayMin >= min) {ago = 'an hour ago';}
-    else if (todayHr - hr > 1)
+    else if (Math.abs(todayHr - hr) > 1)
     {ago = `${((todayHr - hr < 0) ? (todayHr - hr + 24) : (todayHr - hr))} hours ago`;}
     else if (todayMin - min === 1 && todaySec >= sec) {ago = `a minute ago`;}
-    else if (todayMin - min > 1)
+    else if (Math.abs(todayMin - min) > 1)
     {ago = `${((todayMin - min < 0) ? (todayMin - min + 60) : (todayMin - min))} minutes ago`;}
     else if (todaySec - sec)
     {ago = `${((todaySec - sec < 0) ? (todaySec - sec + 60) : (todaySec - sec))} seconds ago`;}

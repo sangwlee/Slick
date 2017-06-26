@@ -2,7 +2,6 @@ import React from 'react';
 import ProfileContainer from './profile/profile_container';
 import ChannelsContainer from './channels/channels_container';
 import { connect } from 'react-redux';
-import { logout } from '../../../actions/session_actions';
 
 class LeftColumn extends React.Component {
   constructor(props) {
@@ -16,9 +15,6 @@ class LeftColumn extends React.Component {
           <li className='profile-container'><ProfileContainer /></li>
           <li className='channels-container'><ChannelsContainer /></li>
         </ul>
-        <button
-          onClick={this.props.logout}
-          >Log Out</button>
       </div>
     );
   }

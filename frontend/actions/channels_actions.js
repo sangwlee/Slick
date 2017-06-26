@@ -69,7 +69,7 @@ export const requestAllChannelsOfUser = user_id => dispatch => {
 
 export const createChannel = channelData => dispatch => {
   return ChannelsUtil.createChannel(channelData)
-    .then(channel => dispatch(receiveSingleChannel(channel)))
+    .then(channel => dispatch(receiveCurrentChannel(channel)))
     .fail(err => dispatch(receiveChannelErrors(err.responseJSON)));
 };
 

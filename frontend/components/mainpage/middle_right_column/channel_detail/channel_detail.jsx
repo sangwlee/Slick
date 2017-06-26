@@ -32,7 +32,7 @@ class ChannelDetail extends React.Component {
         <ul className='channel-detail'>
           <li className='channel-title'>#{this.props.currentChannel.name}</li>
           <li className='channel-info'>
-            | <i className="fa fa-user-o"></i> {numbUsers} | {this.props.currentChannel.description}
+            <i className="fa fa-user-o"></i> {numbUsers} <span>|</span> {this.props.currentChannel.description}
           </li>
         </ul>
       </h1>

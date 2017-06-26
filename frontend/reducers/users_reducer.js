@@ -16,8 +16,6 @@ export const UsersReducer = (state = defaultState, action) => {
   switch (action.type) {
     case RECEIVE_USER_ERRORS:
       return merge({}, defaultState, { errors: action.errors });
-    case RECEIVE_ALL_USERS:
-      return action.users;
     case RECEIVE_SINGLE_USER:
       return action.user;
     case RECEIVE_ALL_USERS_OF_CHANNEL:
