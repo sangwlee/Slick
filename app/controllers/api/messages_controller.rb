@@ -28,7 +28,12 @@ class Api::MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
-        render json: @message
+      #lets publish an event
+      @channel = @message.channel
+      pusher = Pusher.trigger(@channel.id.to_s, 'message_published', {})
+      # debugger;
+
+      render json: @message
     else
       render json: @message.errors.full_messages, status: 422
     end

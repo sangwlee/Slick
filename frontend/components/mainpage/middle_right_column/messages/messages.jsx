@@ -1,27 +1,44 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import selector from '../../../../util/selector';
+import {
+  fetchAllMessagesOfChannel
+} from '../../../../util/messages_util';
+
 class Messages extends React.Component {
   constructor(props) {
     super(props);
 
     this.time = this.time.bind(this);
+    // this.requestAllMessagesOfChannel = this.props.requestAllMessagesOfChannel.bind(this);
   }
 
   componentDidMount() {
     // debugger
-    this.props.requestAllMessagesOfChannel(parseInt(this.props.match.params.channelId));
+    let channelId = parseInt(this.props.match.params.channelId).toString();
+    this.props.requestAllMessagesOfChannel(channelId);
+
+    //subscription code goes here
+    this.pusher = new Pusher('362129d066c84b9dc60e', {
+      encrypted: true
+    });
+
+    Pusher.logToConsole = true;
+
+    const channel = this.pusher.subscribe(channelId);
+
+    channel.bind('message_published', () => {
+      this.props.requestAllMessagesOfChannel(channelId);
+    });
   }
 
   componentWillReceiveProps(nextProps) {
-    // debugger
     if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
       let newChannelId = parseInt(nextProps.match.params.channelId);
       this.props.requestAllMessagesOfChannel(newChannelId);
-    // } else if (JSON.stringify(this.props.messages) !== JSON.stringify(nextProps.messages)) {
-    //   debugger
-    //   const channelId = parseInt(this.props.location.pathname.slice(6));
-    //   this.props.requestAllMessagesOfChannel(channelId);
+
+      this.pusher.unsubscribe(parseInt(this.props.match.params.channelId).toString());
+      this.pusher.subscribe(parseInt(nextProps.match.params.channelId).toString());
     }
   }
 
