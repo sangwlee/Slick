@@ -106,7 +106,7 @@ class NewChannel extends React.Component {
           <i
             className="fa fa-user-secret"
             aria-hidden="true"></i>
-          <span>Make it private!</span>
+          <span>Click to make it private!</span>
         </button>
         </ul>
           <li className='userslist-headings'>Members:</li>

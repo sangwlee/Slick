@@ -36,9 +36,6 @@ class Api::ChannelsController < ApplicationController
         .each do |user_id|
 
         Subscription.create({user_id: user_id, channel_id: @channel.id})
-          # debugger
-      # params[:channel][:members].keys.map{|id| id.to_i }.each do |member|
-      #   Subscription.new(member.id, @channel.id)
       end
 
       render json: @channel
@@ -54,6 +51,10 @@ class Api::ChannelsController < ApplicationController
 
       @subscription = Subscription.find_by(user_id: user_id, channel_id: channel_id)
       @subscription.destroy
+
+      if Subscription.find_by(channel_id: channel_id) == nil
+        Channel.find(channel_id).destroy
+      end
     end
 
     if (params[:channel][:members])

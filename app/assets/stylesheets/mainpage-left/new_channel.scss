@@ -21,7 +21,7 @@
 }
 
 .exit-create-channel {
-  margin-left: 275px;
+  margin-left: 285px;
 }
 
 .exit-create-channel:hover {
@@ -107,4 +107,9 @@
   span {
     padding-left: 10px;
   }
+}
+
+.private-button:hover {
+  position: relative;
+  bottom: 1px;
 }
