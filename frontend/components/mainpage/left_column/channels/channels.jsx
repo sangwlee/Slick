@@ -43,8 +43,8 @@ class Channels extends React.Component {
       this.setState({channelId: channel_id, unsubscribe: true});
       this.props.updateChannel(channel_id, this.state);
       this.props.requestAllChannelsOfUser(this.state.userId);
-      // this.props.history.push('/main/1');
-      this.props.history.pop();
+      this.props.history.push('/main/1');
+      // this.props.history.pop();
     };
   }
 
