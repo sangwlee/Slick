@@ -21,6 +21,7 @@ class MainPage extends React.Component{
     this.props.requestAllChannelsOfUser(this.props.currentUser.id);
     this.props.requestAllChannels();
     this.props.requestAllUsers();
+    this.props.requestCurrentChannel(parseInt(this.props.location.pathname.slice(6)));
     // this.props.requestAllUsersOfChannel(parseInt(this.props.currentChannel.id));
   }
 

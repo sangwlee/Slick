@@ -95,7 +95,7 @@ class Channels extends React.Component {
         <ul>
           <h1
             onClick={this.openModal("channelModal")}
-            className="channel-directmessage-heading">
+            className="channel-directmessage-heading channels-heading">
             <span className="channels-icon">CHANNELS</span>
             <i className="fa fa-plus-circle" aria-hidden="true"></i>
           </h1>

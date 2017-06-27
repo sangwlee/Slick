@@ -106,11 +106,15 @@ class Messages extends React.Component {
               return (
 
                 <li className='individual-message-container' key={message.id}>
-                  <img className='profile-pic' src={users[message.user_id].image_url}/>
+                  <img className='profile-pic'
+                    src={(users[message.user_id]) ?
+                      (users[message.user_id].image_url) :
+                      ('/assets/images/missing.jpg')}/>
                   <ul className='message-content-container'>
                     <li>
                       <span className='username'>
-                        {users[message.user_id].username}
+                        {(users[message.user_id]) ?
+                          (users[message.user_id].username) : ('')}
                       </span>
                       <span className="timePosting">
                         {this.time(message.created_at)}

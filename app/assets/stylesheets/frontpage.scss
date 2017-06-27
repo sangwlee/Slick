@@ -113,23 +113,23 @@ input::placeholder {
 }
 
 .signup-container:hover {
-  transition: color .5s ease-in-out;
+  transition: color 1s ease-in-out;
   color: darken($skyblue, 30);
 
   input {
-    transition: border .5s ease-in-out;
+    transition: border 1s ease-in-out;
     border: 1px solid darken($skyblue, 30);
     color: darken($skyblue, 30);
   }
 
   .join-button {
-    transition: background-color .5s ease-in-out;
+    transition: background-color 1s ease-in-out;
     background-color: darken($skyblue, 30);
     color: white;
   }
 
   div hr {
-    transition: border .5s ease-in-out;
+    transition: border 1s ease-in-out;
     border: 0.1px solid darken($skyblue, 30);
   }
 }
@@ -153,8 +153,7 @@ input::placeholder {
 .slicklogo {
   width: 30px;
   height: 30px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 0px 15px 17px 15px;
   border-radius: 100%;
 }
 
@@ -163,8 +162,10 @@ input::placeholder {
 }
 
 .join-button {
-  width: 98%;
+  width: 93%;
   color: white;
+  background-color: $lightpurple;
+  text-align: center;
 }
 
 div hr {
@@ -215,7 +216,11 @@ div hr {
   font-family: 'Mystery Quest', cursive;
 }
 
+.first-guest-button {
+  margin-right: 1%;
+}
+
 label {
   display: block;
-  margin: 5px 0px 5px 0px;
+  // margin: 5px 0px 5px 0px;
 }

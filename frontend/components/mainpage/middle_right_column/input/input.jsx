@@ -36,29 +36,17 @@ class Input extends React.Component {
     }
   }
 
-  componentDidMount() {
-    // const currentChannel = this.props.currentChannel;
-    // let placeholderMessage = (currentChannel.kind === 'dm') ?
-    //   ("@" + currentChannel.name) : ("#" + currentChannel.name);
-    // this.setState({placeholderMessage: placeholderMessage});
-    // debugger
-  }
-
-  componentWillReceiveProps(nexProps) {
-    debugger;
-    if (this.props.match.params.channelId !== nextProps.matchparams.channelId) {
-      this.setState({placeholderMessage: this.props.currentChannel.name});
-    }
-  }
-
   render() {
-    // debugger;
+    const currentChannel = this.props.currentChannel;
+
     return(
       <div>
         <form onSubmit={this.handleSubmit}>
           <input
             className='input-message'
-            placeholder={this.state.placeholderMessage}
+            placeholder={(currentChannel.kind === 'dm') ?
+              `Message @${currentChannel.name}` :
+              `Message #${currentChannel.name}`}
             onChange={this.handleChange('content')}
             type="text"
             value={this.state.content}>

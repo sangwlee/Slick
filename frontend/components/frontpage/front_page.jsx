@@ -12,9 +12,11 @@ class FrontPage extends React.Component{
   this.guestLogin = this.guestLogin.bind(this);
   }
 
-  guestLogin() {
-    this.props.login({username: 'voldemort', password: 'voldemort'})
+  guestLogin(name) {
+    return () => {
+      this.props.login({username: name, password: name})
       .then(()=> this.props.history.push('/main/1'));
+    };
   }
 
   render() {
@@ -40,10 +42,18 @@ class FrontPage extends React.Component{
           </ul>
           <SignupContainer className="sign-up-container"/>
         </section>
+
         <button
           id='button'
           className="guest-button"
-          onClick={this.guestLogin}>
+          onClick={this.guestLogin('hpotter')}>
+          Login as <span className="voldemort">Harry Potter</span>
+        </button>
+
+        <button
+          id='button'
+          className="guest-button first-guest-button"
+          onClick={this.guestLogin('voldemort')}>
           Login as <span className="voldemort">Voldemort</span>
         </button>
       </div>

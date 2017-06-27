@@ -3,6 +3,7 @@ import MainPage from './mainpage';
 import {
   requestAllChannels,
   requestAllChannelsOfUser,
+  requestCurrentChannel,
 } from '../../actions/channels_actions';
 import {
   requestAllUsers,
@@ -24,6 +25,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(requestAllChannels()),
     requestAllUsers: () =>
       dispatch(requestAllUsers()),
+    requestCurrentChannel: channel_id =>
+      dispatch(requestCurrentChannel(channel_id)),
   };
 };
 
