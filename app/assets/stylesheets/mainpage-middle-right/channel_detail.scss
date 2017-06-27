@@ -34,3 +34,15 @@
   display: table;
   clear: both;
 }
+
+.invite-icon {
+  position: absolute;
+  right: 23%;
+  top: 2.5%;
+  color: $lightpurple;
+}
+
+.invite-icon:hover {
+  color: darken($skyblue, 50);
+  cursor: pointer;
+}

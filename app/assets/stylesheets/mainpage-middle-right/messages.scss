@@ -37,12 +37,13 @@
 }
 
 ::-webkit-scrollbar {
-    width: 14px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track-piece {
   background-color: white;
-    border-radius: 7px;
+  border-radius: 7px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -53,5 +54,5 @@
 
 
 ::-webkit-scrollbar-corner {
-      background-color: gray;
+  background-color: gray;
 }

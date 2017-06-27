@@ -45,12 +45,14 @@ class Input extends React.Component {
   }
 
   componentWillReceiveProps(nexProps) {
+    debugger;
     if (this.props.match.params.channelId !== nextProps.matchparams.channelId) {
       this.setState({placeholderMessage: this.props.currentChannel.name});
     }
   }
 
   render() {
+    // debugger;
     return(
       <div>
         <form onSubmit={this.handleSubmit}>

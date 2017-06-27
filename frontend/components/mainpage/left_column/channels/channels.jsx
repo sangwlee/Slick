@@ -6,8 +6,6 @@ import Modal from 'react-modal';
 import NewChannel from './new_channel';
 import NewDm from './new_dm';
 
-import { deleteSubscription } from '../../../../actions/channels_actions';
-
 const customStyles = {
   content : {
     top                   : '50%',
@@ -22,11 +20,31 @@ const customStyles = {
 class Channels extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { channelModal: false, dmModal: false };
+    this.state = {
+      channelModal: false,
+      dmModal: false,
+      userId: props.currentUser.id,
+      channelId: null,
+      unsubscribe: true,
+    };
 
     this.requestAllUsersOfChannel = this.requestAllUsersOfChannel.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(channel_id) {
+    if (channel_id === 1) {
+      // return console.alert('You cannot leave general Chat!');
+    }
+
+    return () => {
+      this.setState({channelId: channel_id, unsubscribe: true});
+      this.props.updateChannel(channel_id, this.state);
+      this.props.requestAllChannelsOfUser(this.state.userId);
+      this.props.history.push('/main/1');
+    };
   }
 
   openModal(type) {
@@ -45,10 +63,6 @@ class Channels extends React.Component {
       Modal.setAppElement('body');
    }
 
-  //  componentWillReceiveProps(nextProps) {
-  //    this.setState({ location: nextProps.history.location.pathname});
-  //  }
-
   requestAllUsersOfChannel(channel_id) {
     return () => {
       this.props.requestAllUsersOfChannel(channel_id);
@@ -63,6 +77,17 @@ class Channels extends React.Component {
 
       return name;
     };
+
+    const deleteIcon = (channelId) => {
+      if (channelId !== 1) {
+        return (
+          <i
+            onClick={this.handleClick(channelId)}
+            className="fa fa-minus-circle delete-channel-icon"
+            aria-hidden="true"></i>
+        );
+      }
+    }
 
     return(
       <div>
@@ -95,7 +120,7 @@ class Channels extends React.Component {
                       <span className="pound-sign">#</span>
                       {"  " + channelName(channel.name)}
                     </NavLink>
-                    <i className="fa fa-minus-circle delete-channel-icon" aria-hidden="true"></i>
+                    {deleteIcon(channel.id)}
                   </li>
                 )
 
@@ -131,7 +156,7 @@ class Channels extends React.Component {
                     <span className="pound-sign">@</span>
                     {"  " + channelName(directMessage.name)}
                   </NavLink>
-                  <i className="fa fa-minus-circle delete-channel-icon" aria-hidden="true"></i>
+                  <i onClick={this.handleClick(directMessage.id)} className="fa fa-minus-circle delete-channel-icon" aria-hidden="true"></i>
                 </li>
               )
             }
@@ -143,4 +168,4 @@ class Channels extends React.Component {
   }
 }
 
-export default Channels;
+export default withRouter(Channels);

@@ -5,49 +5,44 @@ import {
   createSubscription,
   createChannel,
   requestAllChannelsOfUser,
+  updateChannel,
 } from '../../../../actions/channels_actions';
+import {
+  requestAllUsersOfChannel
+} from '../../../../actions/users_actions';
 import selector from '../../../../util/selector';
 import { merge } from 'lodash';
 
-class NewDm extends React.Component {
+class ChannelInvite extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      description: 'Direct Message',
-      kind: 'dm',
-      members: [this.props.currentUser],
-      other: [],
+      name: this.props.currentChannel.name,
+      description: this.props.currentChannel.description,
+      kind: this.props.currentChannel.kind,
+      members: [],
       created_channel: null,
       privateColor: 'black'
     };
 
-    if (this.props.toUser) {
-      this.state.members = [this.props.currentUser, this.props.toUser];
-    }
+    // debugger;
 
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addMember = this.addMember.bind(this);
     this.removeMember = this.removeMember.bind(this);
-    this.setName = this.setName.bind(this);
+    this.setPrivate = this.setPrivate.bind(this);
   }
 
-  setName() {
-    const dmName = [];
-    const members = this.state.members;
-
-    this.state.members.forEach(member => {
-      dmName.push(member.username);
-    });
-
-    let joinedName = dmName.join(", ");
-    return joinedName;
+  handleChange(type) {
+    return (e) => {
+      this.setState({[type]: e.currentTarget.value});
+    };
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.state.name = this.setName();
-    this.props.createChannel(this.state)
+    this.props.updateChannel(this.props.currentChannel.id, this.state)
       .then(channel => {
         this.props.history.push(`/main/${channel.channel.id}`);})
       .then(() => this.props.closeModal());
@@ -70,15 +65,23 @@ class NewDm extends React.Component {
     };
   }
 
+  setPrivate() {
+    let changeTo = (this.state.kind === 'public') ? 'private' : 'public';
+    let colorChange = (this.state.privateColor === 'black') ? 'green' : 'black';
+    this.setState({kind: changeTo, privateColor: colorChange});
+  }
+
   componentWillUnmount() {
+    this.props.requestAllUsersOfChannel(this.props.currentChannel.id);
     this.props.requestAllChannelsOfUser(this.props.currentUser.id);
   }
 
   render() {
     const allUsers = selector(this.props.allUsers);
     allUsers.splice((this.props.currentUser.id - 1), 1);
-
     const otherUsers = allUsers;
+
+    // debugger;
 
     return(
       <div className="create-channel-container">
@@ -90,9 +93,9 @@ class NewDm extends React.Component {
               aria-hidden="true">
             </i>
           </li>
-          <li className="create-your-channel">DIRECT MESSAGE</li>
+          <li className="create-your-channel">INVITE TO CHANNEL</li>
         </ul>
-          <li className='userslist-headings'>Between:</li>
+          <li className='userslist-headings'>Send invitations to:</li>
           <ul className="create-channel-userslist current-user-nullify-cursor">
             {this.state.members.map( user =>
                 <li
@@ -106,7 +109,7 @@ class NewDm extends React.Component {
           <li className='userslist-headings'>Available Users:</li>
           <ul className="create-channel-userslist">
             {
-              otherUsers.map( user => {
+              this.props.unsubscribedUsers.map( user => {
                 if (!this.state.members.includes(user)) {
                     return (
                       <li
@@ -120,7 +123,7 @@ class NewDm extends React.Component {
           <button
             id="button"
             className="create-new-channel-button"
-            onClick={this.handleSubmit}>Message
+            onClick={this.handleSubmit}>Invite
           </button>
           <ul>
             {this.props.channelErrors.map((error, idx) =>
@@ -146,11 +149,15 @@ const mapDispatchToProps = dispatch => {
       dispatch(createChannel(channelData)),
     requestAllChannelsOfUser: user_id =>
       dispatch(requestAllChannelsOfUser(user_id)),
+    updateChannel: (channel_id, channelData) =>
+      dispatch(updateChannel(channel_id, channelData)),
+    requestAllUsersOfChannel: channelId =>
+      dispatch(requestAllUsersOfChannel(channelId)),
   }
 }
 
 export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-  )(NewDm)
+  )(ChannelInvite)
 )

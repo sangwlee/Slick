@@ -8,6 +8,10 @@ import {
 import {
   requestAllUsersOfChannel
 } from '../../../../actions/users_actions';
+import {
+  updateChannel,
+  requestAllChannelsOfUser,
+} from '../../../../actions/channels_actions';
 
 const mapStateToProps = state => {
   let channels = [];
@@ -39,7 +43,11 @@ const mapDispatchToProps = dispatch => {
     requestAllUsersOfChannel: channel_id =>
       dispatch(requestAllUsersOfChannel(channel_id)),
     requestAllMessagesOfChannel: channel_id =>
-      dispatch(requestAllMessagesOfChannel(channel_id))
+      dispatch(requestAllMessagesOfChannel(channel_id)),
+    updateChannel: (channel_id, channelData) =>
+      dispatch(updateChannel(channel_id, channelData)),
+    requestAllChannelsOfUser: user_id =>
+      dispatch(requestAllChannelsOfUser(user_id)),
   };
 };
 

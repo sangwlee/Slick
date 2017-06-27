@@ -45,7 +45,6 @@ class Profile extends React.Component {
 
       <div className="profile-container">
         <ul
-
           className="welcoming-container">
           <li className="welcoming">
             <span>Welcome</span>

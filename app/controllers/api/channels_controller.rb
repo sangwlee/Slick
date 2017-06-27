@@ -35,7 +35,7 @@ class Api::ChannelsController < ApplicationController
         .map {|id_s| id_s.to_i }
         .each do |user_id|
 
-          Subscription.create({user_id: user_id, channel_id: @channel.id})
+        Subscription.create({user_id: user_id, channel_id: @channel.id})
           # debugger
       # params[:channel][:members].keys.map{|id| id.to_i }.each do |member|
       #   Subscription.new(member.id, @channel.id)
@@ -48,6 +48,29 @@ class Api::ChannelsController < ApplicationController
   end
 
   def update
+    if (params[:channel][:unsubscribe])
+      channel_id = params[:id].to_i
+      user_id = params[:channel][:userId].to_i
+
+      @subscription = Subscription.find_by(user_id: user_id, channel_id: channel_id)
+      @subscription.destroy
+    end
+
+    if (params[:channel][:members])
+      channel_id = params[:id].to_i
+      user_id = params[:channel][:userId].to_i
+
+      params[:channel][:members]
+        .values.map {|user| user["id"]}
+        .map {|id_s| id_s.to_i }
+        .each do |user_id|
+
+        Subscription.create({user_id: user_id, channel_id: channel_id})
+      end
+    end
+
+    # debugger
+
     @channel = Channel.find(params[:id])
 
     if @channel.update(channel_params)
