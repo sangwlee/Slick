@@ -43,7 +43,8 @@ class Channels extends React.Component {
       this.setState({channelId: channel_id, unsubscribe: true});
       this.props.updateChannel(channel_id, this.state);
       this.props.requestAllChannelsOfUser(this.state.userId);
-      this.props.history.push('/main/1');
+      // this.props.history.push('/main/1');
+      this.props.history.pop();
     };
   }
 
@@ -119,8 +120,8 @@ class Channels extends React.Component {
                       activeClassName="selected">
                       <span className="pound-sign">#</span>
                       {"  " + channelName(channel.name)}
+                      {deleteIcon(channel.id)}
                     </NavLink>
-                    {deleteIcon(channel.id)}
                   </li>
                 )
 
@@ -155,8 +156,8 @@ class Channels extends React.Component {
                     activeClassName="selected">
                     <span className="pound-sign">@</span>
                     {"  " + channelName(directMessage.name)}
+                    <i onClick={this.handleClick(directMessage.id)} className="fa fa-minus-circle delete-channel-icon" aria-hidden="true"></i>
                   </NavLink>
-                  <i onClick={this.handleClick(directMessage.id)} className="fa fa-minus-circle delete-channel-icon" aria-hidden="true"></i>
                 </li>
               )
             }

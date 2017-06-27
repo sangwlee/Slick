@@ -84,6 +84,7 @@
   position: relative;
   right: 13%;
   color: $lightpurple;
+  z-index: 1;
 
   h3 {
     font-size: 50px;
@@ -212,4 +213,9 @@ div hr {
 .voldemort {
   font-size: 20px;
   font-family: 'Mystery Quest', cursive;
+}
+
+label {
+  display: block;
+  margin: 5px 0px 5px 0px;
 }

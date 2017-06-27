@@ -1,20 +1,22 @@
 .channel-list {
 
   li {
-    padding: 2px 0px 6px 25px;
+    // padding: 2px 0px 6px 25px;
   }
 
   a {
+    display: block;
     color: lightgray;
     text-decoration: none;
     font-size: 15px;
+    padding: 5px 0px 8px 20px;
   }
 
   li:hover {
     // border: 1px solid black;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    margin-right: 5px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    // margin-right: 5px;
     background-color: darken($skyblue, 58);
   }
 }
@@ -43,12 +45,12 @@
 }
 
 .selected {
-  color: orange;
+  // color: orange;
   // position: relative;
   // border: 1px solid red;
-  // background-color: red;
-  // border-top-left-radius: 5px;
-  // border-bottom-left-radius: 5px;
+  background-color: darken(orange, 12);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   // margin: 1px 127px 5px 5px
 }
 
@@ -62,11 +64,8 @@
 
 .delete-channel-icon {
   position: absolute;
-  right: 11px;
-  z-index: 1;
-  margin: auto;
-  vertical-align: center;
-  margin-top: 2px;
+  right: 12px;
+  margin-top: 3px;
   color: darken($skyblue, 50);
 }
 
