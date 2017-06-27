@@ -5,5 +5,10 @@
       user: current_user
     ).html_safe %>
   <% end %>
+
+  window.staticImages = {
+    slicklogo: "<%= asset_path('slicklogo.img') %>"
+  }
+
 </script>
 <main id="root"></main>

@@ -24,7 +24,7 @@ class FrontPage extends React.Component{
           <h1>
             <img
               className="slicklogo"
-              src="assets/slicklogo.img"
+              src={window.staticImages.slicklogo}
               alt="slick"/>
             <span className="welcome-message">
               Welcome to Slick!
