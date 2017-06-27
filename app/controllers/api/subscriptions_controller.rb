@@ -23,6 +23,7 @@ class Api::SubscriptionsController < ApplicationController
 
   private
   def subscription_params
+    # debugger;
     params.require(:subscription).permit(:user_id, :channel_id)
   end
 end

@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import Modal from 'react-modal';
 import NewDm from '../../../left_column/channels/new_dm';
+import SearchBar from '../search_bar';
 
 const customStyles = {
   content : {
@@ -86,7 +87,7 @@ class Details extends React.Component {
 
     return(
       <div className="right-column-detail-div">
-        <li className="search-bar"></li>
+        <li className="search-bar"><SearchBar /></li>
         <div className="right-column-container">
           <ul>
             <li className="channel-detail-about">{channelName(about)}</li>

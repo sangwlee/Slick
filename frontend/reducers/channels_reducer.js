@@ -16,7 +16,7 @@ export const ChannelsReducer = (state = defaultState, action) => {
 
   switch (action.type) {
     case RECEIVE_SINGLE_CHANNEL:
-      return merge({}, defaultState, action.channels);
+      return merge({}, state, action.channel);
     case RECEIVE_ALL_CHANNELS_OF_USER:
       return merge({}, state, action.channels);
     case RECEIVE_CHANNEL_ERRORS:

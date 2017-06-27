@@ -111,7 +111,7 @@ class ChannelDetail extends React.Component {
               currentChannel={this.props.currentChannel}
               subscribedUsers={selector(subscribedUsers)}
               unsubscribedUsers={unsubscribedUsers}/>
-            </Modal>
+          </Modal>
       </h1>
     );
   }
