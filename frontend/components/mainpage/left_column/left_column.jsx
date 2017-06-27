@@ -11,7 +11,7 @@ class LeftColumn extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className='left-column-div'>
         <ul className="left-column-container">
           <li className='profile-container'><ProfileContainer /></li>
           <li className='channels-container'><ChannelsContainer location={this.props.location} /></li>

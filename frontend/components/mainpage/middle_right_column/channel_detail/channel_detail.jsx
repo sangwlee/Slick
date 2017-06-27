@@ -90,7 +90,7 @@ class ChannelDetail extends React.Component {
     let numbUsers = users.length;
 
     return(
-      <h1 key="12123123">
+      <h1>
           <ul className='channel-detail'>
             <li className='channel-title'>
               {marker + channelName(this.props.currentChannel.name)}

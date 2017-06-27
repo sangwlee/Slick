@@ -1,15 +1,17 @@
 .input-message {
-  width: 95%;
-  height: 40px;
+  width: 96%;
+  height: 55%;
   border: 1.5px solid darkgray;
-  margin-left: 20px;
-  margin-top: 15px;
+  margin: 1.5% 2% 5% 1%;
   border-radius: 5px;
-  padding-left: 10px;
+  padding-left: 1%;
   font-weight: lighter;
-  color: black;
+  color: darken(darkgray,50);
+}
 
 
+.input-container-div {
+  height: 100%;
 }
 
 input::-webkit-input-placeholder { /* WebKit, Blink, Edge */

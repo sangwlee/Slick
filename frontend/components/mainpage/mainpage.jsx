@@ -8,21 +8,11 @@ class MainPage extends React.Component{
     super(props);
   }
 
-  // componentWillMount() {
-  //   this.props.createSubscription(
-  //     {user_id: this.props.currentUser.id,
-  //       channel_id: 1
-  //     }
-  //   );
-  // }
-
   componentWillMount() {
-    // debugger
     this.props.requestAllChannelsOfUser(this.props.currentUser.id);
     this.props.requestAllChannels();
     this.props.requestAllUsers();
     this.props.requestCurrentChannel(parseInt(this.props.location.pathname.slice(6)));
-    // this.props.requestAllUsersOfChannel(parseInt(this.props.currentChannel.id));
   }
 
   render() {

@@ -95,7 +95,6 @@ class Messages extends React.Component {
   }
 
   render() {
-    // debugger
     let allUsers = this.props.allUsers;
 
     return(
@@ -103,7 +102,6 @@ class Messages extends React.Component {
         <ul>
           {
             selector(this.props.messages).map( message => {
-              debugger;
               return (
 
                 <li className='individual-message-container' key={message.id}>

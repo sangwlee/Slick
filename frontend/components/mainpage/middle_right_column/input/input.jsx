@@ -40,8 +40,8 @@ class Input extends React.Component {
     const currentChannel = this.props.currentChannel;
 
     return(
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className="input-container-div">
+        <form className="input-container-div" onSubmit={this.handleSubmit}>
           <input
             className='input-message'
             placeholder={(currentChannel.kind === 'dm') ?
