@@ -28,23 +28,20 @@ class Channels extends React.Component {
       unsubscribe: true,
     };
 
-    this.requestAllUsersOfChannel = this.requestAllUsersOfChannel.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(channel_id) {
-    if (channel_id === 1) {
-      // return console.alert('You cannot leave general Chat!');
-    }
-
+    // debugger;
     return () => {
       this.setState({channelId: channel_id, unsubscribe: true});
       this.props.updateChannel(channel_id, this.state);
-      this.props.requestAllChannelsOfUser(this.state.userId);
-      this.props.history.push('/main/1');
-      // this.props.history.pop();
+      this.props.requestAllChannelsOfUser(this.state.userId)
+        .then(() => this.props.history.push('/main/1'));
+
+
     };
   }
 
@@ -63,12 +60,6 @@ class Channels extends React.Component {
   componentWillMount() {
       Modal.setAppElement('body');
    }
-
-  requestAllUsersOfChannel(channel_id) {
-    return () => {
-      this.props.requestAllUsersOfChannel(channel_id);
-    };
-  }
 
   render() {
     const channelName = (name) => {
@@ -113,7 +104,7 @@ class Channels extends React.Component {
                 return (
 
                   <li
-                    onClick={this.requestAllUsersOfChannel(channel.id)}
+                    onClick={this.props.requestAllUsersOfChannel.bind(null, channel.id)}
                     key={channel.created_at}>
                     <NavLink
                       to={`/main/${channel.id}`}
@@ -149,7 +140,7 @@ class Channels extends React.Component {
             {
               selector(this.props.directMessages).map(directMessage =>
                 <li
-                  onClick={this.requestAllUsersOfChannel(directMessage.id)}
+                  onClick={this.props.requestAllUsersOfChannel.bind(null, directMessage.id)}
                   key={directMessage.created_at}>
                   <NavLink
                     exact to={`/main/${directMessage.id}`}

@@ -22,6 +22,7 @@ class NewDm extends React.Component {
       privateColor: 'black'
     };
 
+
     if (this.props.toUser) {
       this.state.members = [this.props.currentUser, this.props.toUser];
     }
@@ -79,6 +80,8 @@ class NewDm extends React.Component {
     allUsers.splice((this.props.currentUser.id - 1), 1);
 
     const otherUsers = allUsers;
+    const membersIds = this.state.members.map(member => member.id);
+    // debugger;
 
     return(
       <div className="create-channel-container">
@@ -107,7 +110,8 @@ class NewDm extends React.Component {
           <ul className="create-channel-userslist">
             {
               otherUsers.map( user => {
-                if (!this.state.members.includes(user)) {
+                // debugger;
+                if (!membersIds.includes(user.id)) {
                     return (
                       <li
                       onClick={this.addMember(user, this.state.members)}

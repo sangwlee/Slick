@@ -5,7 +5,7 @@ import { requestAllMessagesOfChannel } from '../../../../actions/messages_action
 const mapStateToProps = state => {
   return {
     messages: state.messages,
-    users: state.users
+    allUsers: state.allUsers
   };
 };
 

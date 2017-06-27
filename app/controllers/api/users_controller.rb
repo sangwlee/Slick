@@ -3,16 +3,19 @@ class Api::UsersController < ApplicationController
     if params.include?(:channel_id)
       users = []
 
-      Subscription
-        .includes(:user)
-        .where(channel_id: params[:channel_id])
-        .each {|subs| users << subs.user}
-      @users = users
+      # debugger;
+      @users = Channel.find(params[:channel_id]).users
+
+      # Subscription
+      #   .includes(:user)
+      #   .where(channel_id: params[:channel_id])
+      #   .each {|subs| users << subs.user}
+      # @users = users
     else
 
       @users = User.all
     end
-    # 
+    #
     # render json: @users
   end
 
