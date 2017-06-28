@@ -70,11 +70,12 @@ class Channels extends React.Component {
      Pusher.logToConsole = true;
      const channel = this.pusher.subscribe("channels");
      channel.bind("channel_created", () => {this.props.requestAllChannelsOfUser(this.state.userId);});
+     channel.bind("subscriptions_changed", () => {this.props.requestAllUsersOfChannel(parseInt(this.props.location.pathname.slice(6)));});
     //  ### PUSHER ###
    }
 
    componentWillUnmount() {
-     this.pusher.unsubscribe(parseInt(this.props.match.params.channelId).toString());
+     this.pusher.unsubscribe(this.props.match.params.channelId);
    }
 
   render() {

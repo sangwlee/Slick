@@ -14,7 +14,6 @@ class Messages extends React.Component {
   }
 
   componentDidMount() {
-    // debugger
       let channelId = parseInt(this.props.match.params.channelId);
       this.props.requestAllMessagesOfChannel(channelId);
 
@@ -24,7 +23,7 @@ class Messages extends React.Component {
       });
 
       Pusher.logToConsole = true;
-      const channel = this.pusher.subscribe(channelId.toString());
+      let channel = this.pusher.subscribe(channelId.toString());
       channel.bind('message_published', () => {this.props.requestAllMessagesOfChannel(channelId);});
   }
 
@@ -32,9 +31,10 @@ class Messages extends React.Component {
     if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
       let newChannelId = parseInt(nextProps.match.params.channelId);
       this.props.requestAllMessagesOfChannel(newChannelId);
-      // debugger;
+
       this.pusher.unsubscribe(this.props.match.params.channelId);
-      this.pusher.subscribe(nextProps.match.params.channelId);
+      let channel = this.pusher.subscribe(newChannelId.toString());
+      channel.bind('message_published', () => {this.props.requestAllMessagesOfChannel(newChannelId);});
     }
   }
 

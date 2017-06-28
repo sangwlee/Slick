@@ -40,6 +40,7 @@ class Api::ChannelsController < ApplicationController
         Subscription.create({user_id: user_id, channel_id: @channel.id})
       end
 
+      Pusher.trigger("channels", "subscriptions_changed", {})
       render json: @channel
     else
       render json: @channel.errors.full_messages, status: 422
@@ -53,6 +54,8 @@ class Api::ChannelsController < ApplicationController
 
       @subscription = Subscription.find_by(user_id: user_id, channel_id: channel_id)
       @subscription.destroy
+
+      Pusher.trigger("channels", "subscriptions_changed", {})
 
       if Subscription.find_by(channel_id: channel_id) == nil
         Channel.find(channel_id).destroy
@@ -68,7 +71,9 @@ class Api::ChannelsController < ApplicationController
         .map {|id_s| id_s.to_i }
         .each do |user_id|
 
+
         Subscription.create({user_id: user_id, channel_id: channel_id})
+        Pusher.trigger("channels", "subscriptions_changed", {})
       end
     end
 
