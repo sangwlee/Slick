@@ -24,12 +24,8 @@ class Messages extends React.Component {
     });
 
     Pusher.logToConsole = true;
-
     const channel = this.pusher.subscribe(channelId);
-
-    channel.bind('message_published', () => {
-      this.props.requestAllMessagesOfChannel(channelId);
-    });
+    channel.bind('message_published', () => {this.props.requestAllMessagesOfChannel(channelId);});
   }
 
   componentWillReceiveProps(nextProps) {
