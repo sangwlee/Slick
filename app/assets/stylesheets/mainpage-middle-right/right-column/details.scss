@@ -62,16 +62,10 @@
 }
 
 .channel-detail-members-list {
-  height: 670px;
+  // height: 670px;
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-
-  li:first-child {
-    padding: 20px 0px 10px 10px;
-    font-size: 20px;
-    color: darken($lightpurple, 10);
-    font-weight: bold;
-  }
 
   li {
     padding: 3px 0px 3px 10px;
@@ -89,4 +83,11 @@
     vertical-align: middle;
     object-fit: cover;
   }
+}
+
+.details-number-heading {
+  padding: 20px 0px 10px 10px;
+  font-size: 20px;
+  color: darken($lightpurple, 10);
+  font-weight: bold;
 }

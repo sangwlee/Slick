@@ -24,16 +24,18 @@ class Api::UsersController < ApplicationController
   end
 
   def show
+    # debugger
     @user = User.find(params[:id])
     render json: @user
   end
 
   def create
+    # debugger
     @user = User.new(user_params)
     if @user.save
 
       login(@user)
-      render json: @user
+      render :show
     else
       render json: @user.errors.full_messages, status: 422
     end
@@ -48,7 +50,7 @@ class Api::UsersController < ApplicationController
       @user.channels.each do |channel|
         Pusher.trigger(channel.id.to_s, 'user_updated', {})
       end
-      render json: @user
+      render :show
     else
       render json: @user.errors.full_messages, status: 422
     end

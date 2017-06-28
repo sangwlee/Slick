@@ -1,5 +1,6 @@
 class Api::SessionsController < ApplicationController
   def create
+    # debugger
 
   @user = User.find_by_credentials(
     params[:user][:username],
@@ -9,7 +10,6 @@ class Api::SessionsController < ApplicationController
     if @user
 
       login(@user)
-      # debugger
       render :show
     else
       render(json: ["Invalid username and/or password."], status: 401)

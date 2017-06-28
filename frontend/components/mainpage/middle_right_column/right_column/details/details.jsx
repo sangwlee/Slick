@@ -130,9 +130,9 @@ class Details extends React.Component {
               Created on {this.timePosting(this.props.currentChannel.created_at)}
             </li>
           </ul>
+          <li className="details-number-heading">{usersCount} Members</li>
           <ul
             className="channel-detail-members-list">
-            <li>{usersCount} Members</li>
             {
               users.map( user =>
                 <li

@@ -120,6 +120,7 @@ class Profile extends React.Component {
 
 
   render() {
+    // debugger;
     const user = this.props.currentUser;
     const welcomeMessage = (user.username === '') ? 'Welcome.' : `Welcome, ${user.firstname}.`;
 

@@ -3,11 +3,33 @@ import { Link, withRouter } from 'react-router-dom';
 import LeftColumn from './left_column/left_column';
 import MiddleRightColumn from './middle_right_column/middle_right_column';
 
-import MyComponent from '../notifications';
+import NotificationSystem from 'react-notification-system';
+
+const style = {
+  NotificationItem: {
+    DefaultStyle: {
+      width: "66.5%"
+    }
+  }
+};
 
 class MainPage extends React.Component{
   constructor(props) {
     super(props);
+
+    this._notificationSystem = null;
+    this.welcomeNotification = this.welcomeNotification.bind(this);
+  }
+
+  welcomeNotification() {
+    if (this._notificationSystem) {
+      this._notificationSystem.addNotification({
+        title: 'Welcome to Slick',
+        message: `Where your communication starts`,
+        level: 'success',
+        position: 'bl',
+      });
+    }
   }
 
   componentWillMount() {
@@ -17,9 +39,14 @@ class MainPage extends React.Component{
     this.props.requestCurrentChannel(parseInt(this.props.location.pathname.slice(6)));
   }
 
+  componentDidMount() {
+    this.welcomeNotification();
+  }
+
   render() {
     return(
       <div className="main-page-container">
+        <NotificationSystem style={style} ref={n => this._notificationSystem = n} />
         <div
           className="main-page-left-column"><LeftColumn />
         </div>

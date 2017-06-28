@@ -38,9 +38,15 @@ class Channels extends React.Component {
       unsubscribe: true,
     };
 
+    this.pusher = new Pusher('362129d066c84b9dc60e', {
+      encrypted: true
+    });
+
+    this.uniqueChannelsIds = [];
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.newChannelNotification = this.newChannelNotification.bind(this);
   }
 
   handleClick(channel_id) {
@@ -50,8 +56,6 @@ class Channels extends React.Component {
       this.props.updateChannel(channel_id, this.state);
       this.props.requestAllChannelsOfUser(this.state.userId)
         .then(() => this.props.history.push('/main/1'));
-
-
     };
   }
 
@@ -71,18 +75,41 @@ class Channels extends React.Component {
       Modal.setAppElement('body');
    }
 
+   newChannelNotification(data) {
+     const channel = data.channel;
+     const description = (channel.description.length > 20) ? channel.description.slice(0, 20) + " ..." : channel.description;
+     const sig = (data.channel.kind === 'dm') ? '@' : '#';
+
+     if (this._notificationSystem) {
+       this._notificationSystem.addNotification({
+         title: `You have joined a new channel: ${sig} ${channel.name}`,
+         message: `${description}`,
+         level: 'warning',
+         position: 'bl',
+        //  action: {
+        //    label: `go chat!`,
+        //    callback: () => {
+        //      this.props.history.push(`/main/${channel.id}`);
+        //      this.props.requestAllMessagesOfChannel(channel.id);
+        //    }
+        //  }
+       });
+     }
+   }
+
    componentDidMount() {
     //  ### PUSHER ###
-     this.pusher = new Pusher('362129d066c84b9dc60e', {
-       encrypted: true
-     });
+
+
+    //  debugger;
 
      Pusher.logToConsole = true;
      const channel = this.pusher.subscribe("channels");
      channel.bind("channel_created", (data) => {
        this.props.requestAllChannelsOfUser(this.state.userId);
-       this.pusher.subscribe(data.channel.id.toString())
-        .bind('message_published', (data) => this.requestMessages(data));
+       this.newChannelNotification(data);
+      //  this.pusher.subscribe(data.channel.id.toString())
+        // .bind('message_published', (data) => this.requestMessages(data));
      });
      channel.bind("subscriptions_changed", () => {this.props.requestAllUsersOfChannel(parseInt(this.props.location.pathname.slice(6)));});
     //  ### PUSHER ###
@@ -93,6 +120,17 @@ class Channels extends React.Component {
    }
 
   render() {
+    const allChannels = this.props.channels.concat(this.props.directMessages);
+
+    allChannels.forEach(channel => {
+      if (!this.uniqueChannelsIds.includes(channel.id)) {
+        this.pusher.subscribe(channel.id.toString())
+        .bind('message_published', (data) => this.requestMessages(data));
+
+        this.uniqueChannelsIds.push(channel.id);
+      }
+    });
+
     const channelName = (name) => {
       if (name.length > 17) {
         return (name.slice(0, 17) + "...");
@@ -202,16 +240,38 @@ class Channels extends React.Component {
         message: `${messageContent}`,
         level: 'info',
         position: 'bl',
-        action: {
-          label: `go to message`,
-          callback: () => {
-            this.props.history.push(`/main/${channel.id}`);
-            this.props.requestAllMessagesOfChannel(channel.id);
-          }
-        }
+        // action: {
+        //   label: `go chat!`,
+        //   callback: () => {
+        //     this.props.history.push(`/main/${channel.id}`);
+        //     this.props.requestAllMessagesOfChannel(channel.id);
+        //   }
+        // }
       });
     }
   }
+
+  // newChannelNotification(data) {
+  //   const channel = data.channel;
+  //   const messageContent = (data.message.content.length > 20) ? data.message.content.slice(0, 20) + " ..." : data.message.content;
+  //   const sig = (data.channel.kind === 'dm') ? '@' : '#';
+  //
+  //   if (this._notificationSystem) {
+  //     this._notificationSystem.addNotification({
+  //       title: `${sig} ${channel.name}`,
+  //       message: `${messageContent}`,
+  //       level: 'info',
+  //       position: 'bl',
+  //       action: {
+  //         label: `go chat!`,
+  //         callback: () => {
+  //           this.props.history.push(`/main/${channel.id}`);
+  //           this.props.requestAllMessagesOfChannel(channel.id);
+  //         }
+  //       }
+  //     });
+  //   }
+  // }
 
   requestMessages(data) {
     this.newMessage = data.message;

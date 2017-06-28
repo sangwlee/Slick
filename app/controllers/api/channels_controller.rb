@@ -42,7 +42,10 @@ class Api::ChannelsController < ApplicationController
         Subscription.create({user_id: user_id, channel_id: @channel.id})
       end
 
-      Pusher.trigger("channels", "subscriptions_changed", {})
+      Pusher.trigger("channels", "subscriptions_changed", {
+          channel: @channel
+      })
+
       render json: @channel
     else
       render json: @channel.errors.full_messages, status: 422

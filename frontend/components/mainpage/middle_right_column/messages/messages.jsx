@@ -21,31 +21,31 @@ class Messages extends React.Component {
 
     this.time = this.time.bind(this);
     this.requestMessages = this.requestMessages.bind(this);
-    this.addNotification = this.addNotification.bind(this);
-    this._notificationSystem = null;
+    // this.addNotification = this.addNotification.bind(this);
+    // this._notificationSystem = null;
   }
 
-  addNotification(data) {
-    const channel = data.channel;
-    const messageContent = (data.message.content.length > 20) ? data.message.content.slice(0, 20) + " ..." : data.message.content;
-    const sig = (data.channel.kind === 'dm') ? '@' : '#';
-
-    if (this._notificationSystem) {
-      this._notificationSystem.addNotification({
-        title: `${sig} ${channel.name}`,
-        message: `${messageContent}`,
-        level: 'info',
-        position: 'bl',
-        action: {
-          label: `go to message`,
-          callback: () => {
-            this.props.history.push(`/main/${channel.id}`);
-            this.props.requestAllMessagesOfChannel(channel.id);
-          }
-        }
-      });
-    }
-  }
+  // addNotification(data) {
+  //   const channel = data.channel;
+  //   const messageContent = (data.message.content.length > 20) ? data.message.content.slice(0, 20) + " ..." : data.message.content;
+  //   const sig = (data.channel.kind === 'dm') ? '@' : '#';
+  //
+  //   if (this._notificationSystem) {
+  //     this._notificationSystem.addNotification({
+  //       title: `${sig} ${channel.name}`,
+  //       message: `${messageContent}`,
+  //       level: 'info',
+  //       position: 'bl',
+  //       action: {
+  //         label: `go chat`,
+  //         callback: () => {
+  //           this.props.history.push(`/main/${channel.id}`);
+  //           this.props.requestAllMessagesOfChannel(channel.id);
+  //         }
+  //       }
+  //     });
+  //   }
+  // }
 
   requestMessages(data) {
     this.newMessage = data.message;
@@ -179,10 +179,7 @@ class Messages extends React.Component {
                     <li className="message-content">{message.content}</li>
                   </ul>
                 </li>
-              )
-            }
-            )
-          }
+              ) })}
         </ul>
       </div>
     );

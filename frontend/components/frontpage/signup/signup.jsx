@@ -22,8 +22,6 @@ class Signup extends React.Component {
     const user = Object.assign({}, this.state);
     this.props.signup(user)
       .then(()=> this.props.history.push('/main/1'));
-    // debugger
-    // this.props.createSubscription(this.props.currentUser.id, 1);
   }
 
   render() {

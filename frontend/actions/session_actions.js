@@ -33,7 +33,14 @@ export const logout = () => dispatch => (
 
 export const signup = (user) => dispatch => {
   return APIUtil.signup(user)
-    .then(user => dispatch(createSubscription({user_id: user.id, channel_id: 1})))
-    .then(user => dispatch(receiveCurrentUser(user)))
+    .then(user => {
+      // debugger;
+      dispatch(createSubscription({user_id: user.id, channel_id: 1}));
+      return user;
+    })
+    .then(user => {
+      // debugger
+      dispatch(receiveCurrentUser(user));
+    })
     .fail(err => dispatch(receiveSignupErrors(err.responseJSON)));
 };
