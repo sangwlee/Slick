@@ -30,7 +30,9 @@ class Api::MessagesController < ApplicationController
     if @message.save
       #lets publish an event
       @channel = @message.channel
-      pusher = Pusher.trigger(@channel.id.to_s, 'message_published', {})
+      Pusher.trigger(@channel.id.to_s, 'message_published', {
+        message: @message, channel: @channel
+      })
       # debugger;
 
       render json: @message

@@ -30,7 +30,9 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
 
     if @channel.save
-      pusher = Pusher.trigger("channels", "channel_created", {})
+      Pusher.trigger("channels", "channel_created", {
+        channel: @channel
+      })
 
       params[:channel][:members]
         .values.map {|user| user["id"]}

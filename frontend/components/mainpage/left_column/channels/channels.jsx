@@ -6,6 +6,16 @@ import Modal from 'react-modal';
 import NewChannel from './new_channel';
 import NewDm from './new_dm';
 
+import NotificationSystem from 'react-notification-system';
+
+const style = {
+  NotificationItem: {
+    DefaultStyle: {
+      width: "66.5%"
+    }
+  }
+};
+
 const customStyles = {
   content : {
     top                   : '50%',
@@ -69,7 +79,11 @@ class Channels extends React.Component {
 
      Pusher.logToConsole = true;
      const channel = this.pusher.subscribe("channels");
-     channel.bind("channel_created", () => {this.props.requestAllChannelsOfUser(this.state.userId);});
+     channel.bind("channel_created", (data) => {
+       this.props.requestAllChannelsOfUser(this.state.userId);
+       this.pusher.subscribe(data.channel.id.toString())
+        .bind('message_published', (data) => this.requestMessages(data));
+     });
      channel.bind("subscriptions_changed", () => {this.props.requestAllUsersOfChannel(parseInt(this.props.location.pathname.slice(6)));});
     //  ### PUSHER ###
    }
@@ -100,6 +114,7 @@ class Channels extends React.Component {
 
     return(
       <div>
+        <NotificationSystem style={style} ref={n => this._notificationSystem = n} />
         <ul>
           <h1
             onClick={this.openModal("channelModal")}
@@ -174,6 +189,42 @@ class Channels extends React.Component {
 
       </div>
     );
+  }
+  //test
+  addNotification(data) {
+    const channel = data.channel;
+    const messageContent = (data.message.content.length > 20) ? data.message.content.slice(0, 20) + " ..." : data.message.content;
+    const sig = (data.channel.kind === 'dm') ? '@' : '#';
+
+    if (this._notificationSystem) {
+      this._notificationSystem.addNotification({
+        title: `${sig} ${channel.name}`,
+        message: `${messageContent}`,
+        level: 'info',
+        position: 'bl',
+        action: {
+          label: `go to message`,
+          callback: () => {
+            this.props.history.push(`/main/${channel.id}`);
+            this.props.requestAllMessagesOfChannel(channel.id);
+          }
+        }
+      });
+    }
+  }
+
+  requestMessages(data) {
+    this.newMessage = data.message;
+    this.author = this.props.currentUser;
+    this.currentChannelId = parseInt(this.props.history.location.pathname.slice(6));
+
+    // debugger;
+
+    if (this.newMessage.channel_id === this.currentChannelId) {
+      return this.props.requestAllMessagesOfChannel(this.currentChannelId);
+    } else {
+      return this.addNotification(data);
+    }
   }
 }
 

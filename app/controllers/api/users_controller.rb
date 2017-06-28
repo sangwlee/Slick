@@ -44,6 +44,10 @@ class Api::UsersController < ApplicationController
     # debugger
 
     if @user.update(user_params)
+      # debugger;
+      @user.channels.each do |channel|
+        Pusher.trigger(channel.id.to_s, 'user_updated', {})
+      end
       render json: @user
     else
       render json: @user.errors.full_messages, status: 422

@@ -5,12 +5,58 @@ import {
   fetchAllMessagesOfChannel
 } from '../../../../util/messages_util';
 
+import NotificationSystem from 'react-notification-system';
+
+const style = {
+  NotificationItem: {
+    DefaultStyle: {
+      width: "66.5%"
+    }
+  }
+};
+
 class Messages extends React.Component {
   constructor(props) {
     super(props);
 
     this.time = this.time.bind(this);
-    // this.requestAllMessagesOfChannel = this.props.requestAllMessagesOfChannel.bind(this);
+    this.requestMessages = this.requestMessages.bind(this);
+    this.addNotification = this.addNotification.bind(this);
+    this._notificationSystem = null;
+  }
+
+  addNotification(data) {
+    const channel = data.channel;
+    const messageContent = (data.message.content.length > 20) ? data.message.content.slice(0, 20) + " ..." : data.message.content;
+    const sig = (data.channel.kind === 'dm') ? '@' : '#';
+
+    if (this._notificationSystem) {
+      this._notificationSystem.addNotification({
+        title: `${sig} ${channel.name}`,
+        message: `${messageContent}`,
+        level: 'info',
+        position: 'bl',
+        action: {
+          label: `go to message`,
+          callback: () => {
+            this.props.history.push(`/main/${channel.id}`);
+            this.props.requestAllMessagesOfChannel(channel.id);
+          }
+        }
+      });
+    }
+  }
+
+  requestMessages(data) {
+    this.newMessage = data.message;
+    this.author = this.props.currentUser;
+    this.currentChannelId = parseInt(this.props.match.params.channelId);
+
+    if (this.newMessage.channel_id === this.currentChannelId) {
+      return this.props.requestAllMessagesOfChannel(this.currentChannelId);
+    } else {
+      return this.addNotification(data);
+    }
   }
 
   componentDidMount() {
@@ -23,8 +69,15 @@ class Messages extends React.Component {
       });
 
       Pusher.logToConsole = true;
-      let channel = this.pusher.subscribe(channelId.toString());
-      channel.bind('message_published', () => {this.props.requestAllMessagesOfChannel(channelId);});
+      this.channel = this.pusher.subscribe(channelId.toString());
+
+      this.channel.bind('message_published', (data) => {
+        this.requestMessages(data);
+      });
+
+      this.channel.bind('user_updated', () => {
+        this.props.requestAllUsersOfChannel(channelId);
+      });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,9 +85,7 @@ class Messages extends React.Component {
       let newChannelId = parseInt(nextProps.match.params.channelId);
       this.props.requestAllMessagesOfChannel(newChannelId);
 
-      this.pusher.unsubscribe(this.props.match.params.channelId);
-      let channel = this.pusher.subscribe(newChannelId.toString());
-      channel.bind('message_published', () => {this.props.requestAllMessagesOfChannel(newChannelId);});
+      this.pusher.subscribe(newChannelId.toString());
     }
   }
 
@@ -107,9 +158,10 @@ class Messages extends React.Component {
 
     return(
       <div>
+        <NotificationSystem style={style} ref={n => this._notificationSystem = n} />
         <ul>
           {
-            selector(this.props.messages).map( message => {
+            this.props.messages.map( message => {
               return (
 
                 <li className='individual-message-container' key={message.id}>
