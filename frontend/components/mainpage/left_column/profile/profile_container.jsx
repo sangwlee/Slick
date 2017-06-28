@@ -4,6 +4,7 @@ import { logout } from '../../../../actions/session_actions';
 import {
   updateUser,
   requestAllUsersOfChannel,
+  requestAllUsers
 } from '../../../../actions/users_actions';
 import {
   requestAllMessagesOfChannel,
@@ -19,6 +20,8 @@ const mapDispatchToProps = dispatch => ({
     updateUser: formData => dispatch(updateUser(formData)),
   requestAllUsersOfChannel: (channel_id) =>
     dispatch((requestAllUsersOfChannel(channel_id))),
+  requestAllUsers: () =>
+    dispatch((requestAllUsers())),    
 });
 
 export default connect(

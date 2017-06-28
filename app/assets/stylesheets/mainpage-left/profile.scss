@@ -1,4 +1,5 @@
 .profile-container {
+  position: relative;
   cursor: normal;
 
   i:hover {
@@ -40,6 +41,7 @@
 }
 
 .user-modal {
+  position: relative;
   display: flex;
   justify-content: flex-start;
   width: auto;
@@ -99,4 +101,49 @@
   width: 300px;
   height: 300px;
   object-fit: cover;
+  margin: 6px 0px 3px 0px;
+}
+
+.edit-profile-container {
+  position: relative;
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  width: 300px;
+  height: 535px;
+
+  li {
+    display: inline;
+    // position: relative;
+    list-style-type: none;
+  }
+
+  button {
+    // padding: 5px 20px 5px 20px;
+    text-align: center;
+    width: 310px;
+    padding: 5px 0px 5px 0px;
+    color: black;
+    background-color: darken($lightpurple, 10);
+    border-radius: 5px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+
+  input {
+    float: left;
+    width: 278px;
+    border: 1px solid $lightpurple;
+    padding: 5px 10px 5px 10px;
+    margin: 5px 0px 5px 0px;
+  }
+
+  h1 {
+    margin: 20px 0px 0px 0px;
+  }
+
+  .user-edit-errors {
+    color: red;
+    font-size: 12px;
+    padding-right: 10px;
+  }
 }

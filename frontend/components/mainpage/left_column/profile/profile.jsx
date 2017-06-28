@@ -29,8 +29,8 @@ const customStyles2 = {
 
   content : {
     position              : 'absolute',
-    top                   : '50%',
-    left                  : '50%',
+    top                   : '48.5%',
+    left                  : '21.7%',
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
@@ -84,14 +84,16 @@ class Profile extends React.Component {
     // debugger;
 
     this.props.updateUser(formData)
+      .then(this.props.requestAllUsers)
+      .then(() => this.props.requestAllUsersOfChannel(parseInt(this.props.location.pathname.slice(6))))
       // .then(() => this.props.requestAllUsersOfChannel(
       //   parseInt(this.props.location.pathname.slice(6))))
       // .then(() => this.props.requestAllMessagesOfChannel(
       //   parseInt(this.props.location.pathname.slice(6))))
       .then(this.closeModal('editModal'))
       .then(this.closeModal('profileModal'))
-      .then(() => this.props.history.push('/main/'))
-      .then(() => this.props.history.push('/main/1'));
+      // .then(() => this.props.history.push('/main/1'));
+      // .then(() => this.props.history.push('/main/1'));
   }
 
   handleChange(type) {
@@ -164,7 +166,7 @@ class Profile extends React.Component {
                 onRequestClose={this.closeModal('editModal')}
                 isOpen={this.state.editModal}
                 onClose={this.closeModal('editModal')}>
-                <ul>
+                <ul className='edit-profile-container'>
                   <li>
                     <input
                       onChange={this.handleChange('firstname')}
@@ -192,14 +194,16 @@ class Profile extends React.Component {
                   </li>
                   <li><img className="sample-image" src={this.state.imageUrl}/></li>
                   <li>
-                    <button onClick={this.handleClick}>Update</button>
+                    <button id='button' onClick={this.handleClick}>Update</button>
                   </li>
                   <li>
-                    {
-                      selector(this.props.users.errors).map( error =>
-                        <li>{error}</li>
-                      )
-                    }
+                    <ul>
+                      {
+                        selector(this.props.users.errors).map( error =>
+                          <li className="user-edit-errors">{error}.</li>
+                        )
+                      }
+                    </ul>
                   </li>
                 </ul>
               </Modal>

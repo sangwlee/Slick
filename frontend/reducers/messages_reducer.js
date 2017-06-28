@@ -22,7 +22,7 @@ export const MessagesReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {[action.message.id]: action.message});
     case RECEIVE_ALL_MESSAGES_OF_USER:
       return Object.assign({}, defaultState, action.messages);
-      case RECEIVE_ALL_MESSAGES_OF_CHANNEL:
+    case RECEIVE_ALL_MESSAGES_OF_CHANNEL:
       return Object.assign({}, defaultState, action.messages);
     case RECEIVE_MESSAGE_ERRORS:
       return Object.assign({}, defaultState, { errors: action.errors });

@@ -2,10 +2,12 @@ import { connect } from 'react-redux';
 import Messages from './messages';
 import { requestAllMessagesOfChannel } from '../../../../actions/messages_actions';
 
+
 const mapStateToProps = state => {
   return {
     messages: state.messages,
-    allUsers: state.allUsers
+    allUsers: state.allUsers,
+    users: state.users,
   };
 };
 

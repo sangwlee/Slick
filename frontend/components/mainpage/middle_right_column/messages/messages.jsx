@@ -95,7 +95,19 @@ class Messages extends React.Component {
   }
 
   render() {
-    let allUsers = this.props.allUsers;
+    let allUsersObj = this.props.allUsers;
+    let usersObj = this.props.users;
+    let usersArr = selector(this.props.users);
+    let usersIds = usersArr.map(user => user.id);
+
+    // debugger;
+    const findUser = (author_id) => {
+      if (usersIds.includes(author_id)) {
+        return usersObj[author_id];
+      }
+      return allUsersObj[author_id];
+    };
+
 
     return(
       <div>
@@ -106,11 +118,11 @@ class Messages extends React.Component {
 
                 <li className='individual-message-container' key={message.id}>
                   <img className='profile-pic'
-                    src={(allUsers[message.user_id].image_url)}/>
+                    src={(this.props.allUsers[message.user_id].image_url)}/>
                   <ul className='message-content-container'>
                     <li>
                       <span className='username'>
-                        {(allUsers[message.user_id].username)}
+                        {(this.props.allUsers[message.user_id].username)}
                       </span>
                       <span className="timePosting">
                         {this.time(message.created_at)}
