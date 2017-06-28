@@ -63,6 +63,18 @@ class Details extends React.Component {
 
   }
 
+  componentDidMount() {
+    const channelId = parseInt(this.props.location.pathname.slice(6));
+    //subscription code goes here
+    this.pusher = new Pusher('362129d066c84b9dc60e', {
+      encrypted: true
+    });
+
+    Pusher.logToConsole = true;
+    const channel = this.pusher.subscribe("subscriptions");
+    channel.bind('subscriptions_changed', () => {this.props.requestAllUsersOfChannel(channelId);});
+  }
+
   render() {
     const channelName = (name) => {
       if (name) {

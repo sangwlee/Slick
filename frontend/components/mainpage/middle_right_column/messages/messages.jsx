@@ -15,26 +15,26 @@ class Messages extends React.Component {
 
   componentDidMount() {
     // debugger
-    let channelId = parseInt(this.props.match.params.channelId).toString();
-    this.props.requestAllMessagesOfChannel(channelId);
+      let channelId = parseInt(this.props.match.params.channelId);
+      this.props.requestAllMessagesOfChannel(channelId);
 
-    //subscription code goes here
-    this.pusher = new Pusher('362129d066c84b9dc60e', {
-      encrypted: true
-    });
+      //subscription code goes here
+      this.pusher = new Pusher('362129d066c84b9dc60e', {
+        encrypted: true
+      });
 
-    Pusher.logToConsole = true;
-    const channel = this.pusher.subscribe(channelId);
-    channel.bind('message_published', () => {this.props.requestAllMessagesOfChannel(channelId);});
+      Pusher.logToConsole = true;
+      const channel = this.pusher.subscribe(channelId.toString());
+      channel.bind('message_published', () => {this.props.requestAllMessagesOfChannel(channelId);});
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
       let newChannelId = parseInt(nextProps.match.params.channelId);
       this.props.requestAllMessagesOfChannel(newChannelId);
-
-      this.pusher.unsubscribe(parseInt(this.props.match.params.channelId).toString());
-      this.pusher.subscribe(parseInt(nextProps.match.params.channelId).toString());
+      // debugger;
+      this.pusher.unsubscribe(this.props.match.params.channelId);
+      this.pusher.subscribe(nextProps.match.params.channelId);
     }
   }
 

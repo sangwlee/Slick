@@ -61,6 +61,22 @@ class Channels extends React.Component {
       Modal.setAppElement('body');
    }
 
+   componentDidMount() {
+    //  ### PUSHER ###
+     this.pusher = new Pusher('362129d066c84b9dc60e', {
+       encrypted: true
+     });
+
+     Pusher.logToConsole = true;
+     const channel = this.pusher.subscribe("channels");
+     channel.bind("channel_created", () => {this.props.requestAllChannelsOfUser(this.state.userId);});
+    //  ### PUSHER ###
+   }
+
+   componentWillUnmount() {
+     this.pusher.unsubscribe(parseInt(this.props.match.params.channelId).toString());
+   }
+
   render() {
     const channelName = (name) => {
       if (name.length > 17) {

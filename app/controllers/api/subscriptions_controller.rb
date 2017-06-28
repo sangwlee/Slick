@@ -8,6 +8,7 @@ class Api::SubscriptionsController < ApplicationController
     @subscription = Subscription.new(subscription_params)
     # debugger
     if @subscription.save
+      pusher = Pusher.trigger('subscriptions', "subscriptions_changed", {})
       @user = User.find(subscription_params[:user_id])
       render json: @user
     else
@@ -19,6 +20,7 @@ class Api::SubscriptionsController < ApplicationController
     @subscription = Subscription.find(params[:id])
     @subscription.destroy
     render :index
+    pusher = Pusher.trigger('subscriptions', "subscriptions_changed", {})
   end
 
   private
