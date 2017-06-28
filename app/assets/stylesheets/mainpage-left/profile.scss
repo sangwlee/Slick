@@ -76,9 +76,6 @@
   font-size: 13px;
   padding: 5px;
   text-align: center;
-}
-
-.user-options:hover {
   background-color: $lightpurple;
   border-radius: 3px;
   cursor: pointer;
@@ -95,5 +92,11 @@
 }
 
 .img {
+  object-fit: cover;
+}
+
+.sample-image {
+  width: 300px;
+  height: 300px;
   object-fit: cover;
 }

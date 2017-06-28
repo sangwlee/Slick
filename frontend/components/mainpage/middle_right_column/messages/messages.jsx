@@ -96,6 +96,7 @@ class Messages extends React.Component {
 
   render() {
     let allUsers = this.props.allUsers;
+    let users = this.props.users;
 
     return(
       <div>
@@ -110,7 +111,7 @@ class Messages extends React.Component {
                   <ul className='message-content-container'>
                     <li>
                       <span className='username'>
-                        {(allUsers[message.user_id].username)}
+                        {(users[message.user_id]) ? (users[message.user_id].username) : (allUsers[message.user_id].username)}
                       </span>
                       <span className="timePosting">
                         {this.time(message.created_at)}

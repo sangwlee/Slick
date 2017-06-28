@@ -27,11 +27,14 @@ export const createUser = user => {
   });
 };
 
-export const updateUser = (user_id, user) => {
+export const updateUser = formData => {
+  // debugger;
   return $.ajax({
     method: 'patch',
-    url: `api/users/${user_id}`,
-    data: { user }
+    url: `api/users/${formData.get('user[id]')}`,
+    data: formData,
+    contentType: false,
+    processData: false,
   });
 };
 

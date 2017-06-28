@@ -1,45 +1,123 @@
 import React from 'react';
 import Dropdown from 'react-drop-down';
 import Modal from 'react-modal';
+import { withRouter } from 'react-router-dom';
+import selector from '../../../../util/selector';
+
+const customStyles = {
+  overlay : {
+    backgroundColor       : 'rgba(255, 255, 255, 0)',
+    zIndex                : 1
+  },
+
+  content : {
+    position              : 'absolute',
+    top                   : '10%',
+    left                  : '18%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
+const customStyles2 = {
+  overlay : {
+    backgroundColor       : 'rgba(255, 255, 255, 0)',
+    zIndex                : 1
+  },
+
+  content : {
+    position              : 'absolute',
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {modalIsOpen: false};
+    this.state = {
+      profileModal: false,
+      editModal: false,
+      id: this.props.currentUser.id,
+      email: this.props.currentUser.email,
+      firstname: this.props.currentUser.firstname,
+      lastname: this.props.currentUser.lastname,
+      imageFile: '',
+      imageUrl: this.props.currentUser.image_url,
+    };
 
+    this.updateFile = this.updateFile.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
-  openModal() {
-    this.setState({modalIsOpen: true});
+  openModal(type) {
+    return () => {
+      this.setState({[type]: true});
+    };
   }
 
-  closeModal() {
-    this.setState({modalIsOpen: false});
+  closeModal(type) {
+    return () => {
+      this.setState({[type]: false});
+    };
   }
+
+  handleClick(e) {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("user[id]", this.state.id);
+    formData.append("user[email]", this.state.email);
+    formData.append("user[firstname]", this.state.firstname);
+    formData.append("user[lastname]", this.state.lastname);
+    formData.append("user[image]", this.state.imageFile);
+
+    // debugger;
+
+    this.props.updateUser(formData)
+      .then(() => this.props.requestAllUsersOfChannel(
+        parseInt(this.props.location.pathname.slice(6))))
+      .then(() => this.props.requestAllMessagesOfChannel(
+        parseInt(this.props.location.pathname.slice(6))))
+      .then(this.closeModal('editModal'))
+      .then(this.closeModal('profileModal'));
+  }
+
+  handleChange(type) {
+    return (e) => {
+      this.setState({[type]: e.currentTarget.value});
+    };
+  }
+
+  updateFile(e) {
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = function () {
+      this.setState({imageFile: file, imageUrl: fileReader.result});
+    }.bind(this);
+
+    // debugger;
+
+    if (file) {
+      fileReader.readAsDataURL(file);
+    } else {
+      this.setState({imageUrl: '', imageFile: null});
+    }
+  }
+
 
   render() {
     const user = this.props.currentUser;
     const welcomeMessage = (user.username === '') ? 'Welcome.' : `Welcome, ${user.firstname}.`;
-    const customStyles = {
-      overlay : {
-        backgroundColor       : 'rgba(255, 255, 255, 0)',
-        zIndex                : 1
-      },
-
-      content : {
-        position              : 'absolute',
-        top                   : '10%',
-        left                  : '18%',
-        right                 : 'auto',
-        bottom                : 'auto',
-        marginRight           : '-50%',
-        transform             : 'translate(-50%, -50%)'
-      }
-    };
-
-    // debugger
 
     return(
 
@@ -49,7 +127,7 @@ class Profile extends React.Component {
           <li className="welcoming">
             <span>Welcome</span>
             <i
-              onClick={this.openModal}
+              onClick={this.openModal('profileModal')}
               className="fa fa-cog profile-edit-icon"
               aria-hidden="true"></i>
             <i
@@ -62,16 +140,67 @@ class Profile extends React.Component {
         <Modal
           style={customStyles}
           contentLabel="Modal"
-          onRequestClose={this.closeModal}
-          isOpen={this.state.modalIsOpen}
-          onClose={this.closeModal}>
+          onRequestClose={this.closeModal('profileModal')}
+          isOpen={this.state.profileModal}
+          onClose={this.closeModal('profileModal')}>
           <ul className='user-modal'>
             <img src={user.image_url}/>
             <ul>
               <li>{user.firstname} {user.lastname}</li>
               <li>@{user.username}</li>
+              <li>{user.email}</li>
               <div></div>
-              <li id='button' className="user-options">Edit Profile</li>
+              <li
+                onClick={this.openModal('editModal')}
+                id='button'
+                className="user-options">
+                Edit Profile
+              </li>
+              <Modal
+                style={customStyles2}
+                contentLabel="Modal"
+                onRequestClose={this.closeModal('editModal')}
+                isOpen={this.state.editModal}
+                onClose={this.closeModal('editModal')}>
+                <ul>
+                  <li>
+                    <input
+                      onChange={this.handleChange('firstname')}
+                      placeholder={this.state.firstname}
+                      type="text">
+                    </input>
+                    <input
+                      onChange={this.handleChange('lastname')}
+                      placeholder={this.state.lastname}
+                      type="text">
+                    </input>
+                  </li>
+                  <li>
+                    <input
+                      onChange={this.handleChange('email')}
+                      placeholder={this.state.email}
+                      type="text">
+                    </input>
+                  </li>
+                  <li>
+                    <input
+                      onChange={this.updateFile}
+                      type="file">
+                    </input>
+                  </li>
+                  <li><img className="sample-image" src={this.state.imageUrl}/></li>
+                  <li>
+                    <button onClick={this.handleClick}>Update</button>
+                  </li>
+                  <li>
+                    {
+                      selector(this.props.users.errors).map( error =>
+                        <li>{error}</li>
+                      )
+                    }
+                  </li>
+                </ul>
+              </Modal>
             </ul>
           </ul>
         </Modal>
@@ -80,4 +209,4 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+export default withRouter(Profile);

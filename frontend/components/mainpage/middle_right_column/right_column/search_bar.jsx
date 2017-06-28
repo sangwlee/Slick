@@ -115,7 +115,7 @@ class SearchBar extends React.Component {
           onClose={this.closeModal("modalIsOpen")}>
           <form className="search-form" onSubmit={this.handleSubmit}>
             <input
-              placeholder="search for public channel"
+              placeholder="join a public channel"
               onChange={this.handleChange}
               type="text">
             </input>

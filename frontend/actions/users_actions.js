@@ -59,9 +59,9 @@ export const createUser = userData => dispatch => {
     .fail(err => dispatch(receiveUserErrors(err.responseJSON)));
 };
 
-export const updateUser = (userId, userData) => dispatch => {
-  return UsersUtil.updateUser(userId, userData)
-    .then(user => dispatch(receiveSingleUser(user)))
+export const updateUser = (formData) => dispatch => {
+  return UsersUtil.updateUser(formData)
+    // .then(user => dispatch(receiveSingleUser(user)))
     .fail(err => dispatch(receiveUserErrors(err.responseJSON)));
 };
 
