@@ -105,7 +105,7 @@ class Channels extends React.Component {
 
                   <li
                     onClick={this.props.requestAllUsersOfChannel.bind(null, channel.id)}
-                    key={channel.created_at}>
+                    key={channel.id}>
                     <NavLink
                       to={`/main/${channel.id}`}
                       activeClassName="selected">
