@@ -84,12 +84,14 @@ class Profile extends React.Component {
     // debugger;
 
     this.props.updateUser(formData)
-      .then(() => this.props.requestAllUsersOfChannel(
-        parseInt(this.props.location.pathname.slice(6))))
-      .then(() => this.props.requestAllMessagesOfChannel(
-        parseInt(this.props.location.pathname.slice(6))))
+      // .then(() => this.props.requestAllUsersOfChannel(
+      //   parseInt(this.props.location.pathname.slice(6))))
+      // .then(() => this.props.requestAllMessagesOfChannel(
+      //   parseInt(this.props.location.pathname.slice(6))))
       .then(this.closeModal('editModal'))
-      .then(this.closeModal('profileModal'));
+      .then(this.closeModal('profileModal'))
+      .then(() => this.props.history.push('/main/'))
+      .then(() => this.props.history.push('/main/1'));
   }
 
   handleChange(type) {

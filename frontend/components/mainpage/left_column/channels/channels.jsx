@@ -141,7 +141,7 @@ class Channels extends React.Component {
               selector(this.props.directMessages).map(directMessage =>
                 <li
                   onClick={this.props.requestAllUsersOfChannel.bind(null, directMessage.id)}
-                  key={directMessage.created_at}>
+                  key={directMessage.id}>
                   <NavLink
                     exact to={`/main/${directMessage.id}`}
                     activeClassName="selected">

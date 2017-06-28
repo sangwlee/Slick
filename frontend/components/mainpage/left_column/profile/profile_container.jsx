@@ -19,8 +19,6 @@ const mapDispatchToProps = dispatch => ({
     updateUser: formData => dispatch(updateUser(formData)),
   requestAllUsersOfChannel: (channel_id) =>
     dispatch((requestAllUsersOfChannel(channel_id))),
-  requestAllMessagesOfChannel: (channel_id) =>
-    dispatch((requestAllMessagesOfChannel(channel_id))),
 });
 
 export default connect(
