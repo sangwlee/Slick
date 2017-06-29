@@ -28,6 +28,20 @@ class NewChannel extends React.Component {
     this.setPrivate = this.setPrivate.bind(this);
   }
 
+  addMember(member, members) {
+    return () => {
+      let new_members = members.concat(member);
+      this.setState({members: new_members});};
+  }
+
+  removeMember(member, members) {
+    return () => {
+      if (member !== this.props.currentUser) {
+        let member_index = members.indexOf(member);
+        members.splice(member_index, 1);
+        this.setState({members: members});}};
+  }
+
   handleChange(type) {
     return (e) => {
       this.setState({[type]: e.currentTarget.value});
@@ -40,23 +54,6 @@ class NewChannel extends React.Component {
       .then(channel => {
         this.props.history.push(`/main/${channel.channel.id}`);})
       .then(() => this.props.closeModal());
-  }
-
-  addMember(member, members) {
-    return () => {
-      let new_members = members.concat(member);
-      this.setState({members: new_members});
-    };
-  }
-
-  removeMember(member, members) {
-    return () => {
-      if (member !== this.props.currentUser) {
-        let member_index = members.indexOf(member);
-        members.splice(member_index, 1);
-        this.setState({members: members});
-      }
-    };
   }
 
   setPrivate() {
@@ -169,5 +166,4 @@ const mapDispatchToProps = dispatch => {
 export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-  )(NewChannel)
-)
+  )(NewChannel))

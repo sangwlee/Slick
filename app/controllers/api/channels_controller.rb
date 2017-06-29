@@ -30,15 +30,15 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
 
     if @channel.save
-      Pusher.trigger("channels", "channel_created", {
-        channel: @channel
-      })
-
-      params[:channel][:members]
+      users_ids = params[:channel][:members]
         .values.map {|user| user["id"]}
         .map {|id_s| id_s.to_i }
-        .each do |user_id|
 
+      Pusher.trigger("channels", "channel_created", {
+        channel: @channel, users_ids: users_ids
+      })
+
+      users_ids.each do |user_id|
         Subscription.create({user_id: user_id, channel_id: @channel.id})
       end
 
@@ -81,9 +81,7 @@ class Api::ChannelsController < ApplicationController
         Pusher.trigger("channels", "subscriptions_changed", {})
       end
     end
-
-    # debugger
-
+    
     @channel = Channel.find(params[:id])
 
     if @channel.update(channel_params)
@@ -101,7 +99,6 @@ class Api::ChannelsController < ApplicationController
 
   private
   def channel_params
-    # debugger
     params.require(:channel).permit(:name, :description, :kind, :members)
   end
 end

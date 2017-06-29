@@ -8,15 +8,14 @@ import NewDm from './new_dm';
 
 import NotificationSystem from 'react-notification-system';
 
-const style = {
+const notificationStyle = {
   NotificationItem: {
     DefaultStyle: {
       width: "66.5%"
-    }
-  }
+    }}
 };
 
-const customStyles = {
+const modalStyle = {
   content : {
     top                   : '50%',
     left                  : '50%',
@@ -50,7 +49,6 @@ class Channels extends React.Component {
   }
 
   handleClick(channel_id) {
-    // debugger;
     return () => {
       this.setState({channelId: channel_id, unsubscribe: true});
       this.props.updateChannel(channel_id, this.state);
@@ -76,43 +74,32 @@ class Channels extends React.Component {
    }
 
    newChannelNotification(data) {
+     const users_ids = data.users_ids;
      const channel = data.channel;
-     const description = (channel.description.length > 20) ? channel.description.slice(0, 20) + " ..." : channel.description;
+     const description = (channel.description.length > 20) ?
+      channel.description.slice(0, 20) + " ..." : channel.description;
      const sig = (data.channel.kind === 'dm') ? '@' : '#';
 
-     if (this._notificationSystem) {
-       this._notificationSystem.addNotification({
-         title: `You have joined a new channel: ${sig} ${channel.name}`,
-         message: `${description}`,
-         level: 'warning',
-         position: 'bl',
-        //  action: {
-        //    label: `go chat!`,
-        //    callback: () => {
-        //      this.props.history.push(`/main/${channel.id}`);
-        //      this.props.requestAllMessagesOfChannel(channel.id);
-        //    }
-        //  }
-       });
-     }
+     if ((this._notificationSystem) &&
+        (users_ids.includes(this.props.currentUser.id)))
+        {this._notificationSystem.addNotification({
+           title: `NEW CHANNEL:`,
+           message: `${sig}${channel.name}`,
+           level: 'warning',
+           position: 'bl',
+         });}
    }
 
    componentDidMount() {
-    //  ### PUSHER ###
-
-
-    //  debugger;
-
      Pusher.logToConsole = true;
      const channel = this.pusher.subscribe("channels");
      channel.bind("channel_created", (data) => {
        this.props.requestAllChannelsOfUser(this.state.userId);
        this.newChannelNotification(data);
-      //  this.pusher.subscribe(data.channel.id.toString())
-        // .bind('message_published', (data) => this.requestMessages(data));
      });
-     channel.bind("subscriptions_changed", () => {this.props.requestAllUsersOfChannel(parseInt(this.props.location.pathname.slice(6)));});
-    //  ### PUSHER ###
+     channel.bind("subscriptions_changed", () =>
+     {this.props.requestAllUsersOfChannel(
+       parseInt(this.props.location.pathname.slice(6)));});
    }
 
    componentWillUnmount() {
@@ -135,7 +122,6 @@ class Channels extends React.Component {
       if (name.length > 17) {
         return (name.slice(0, 17) + "...");
       }
-
       return name;
     };
 
@@ -146,13 +132,13 @@ class Channels extends React.Component {
             onClick={this.handleClick(channelId)}
             className="fa fa-minus-circle delete-channel-icon"
             aria-hidden="true"></i>
-        );
-      }
-    }
+        );}}
 
     return(
       <div>
-        <NotificationSystem style={style} ref={n => this._notificationSystem = n} />
+        <NotificationSystem
+          style={notificationStyle}
+          ref={n => this._notificationSystem = n} />
         <ul>
           <h1
             onClick={this.openModal("channelModal")}
@@ -162,7 +148,7 @@ class Channels extends React.Component {
           </h1>
           <Modal
             onRequestClose={this.closeModal("channelModal")}
-            style={customStyles}
+            style={modalStyle}
             contentLabel="Modal"
             isOpen={this.state.channelModal}
             onClose={this.closeModal("channelModal")}>
@@ -172,7 +158,6 @@ class Channels extends React.Component {
             {
               this.props.channels.map(channel => {
                 return (
-
                   <li
                     onClick={this.props.requestAllUsersOfChannel.bind(null, channel.id)}
                     key={channel.id}>
@@ -183,12 +168,7 @@ class Channels extends React.Component {
                       {"  " + channelName(channel.name)}
                       {deleteIcon(channel.id)}
                     </NavLink>
-                  </li>
-                )
-
-              }
-              )
-            }
+                  </li>)})}
           </ul>
         </ul>
         <ul>
@@ -200,7 +180,7 @@ class Channels extends React.Component {
           </h1>
           <Modal
             onRequestClose={this.closeModal('dmModal')}
-            style={customStyles}
+            style={modalStyle}
             contentLabel="Modal"
             isOpen={this.state.dmModal}
             onClose={this.closeModal('dmModal')}>
@@ -217,21 +197,22 @@ class Channels extends React.Component {
                     activeClassName="selected">
                     <span className="pound-sign">@</span>
                     {"  " + channelName(directMessage.name)}
-                    <i onClick={this.handleClick(directMessage.id)} className="fa fa-minus-circle delete-channel-icon" aria-hidden="true"></i>
+                    <i
+                      onClick={this.handleClick(directMessage.id)}
+                      className="fa fa-minus-circle delete-channel-icon"
+                      aria-hidden="true"></i>
                   </NavLink>
-                </li>
-              )
-            }
+                </li>)}
           </ul>
         </ul>
-
       </div>
     );
   }
-  //test
+
   addNotification(data) {
     const channel = data.channel;
-    const messageContent = (data.message.content.length > 20) ? data.message.content.slice(0, 20) + " ..." : data.message.content;
+    const messageContent = (data.message.content.length > 20) ?
+      data.message.content.slice(0, 20) + " ..." : data.message.content;
     const sig = (data.channel.kind === 'dm') ? '@' : '#';
 
     if (this._notificationSystem) {
@@ -240,45 +221,14 @@ class Channels extends React.Component {
         message: `${messageContent}`,
         level: 'info',
         position: 'bl',
-        // action: {
-        //   label: `go chat!`,
-        //   callback: () => {
-        //     this.props.history.push(`/main/${channel.id}`);
-        //     this.props.requestAllMessagesOfChannel(channel.id);
-        //   }
-        // }
       });
     }
   }
-
-  // newChannelNotification(data) {
-  //   const channel = data.channel;
-  //   const messageContent = (data.message.content.length > 20) ? data.message.content.slice(0, 20) + " ..." : data.message.content;
-  //   const sig = (data.channel.kind === 'dm') ? '@' : '#';
-  //
-  //   if (this._notificationSystem) {
-  //     this._notificationSystem.addNotification({
-  //       title: `${sig} ${channel.name}`,
-  //       message: `${messageContent}`,
-  //       level: 'info',
-  //       position: 'bl',
-  //       action: {
-  //         label: `go chat!`,
-  //         callback: () => {
-  //           this.props.history.push(`/main/${channel.id}`);
-  //           this.props.requestAllMessagesOfChannel(channel.id);
-  //         }
-  //       }
-  //     });
-  //   }
-  // }
 
   requestMessages(data) {
     this.newMessage = data.message;
     this.author = this.props.currentUser;
     this.currentChannelId = parseInt(this.props.history.location.pathname.slice(6));
-
-    // debugger;
 
     if (this.newMessage.channel_id === this.currentChannelId) {
       return this.props.requestAllMessagesOfChannel(this.currentChannelId);
