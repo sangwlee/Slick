@@ -74,13 +74,13 @@ export const createMessage = messageData => dispatch => {
 };
 
 export const updateMessage = (messageId, messageData) => dispatch => {
-  return MessagesUtil.updateMessage(messageId, messageData)
-    .then(message => dispatch(receiveSingleMessage(message)))
-    .fail(err => dispatch(receiveMessageErrors(err.responseJSON)));
+  return MessagesUtil.updateMessage(messageId, messageData);
+    // .then(channel => dispatch(requestAllMessagesOfChannel(channel.id)))
+    // .fail(err => dispatch(receiveMessageErrors(err.responseJSON)));
 };
 
 export const deleteMessage = message_id => dispatch => {
   return MessagesUtil.deleteMessage(message_id)
-    .then(channel => dispatch(requestAllMessagesOfChannel(channel.id)))
+    // .then(channel => dispatch(requestAllMessagesOfChannel(channel.id)))
     .fail(err => dispatch(receiveMessageErrors(err.responseJSON)));
 };

@@ -24,9 +24,9 @@ class MainPage extends React.Component{
   welcomeNotification() {
     if (this._notificationSystem) {
       this._notificationSystem.addNotification({
-        title: 'WELCOME TO SLICK',
+        title: 'Welcome to SLICK',
         // message: `Where your communication starts`,
-        level: 'success',
+        level: 'info',
         position: 'bl',
       });
     }

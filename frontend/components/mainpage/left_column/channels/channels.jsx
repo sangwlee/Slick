@@ -221,6 +221,9 @@ class Channels extends React.Component {
         message: `${messageContent}`,
         level: 'info',
         position: 'bl',
+        action: {
+          label: 'go',
+          callback: () => this.props.history.push(`/main/${channel.id}`)}
       });
     }
   }

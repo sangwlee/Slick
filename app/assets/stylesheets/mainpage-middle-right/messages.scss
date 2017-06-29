@@ -9,6 +9,7 @@
   border-radius: 3px;
   margin-right: 10px;
   width: 42px;
+  min-width: 42px;
   height: 42px;
   object-fit: cover;
 }
@@ -68,13 +69,9 @@
 
   button {
     // font-size: 16px;
-    padding: 2px 3px 2px 3px;
+    padding: 0px 3px 0px 3px;
     cursor: pointer;
-  }
-
-  button:active {
-    font-size: 15px;
-    color: darken($skyblue, 10);
+    font-size: 16px;
   }
 }
 
@@ -84,6 +81,29 @@
 
   button {
     color: darken($lightpurple, 15);
-    transition: color 0.1s ease-in-out;
+    // transition: color 0.1s ease-in-out;
   }
+}
+
+.individual-message-container:focus {
+  background-color: white;
+}
+
+.emoji-container {
+  position: absolute;
+  z-index: 3;
+}
+
+.message-edit-input-div {
+  width: 100%;
+}
+
+.message-edit-input {
+  border: 1.5px solid $skyblue;
+  width: 98%;
+  transition: width 1s;
+  color: darken(darkgray,50);
+  border-radius: 5px;
+  padding: 7px;
+  margin: 3px 0px 3px 0px;
 }

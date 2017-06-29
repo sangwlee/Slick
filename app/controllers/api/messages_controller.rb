@@ -42,8 +42,9 @@ class Api::MessagesController < ApplicationController
   end
 
   def update
-    @message = Message.find(params[:id])
-
+    # debugger
+    @message = Message.find(params[:id].to_i)
+    # debugger;
     if @message.update(message_params)
       render json: @message
     else

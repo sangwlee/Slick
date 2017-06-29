@@ -94,7 +94,7 @@ class Profile extends React.Component {
       .then(() => this.props.requestAllUsersOfChannel(parseInt(this.props.location.pathname.slice(6))))
       .then(this.closeModal('editModal'))
       .then(this.closeModal('profileModal'))
-      .then(this.addNotification());
+      .then(() => this.addNotification());
   }
 
   addNotification() {
