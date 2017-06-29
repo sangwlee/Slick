@@ -9,6 +9,11 @@
   color: darken(darkgray,50);
 }
 
+.input-message:focus {
+  border: 1.5px solid darken(darkgray,20);
+  transition: border 0.5s ease-in-out;
+}
+
 
 .input-container-div {
   height: 100%;
@@ -17,17 +22,7 @@
 input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color: $lightpurple;
 }
-// :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-//    color:    #909;
-//    opacity:  1;
-// }
-// ::-moz-placeholder { /* Mozilla Firefox 19+ */
-//    color:    #909;
-//    opacity:  1;
-// }
-// :-ms-input-placeholder { /* Internet Explorer 10-11 */
-//    color:    #909;
-// }
-// ::-ms-input-placeholder { /* Microsoft Edge */
-//    color:    #909;
-// }
+
+.input-form-container {
+  height: 100%;
+}

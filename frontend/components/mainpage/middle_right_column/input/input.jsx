@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-
+import MyEmojiInput from './emoji';
+import ReactingComponent from './emoji2';
 
 class Input extends React.Component {
   constructor(props) {
@@ -10,11 +11,14 @@ class Input extends React.Component {
       kind: 'normal',
       channel_id: null,
       user_id: this.props.currentUser.id,
-      placeholderMessage: 'write a message!'
+      emoticonPickerOpen: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.toggleEmojiDisplay = this.toggleEmojiDisplay.bind(this);
+    this.addEmoticon = this.addEmoticon.bind(this);
   }
 
   handleChange(type) {
@@ -36,22 +40,39 @@ class Input extends React.Component {
     }
   }
 
+  toggleEmojiDisplay(){
+    this.setState({ emoticonPickerOpen: !this.state.emoticonPickerOpen });
+  }
+
+  addEmoticon(emoticon){
+    this.setState({content: this.state.content+ " "+ emoticon});
+    $("#message-content-input").focus();
+  }
+
   render() {
+    let emojiDisplay = "";
+
+    if (this.state.emoticonPickerOpen) {
+      emojiDisplay = <MyEmojiInput
+        addEmoticon={this.addEmoticon}
+        toggleEmojiDisplay={this.toggleEmojiDisplay} />;
+    }
+
     const currentChannel = this.props.currentChannel;
 
     return(
       <div className="input-container-div">
-        <form className="input-container-div" onSubmit={this.handleSubmit}>
+        <form className="input-form-container" onSubmit={this.handleSubmit}>
           <input
             className='input-message'
             placeholder={(currentChannel.kind === 'dm') ?
-              `Message @${currentChannel.name}` :
-              `Message #${currentChannel.name}`}
+              `Message @${currentChannel.name}` : `Message #${currentChannel.name}`}
             onChange={this.handleChange('content')}
             type="text"
             value={this.state.content}>
           </input>
         </form>
+
       </div>
     );
   }

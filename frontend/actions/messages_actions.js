@@ -81,5 +81,6 @@ export const updateMessage = (messageId, messageData) => dispatch => {
 
 export const deleteMessage = message_id => dispatch => {
   return MessagesUtil.deleteMessage(message_id)
+    .then(channel => dispatch(requestAllMessagesOfChannel(channel.id)))
     .fail(err => dispatch(receiveMessageErrors(err.responseJSON)));
 };

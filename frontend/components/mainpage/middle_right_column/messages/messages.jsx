@@ -6,46 +6,95 @@ import {
 } from '../../../../util/messages_util';
 
 import NotificationSystem from 'react-notification-system';
+import ReactingComponent from '../input/emoji2';
+import Modal from 'react-modal';
 
-const style = {
+const notificationStyle = {
   NotificationItem: {
     DefaultStyle: {
       width: "66.5%"
-    }
+    }}
+};
+
+const modalStyle = {
+  overlay : {
+    backgroundColor       : 'rgba(255, 255, 255, 0)',
+    zIndex                : 1
+  },
+
+  content : {
+    position              : 'absolute',
+    top                   : '10%',
+    left                  : '18%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
   }
 };
 
 class Messages extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      emoji: false,
+      comment: false,
+      edit: false,
+      delete: false,
+    };
 
     this.time = this.time.bind(this);
     this.requestMessages = this.requestMessages.bind(this);
-    // this.addNotification = this.addNotification.bind(this);
-    // this._notificationSystem = null;
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
-  // addNotification(data) {
-  //   const channel = data.channel;
-  //   const messageContent = (data.message.content.length > 20) ? data.message.content.slice(0, 20) + " ..." : data.message.content;
-  //   const sig = (data.channel.kind === 'dm') ? '@' : '#';
-  //
-  //   if (this._notificationSystem) {
-  //     this._notificationSystem.addNotification({
-  //       title: `${sig} ${channel.name}`,
-  //       message: `${messageContent}`,
-  //       level: 'info',
-  //       position: 'bl',
-  //       action: {
-  //         label: `go chat`,
-  //         callback: () => {
-  //           this.props.history.push(`/main/${channel.id}`);
-  //           this.props.requestAllMessagesOfChannel(channel.id);
-  //         }
-  //       }
-  //     });
-  //   }
-  // }
+  openModal(type) {
+    return () => {
+      this.setState({[type]: true});
+    };
+    debugger;
+  }
+
+  closeModal(type) {
+    return () => {
+      this.setState({[type]: false});
+    };
+  }
+
+  handleClick(type, message) {
+    // this.setState({[type]: false});
+    return () => {
+      if (type === 'emoji') {
+        this.setState({emoji: true});
+      } else if (type === 'comment') {
+
+      } else if (type === 'edit') {
+        this.openModal('edit');
+      } else if (type === 'delete') {
+        if (message.user_id === this.props.currentUser.id) {
+          this.props.deleteMessage(message.id);
+          this.notification('deleteSuccess');
+        } else {
+          this.notification('deleteFail');
+        }}};
+  }
+
+  notification(condition) {
+    if (this._notificationSystem && condition === 'deleteFail') {
+      this._notificationSystem.addNotification({
+        title: `Cannot delete others' messages!`,
+        level: 'error',
+        position: 'bl',
+      });
+    } else if (this._notificationSystem && condition === 'deleteSuccess') {
+      this._notificationSystem.addNotification({
+        title: `Delete success!`,
+        level: 'success',
+        position: 'bl',
+      });
+    }
+  }
 
   requestMessages(data) {
     this.newMessage = data.message;
@@ -63,12 +112,11 @@ class Messages extends React.Component {
       let channelId = parseInt(this.props.match.params.channelId);
       this.props.requestAllMessagesOfChannel(channelId);
 
-      //subscription code goes here
       this.pusher = new Pusher('362129d066c84b9dc60e', {
         encrypted: true
       });
 
-      Pusher.logToConsole = true;
+      // Pusher.logToConsole = true;
       this.channel = this.pusher.subscribe(channelId.toString());
 
       this.channel.bind('message_published', (data) => {
@@ -120,7 +168,7 @@ class Messages extends React.Component {
     {ago = `${((todayMo - mo < 0) ? (todayMo - mo + 12) : (todayMo - mo))} months ago`;}
     else if (todayDate - day === 1 && todayHr >= hr) {ago = 'a day ago';}
     else if (Math.abs(todayDate - day) > 1)
-    {ago = `${((todayDate - day < 0) ? (today - day + monthNames[mo]) : (today - day))} days ago`;}
+    {ago = `${((todayDate - day < 0) ? (todayDate - day + monthNames[mo]) : (todayDate - day))} days ago`;}
     else if (todayHr - hr === 1 && todayMin >= min) {ago = 'an hour ago';}
     else if (Math.abs(todayHr - hr) > 1)
     {ago = `${((todayHr - hr < 0) ? (todayHr - hr + 24) : (todayHr - hr))} hours ago`;}
@@ -147,7 +195,6 @@ class Messages extends React.Component {
     let usersArr = selector(this.props.users);
     let usersIds = usersArr.map(user => user.id);
 
-    // debugger;
     const findUser = (author_id) => {
       if (usersIds.includes(author_id)) {
         return usersObj[author_id];
@@ -155,10 +202,23 @@ class Messages extends React.Component {
       return allUsersObj[author_id];
     };
 
+    let emojiWindow;
+
+    // if (this.state.emoji) {
+    //   return (
+    //     <ReactingComponent />
+    //   )
+    // }
+    //
+    // const emojiOpen = () => ({
+    //   <ReactingComponent />
+    // })
 
     return(
       <div>
-        <NotificationSystem style={style} ref={n => this._notificationSystem = n} />
+        <NotificationSystem
+          style={notificationStyle}
+          ref={n => this._notificationSystem = n} />
         <ul>
           {
             this.props.messages.map( message => {
@@ -178,9 +238,43 @@ class Messages extends React.Component {
                     </li>
                     <li className="message-content">{message.content}</li>
                   </ul>
-                </li>
-              ) })}
+                  <li className='message-buttons'>
+                    <button
+                      onClick={this.handleClick('emoji', message)}>
+                      <i
+                        className="fa fa-smile-o message-button-emoticon"
+                        aria-hidden="true"></i>
+                    </button>
+                    <button
+                      onClick={this.handleClick('comment', message)}>
+                      <i
+                        className="fa fa-commenting"
+                        aria-hidden="true"></i>
+                    </button>
+                    <button
+                      onClick={this.handleClick('edit', message)}>
+                      <i
+                        className="fa fa-pencil-square-o"
+                        aria-hidden="true"></i>
+                    </button>
+                    <button
+                      onClick={this.handleClick('delete', message)}>
+                      <i
+                        className="fa fa-trash"
+                        aria-hidden="true"></i>
+                    </button>
+                  </li>
+                  { (this.state.emoji) ? <ReactingComponent /> : '' }
+                  </li>)})}
         </ul>
+        <Modal
+          style={modalStyle}
+          contentLabel="Modal"
+          onRequestClose={this.closeModal("edit")}
+          isOpen={this.state.edit}
+          onClose={this.closeModal("edit")}>
+          <h1>Hello!</h1>
+        </Modal>
       </div>
     );
   }

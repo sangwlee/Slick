@@ -18,14 +18,14 @@ const mapStateToProps = state => {
   // debugger
   selector(state.channels).forEach( channel => {
     if (channel.kind === 'public' || channel.kind === 'private') {
-      channels.unshift(channel);
+      channels.push(channel);
     }
   });
 
   let directMessages = [];
   selector(state.channels).forEach( channel => {
     if (channel.kind === 'dm') {
-      directMessages.unshift(channel);
+      directMessages.push(channel);
     }
   });
 

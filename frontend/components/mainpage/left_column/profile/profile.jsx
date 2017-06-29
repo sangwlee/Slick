@@ -3,6 +3,14 @@ import Dropdown from 'react-drop-down';
 import Modal from 'react-modal';
 import { withRouter } from 'react-router-dom';
 import selector from '../../../../util/selector';
+import NotificationSystem from 'react-notification-system';
+
+const notificationStyle = {
+  NotificationItem: {
+    DefaultStyle: {
+      width: "66.5%"
+    }}
+};
 
 const customStyles = {
   overlay : {
@@ -81,19 +89,22 @@ class Profile extends React.Component {
     formData.append("user[lastname]", this.state.lastname);
     formData.append("user[image]", this.state.imageFile);
 
-    // debugger;
-
     this.props.updateUser(formData)
       .then(this.props.requestAllUsers)
       .then(() => this.props.requestAllUsersOfChannel(parseInt(this.props.location.pathname.slice(6))))
-      // .then(() => this.props.requestAllUsersOfChannel(
-      //   parseInt(this.props.location.pathname.slice(6))))
-      // .then(() => this.props.requestAllMessagesOfChannel(
-      //   parseInt(this.props.location.pathname.slice(6))))
       .then(this.closeModal('editModal'))
-      .then(this.closeModal('profileModal'));
-      // .then(() => this.props.history.push('/main/1'));
-      // .then(() => this.props.history.push('/main/1'));
+      .then(this.closeModal('profileModal'))
+      .then(this.addNotification());
+  }
+
+  addNotification() {
+    if (this._notificationSystem) {
+      this._notificationSystem.addNotification({
+        title: `Profile updated!`,
+        level: 'success',
+        position: 'bl',
+      });
+    }
   }
 
   handleChange(type) {
@@ -109,8 +120,6 @@ class Profile extends React.Component {
       this.setState({imageFile: file, imageUrl: fileReader.result});
     }.bind(this);
 
-    // debugger;
-
     if (file) {
       fileReader.readAsDataURL(file);
     } else {
@@ -120,13 +129,15 @@ class Profile extends React.Component {
 
 
   render() {
-    // debugger;
     const user = this.props.currentUser;
     const welcomeMessage = (user.username === '') ? 'Welcome.' : `Welcome, ${user.firstname}.`;
 
     return(
 
       <div className="profile-container">
+        <NotificationSystem
+          style={notificationStyle}
+          ref={n => this._notificationSystem = n} />
         <ul
           className="welcoming-container">
           <li className="welcoming">

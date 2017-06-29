@@ -75,6 +75,11 @@
     cursor: pointer;
   }
 
+  li:hover {
+    background-color: lighten($lightpurple, 13);
+    transition: background-color 0.1s ease-in-out;
+  }
+
   img {
     border-radius: 3px;
     margin-right: 10px;

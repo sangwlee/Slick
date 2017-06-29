@@ -63,30 +63,6 @@ class Details extends React.Component {
 
   }
 
-  // componentDidMount() {
-  //   const channelId = parseInt(this.props.location.pathname.slice(6));
-  //   //subscription code goes here
-  //   this.pusher = new Pusher('362129d066c84b9dc60e', {
-  //     encrypted: true
-  //   });
-  //   // debugger;
-  //   Pusher.logToConsole = true;
-  //   const channel = this.pusher.subscribe(channelId.toString());
-  //   channel.bind('subscriptions_changed', () => {this.props.requestAllUsersOfChannel(channelId);});
-  // }
-  //
-  // componentWillReceiveProps(nextProps) {
-  //   if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
-  //     let newChannelId = parseInt(nextProps.match.params.channelId);
-  //     // this.props.requestAllMessagesOfChannel(newChannelId);
-  //     debugger;
-  //     this.pusher.unsubscribe(this.props.match.params.channelId);
-  //     let channel = this.pusher.subscribe(newChannelId.toString());
-  //     // channel.bind('message_published', () => {this.props.requestAllMessagesOfChannel(newChannelId);});
-  //     channel.bind('subscriptions_changed', () => {this.props.requestAllUsersOfChannel(newChannelId);});
-  //   }
-  // }
-
   render() {
     const channelName = (name) => {
       if (name) {
@@ -106,8 +82,6 @@ class Details extends React.Component {
     const about = (kind === 'dm') ? `About @${this.props.currentChannel.name}` : `About #${this.props.currentChannel.name}`;
     const details = (kind === 'dm') ? 'Message Details' : 'Channel Details';
     const description = (kind === 'dm') ? 'Message Description' : 'Channel Description';
-
-    // debugger;
 
     return(
       <div className="right-column-detail-div">

@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import Messages from './messages';
-import { requestAllMessagesOfChannel } from '../../../../actions/messages_actions';
+import {
+  requestAllMessagesOfChannel,
+  deleteMessage, 
+} from '../../../../actions/messages_actions';
 import { requestAllUsersOfChannel } from '../../../../actions/users_actions';
 import selector from '../../../../util/selector';
 
@@ -15,8 +18,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    requestAllMessagesOfChannel: channel_id => dispatch(requestAllMessagesOfChannel(channel_id)),
-    requestAllUsersOfChannel: channel_id => dispatch(requestAllUsersOfChannel(channel_id)),
+    requestAllMessagesOfChannel: channel_id =>
+      dispatch(requestAllMessagesOfChannel(channel_id)),
+    requestAllUsersOfChannel: channel_id =>
+      dispatch(requestAllUsersOfChannel(channel_id)),
+    deleteMessage: message_id =>
+      dispatch(deleteMessage(message_id)),
   };
 };
 
