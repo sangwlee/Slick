@@ -76,7 +76,7 @@
   }
 
   li:hover {
-    background-color: lighten($lightpurple, 13);
+    background-color: lighten($lightpurple, 15);
     // transition: background-color 0.1s ease-in-out;
   }
 
@@ -112,4 +112,5 @@
     vertical-align: middle;
     object-fit: cover;
   }
+
 }
