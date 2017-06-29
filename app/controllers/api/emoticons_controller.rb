@@ -1,13 +1,14 @@
 class Api::EmoticonsController < ApplicationController
 
   def create
-  @emoticon = Emoticon.new(emoticon_params)
+    @emoticon = Emoticon.new(emoticon_params)
 
-  if @emoticon.save
+    if @emoticon.save
 
-    render :show
-  else
-    render json: @emoticon.errors.full_messages, status: 422
+      render :show
+    else
+      render json: @emoticon.errors.full_messages, status: 422
+    end
   end
 
   def update
