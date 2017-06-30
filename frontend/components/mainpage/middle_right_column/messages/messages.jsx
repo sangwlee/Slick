@@ -73,15 +73,22 @@ class Messages extends React.Component {
   }
 
   render() {
+    const sortedMessages = this.props.messages.sort(
+      function(a, b) {
+        return parseFloat(a.id) - parseFloat(b.id);
+      }
+    );
+
     return(
-      <div>
+      <div className="all-messages-container">
         <NotificationSystem
           style={notificationStyle}
           ref={n => this._notificationSystem = n} />
         <ul>
           {
-            this.props.messages.map( message => {
+            sortedMessages.map( message => {
               return (<MessageItem
+                requestAllMessagesOfChannel={this.props.requestAllMessagesOfChannel}
                 key={message.id}
                 notification={this.notification}
                 allUsers={this.props.allUsers}

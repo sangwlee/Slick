@@ -23,6 +23,8 @@ class MessageItem extends React.Component {
       kind: this.props.message.kind,
       user_id: this.props.message.user_id,
       channel_id: this.props.message.channel_id,
+      created_at: this.props.message.created_at,
+      updated_at: this.props.message.updated_at,
     };
 
     this.message = this.props.message;
@@ -110,9 +112,9 @@ class MessageItem extends React.Component {
         } else { this.props.notification('modifyFail');}
       } else if (type === 'delete') {
         if (message.user_id === this.props.currentUser.id) {
-          this.props.deleteMessage(message.id);
+          this.props.deleteMessage(message.id)
+            .then(() => this.props.requestAllMessagesOfChannel(parseInt(this.props.location.pathname.slice(6))));
           this.props.notification('deleteSuccess');
-          this.setState({ delete: !this.state.delete });
       } else { this.props.notification('modifyFail');}}
     };
   }
@@ -121,11 +123,14 @@ class MessageItem extends React.Component {
     if (this.state.content !== '') {
       e.preventDefault();
       this.props.updateMessage(this.state.id, this.state)
-        // .then( message => {
-        //   this.state({content: message.content, edit: !this.state.edit });
-        // });
-        .then(message => this.setState({ edit: !this.state.edit, content: message.content }));
-        // .then(message => console.log(message.content));
+        .then(message =>
+          this.setState({
+            edit: !this.state.edit,
+            content: message.content,
+            created_at: message.created_at,
+            updated_at: message.updated_at,
+          })
+        );
     }
   }
 
@@ -136,6 +141,8 @@ class MessageItem extends React.Component {
   }
 
   render() {
+    const editStatus = (this.state.created_at === this.state.updated_at) ? "" : "  (edited)";
+
     return (
       <li className='individual-message-container' key={this.message.id}>
         <img className='profile-pic'
@@ -151,14 +158,17 @@ class MessageItem extends React.Component {
           </li>
           <li className="message-content">
             { (this.state.edit) ?
-              (<form onSubmit={this.handleEdit} className="mesage-edit-input-div"><input
-                className="message-edit-input"
-                onChange={this.handleChange('content')}
-                type='text'
-                value={this.state.content}>
-                </input>
+              (<form onSubmit={this.handleEdit} className="mesage-edit-input-div">
+                  <input
+                  className="message-edit-input"
+                  onChange={this.handleChange('content')}
+                  type='text'
+                  value={this.state.content}>
+                  </input>
+                  <button id="button" onClick={this.handleClick('edit')}>Cancel</button>
+                  <button id="button" onClick={this.handleEdit}>Save Changes</button>
                 </form>) :
-              (this.state.content) }
+              (this.state.content) + editStatus}
           </li>
           <li>
             { (this.state.emoji) ? <ReactingComponent className="emoji-container"/> : '' }

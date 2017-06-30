@@ -79,9 +79,8 @@
   background-color: lighten($lightpurple, 15.3);
   transition: background-color 0.1s ease-in-out;
 
-  button {
+  i {
     color: darken($lightpurple, 15);
-    // transition: color 0.1s ease-in-out;
   }
 }
 
@@ -106,4 +105,24 @@
   border-radius: 5px;
   padding: 7px;
   margin: 3px 0px 3px 0px;
+}
+
+.message-content {
+  button {
+    text-align: center;
+    width: 10%;
+    padding: 3px 0px 5px 3px;
+    color: black;
+    background-color: darken($lightpurple, 10);
+    border-radius: 4px;
+    margin-top: 2px;
+    margin-right: 5px;
+    font-size: 12px;
+    font-weight: lighter;
+  }
+
+  button:hover {
+    color: black;
+    cursor: pointer;
+  }
 }
