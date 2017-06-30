@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     resources :chanels, only: [:show] do
       resources :emoticons, only: [:index]
     end
+
+    resources :messages, only: [:show] do
+      resources :messages, only: [:index]
+    end
   end
 
   root "static_pages#root"

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Messages from './messages';
 import {
   requestAllMessagesOfChannel,
-  deleteMessage, 
+  deleteMessage,
 } from '../../../../actions/messages_actions';
 import { requestAllUsersOfChannel } from '../../../../actions/users_actions';
 import selector from '../../../../util/selector';

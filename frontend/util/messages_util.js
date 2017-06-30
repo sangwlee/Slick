@@ -12,6 +12,13 @@ export const fetchAllMessagesOfUser = user_id => {
   });
 };
 
+export const fetchAllRepliesOfMessage = message_id => {
+  return $.ajax({
+    method: 'get',
+    url: `api/messages/${message_id}/messages`
+  });
+};
+
 export const fetchSingleMessage = message_id => {
   return $.ajax({
     method: 'get',
@@ -35,7 +42,6 @@ export const createMessage = message => {
 };
 
 export const updateMessage = (message_id, message) => {
-  // debugger
   return $.ajax({
     method: 'patch',
     url: `api/messages/${message_id}`,

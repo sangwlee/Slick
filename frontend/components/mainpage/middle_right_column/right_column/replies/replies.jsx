@@ -2,34 +2,42 @@ import React from 'react';
 import selector from '../../../../../util/selector';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import NotificationSystem from 'react-notification-system';
 import Modal from 'react-modal';
 import NewDm from '../../../left_column/channels/new_dm';
 import SearchBar from '../search_bar';
+import {
+  createReply
+} from '../../../../../actions/messages_actions';
+import ReplyItem from './reply_item';
 
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : '60%',
-    bottom                : 'auto',
-    marginRight           : '-30%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
+const notificationStyle = {
+  NotificationItem: {
+    DefaultStyle: {
+      width: "66.5%"
+    }}};
 
 class Replies extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {modalIsOpen: false, toUser: null};
+    this.state = {
+      content: '',
+      kind: 'normal',
+      message_id: null,
+      channel_id: null,
+      user_id: this.props.currentUser.id,
+      emoticonPickerOpen: false,
+    };
 
+    let pathname = this.props.history.location.pathname;
+    this.messageId = parseInt(pathname.slice(pathname.indexOf('message') + 8));
+    this.uniqueParticipants = [];
     this.timePosting = this.timePosting.bind(this);
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.redirect = this.redirect.bind(this);
+    this.notification = this.notification.bind(this);
   }
 
   openModal(type) {
@@ -76,10 +84,10 @@ class Replies extends React.Component {
   handleSubmit(e) {
     if (this.state.content !== '') {
       e.preventDefault();
-      let channelId = parseInt(this.props.history.location.pathname.slice(6));
-      this.state.channel_id = channelId;
+
+      this.state.message_id = this.messageId;
       const messageData = Object.assign({}, this.state);
-      this.props.createMessage(messageData)
+      this.props.createReply(messageData)
       .then(() => {
         this.setState({content: ''});
       });
@@ -112,58 +120,123 @@ class Replies extends React.Component {
     const details = (kind === 'dm') ? 'Message Details' : 'Channel Details';
     const description = (kind === 'dm') ? 'Message Description' : 'Channel Description';
 
+    const sortedReplies = this.props.replies.sort(
+      function(a, b) {
+        return parseFloat(a.id) - parseFloat(b.id);
+      }
+    );
+
+    const countReplies = (sortedReplies.length === 0) ? 'No' : sortedReplies.length;
+
+    const participants = sortedReplies.map(reply => this.props.allUsers[reply.user_id]);
+    participants.forEach(participant => {
+      if (!this.uniqueParticipants.includes(participant.username)) {
+        this.uniqueParticipants.push(participant.username);
+      }
+    });
+    const usernamesString = this.uniqueParticipants.join(', ');
+    const finalUsernames = (usernamesString.length > 40) ? (usernamesString.slice(40) + " ...") : usernamesString;
+
+    let currentMessage;
+
+    this.props.messages.forEach(message => {
+      if (message.id === this.messageId) {
+        currentMessage = message;
+      }
+    });
+
+    // debugger;
+
     return(
       <div className="right-column-detail-div">
         <li className="search-bar"><SearchBar /></li>
         <div className="right-column-container">
-          <ul>
-            <li className="channel-detail-about">{channelName(about)}</li>
-            <li
-              className="channel-detail-heading">
-              <i className="fa fa-info-circle"></i>
-              <span>{details}</span>
+            <li className="channel-detail-about">
+              Thread
+              <span className='channel-description-heading'>
+                {finalUsernames}
+              </span>
             </li>
-            <li className='channel-description-heading'>
-              {description}
-            </li>
-            <li className='channel-description-content'>
-              {this.props.currentChannel.description}
-            </li>
-            <li className="channel-detail-created-date">
-              Created on {this.timePosting(this.props.currentChannel.created_at)}
-            </li>
-          </ul>
-          <li className="details-number-heading">Replies
-            <i onClick={this.redirect(currentChannelId)} className="fa fa-times" aria-hidden="true"></i>
+            <ReplyItem
+              className="original-thread"
+              requestAllRepliesOfMessage={this.props.requestAllRepliesOfMessage}
+              key={currentMessage.id}
+              notification={this.notification}
+              allUsers={this.props.allUsers}
+              currentUser={this.props.currentUser}
+              message={currentMessage} />
+
+          <li className="details-number-heading reply-heading">
+            <h1>{countReplies} Replies</h1>
+            <i id="button" onClick={this.redirect(currentChannelId)} className="fa fa-times" aria-hidden="true"></i>
           </li>
-          <div className="channel-detail-members-list">
-            <form className="input-form-container" onSubmit={this.handleSubmit}>
-              <input
-                className='input-message'
-                placeholder={(this.props.currentChannel.kind === 'dm') ?
-                  `Message @${this.props.currentChannel.name}` : `Message #${this.props.currentChannel.name}`}
-                onChange={this.handleChange('content')}
-                type="text"
-                value={this.state.content}>
-              </input>
-            </form>
+          <form className="reply-form-container" onSubmit={this.handleSubmit}>
+            <input
+              className='reply-input'
+              placeholder='Reply...'
+              onChange={this.handleChange('content')}
+              type="text"
+              value={this.state.content}>
+            </input>
+          </form>
+          <div className="reply-space">
+            <div className="all-replies-container">
+              <NotificationSystem
+                style={notificationStyle}
+                ref={n => this._notificationSystem = n} />
+              <ul>
+                {
+                  sortedReplies.map( reply => {
+                    return (<ReplyItem
+                      requestAllRepliesOfMessage={this.props.requestAllRepliesOfMessage}
+                      key={reply.id}
+                      notification={this.notification}
+                      allUsers={this.props.allUsers}
+                      currentUser={this.props.currentUser}
+                      message={reply} />)
+                  })
+                }
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     );
   }
+
+  notification(condition) {
+    if (this._notificationSystem && condition === 'modifyFail') {
+      this._notificationSystem.addNotification({
+        title: `Cannot modify others' messages!`,
+        level: 'error',
+        position: 'bl',
+      });}
+
+      else if (this._notificationSystem && condition === 'deleteSuccess') {
+      this._notificationSystem.addNotification({
+        title: `Delete success!`,
+        level: 'success',
+        position: 'bl',
+      });}}
 }
 
 
 const mapStateToProps = state => {
   return {
+    currentUser: state.session.currentUser,
     currentChannel: state.currentChannel,
-    users: state.users
+    users: state.users,
+    allUsers: state.allUsers,
+    replies: selector(state.replies),
+    messages: selector(state.messages),
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    createReply: replyData => dispatch(createReply(replyData)),
+    requestAllRepliesOfMessage: message_id =>
+      dispatch(requestAllRepliesOfMessage(message_id)),
 
   }
 }

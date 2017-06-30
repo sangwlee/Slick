@@ -1,0 +1,128 @@
+.reply-input {
+  width: 88% !important;
+  height: 20% !important;
+  border: 1px solid lightgray;
+  transition: border 0.5s ease-in-out;
+  margin: 0% 3% 0% 3%;
+  border-radius: 5px;
+  padding: 10px;
+
+  font-weight: lighter;
+
+  input::placeholder {
+    color: lighten(lightgray, 10);
+  }
+}
+
+.reply-space {
+  height: 75%;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  img {
+    border-radius: 3px;
+    margin-right: 10px;
+    width: 42px;
+    height: 42px;
+    vertical-align: middle;
+    object-fit: cover;
+  }
+}
+
+.reply-form-container {
+  height: 5%;
+  width: 100%;
+}
+
+.reply-heading {
+  display: flex;
+  justify-content: space-between;
+  width: 97%;
+
+  h1 {
+    margin-left: 2px;
+    margin-top: -1px;
+  }
+
+  i {
+    margin-right : 20px;
+    cursor: pointer;
+  }
+
+  i:hover {
+    color: darken($skyblue, 50);
+  }
+}
+
+.reply-message-container {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0px 0px 0px 10px;
+  width: 97%;
+  margin-top: 10px;
+
+  i {
+    color: white;
+  }
+
+  button {
+    width: 20%;
+  }
+}
+
+.reply-message-container:hover {
+  background-color: lighten($lightpurple, 15.3);
+
+  i {
+    color: darken($lightpurple, 15);
+  }
+}
+
+.original-thread {
+}
+
+.all-replies-container {
+  width: 100%;
+  height: 100;
+}
+
+.reply-content-container {
+  width: 85%;
+}
+
+.reply-content {
+  font-size: 15px;
+  font-weight: lighter;
+  width: 100%;
+  overflow-wrap: break-word;
+  padding-top:7px;
+
+  button {
+    text-align: center;
+    width: 47%;
+    padding: 3px 0px 5px 3px;
+    color: black;
+    background-color: darken($lightpurple, 10);
+    border-radius: 4px;
+    margin-top: 2px;
+    margin-right: 5px;
+    font-size: 12px;
+    font-weight: lighter;
+  }
+
+  button:hover {
+    color: black;
+    cursor: pointer;
+  }
+}
+
+.reply-edit-input {
+  border: 1.5px solid $skyblue;
+  width: 92%;
+  transition: width 1s;
+  color: darken(darkgray,50);
+  border-radius: 5px;
+  padding: 7px;
+  margin: 3px 0px 3px 0px;
+
+}

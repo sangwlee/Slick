@@ -1,17 +1,15 @@
 import React from 'react';
-import ReactingComponent from '../input/emoji2';
+import ReactingComponent from '../../input/emoji2';
 import { connect } from 'react-redux';
 import {
   deleteMessage,
   updateMessage,
   requestAllMessageOfChannel,
-  requestAllRepliesOfMessage,
-} from '../../../../actions/messages_actions';
+} from '../../../../../actions/messages_actions';
 import NotificationSystem from 'react-notification-system';
 import { withRouter } from 'react-router-dom';
-import selector from '../../../../util/selector';
 
-class MessageItem extends React.Component {
+class ReplyItem extends React.Component {
   constructor(props) {
     super(props);
 
@@ -105,13 +103,12 @@ class MessageItem extends React.Component {
   }
 
   handleClick(type, message) {
+    const pathname = this.props.history.location.pathname;
     const currentChannel = parseInt(this.props.location.pathname.slice(6));
+    const currentMessage = parseInt(pathname.slice(pathname.indexOf('message') + 8));
 
     return () => {
       if (type === 'emoji') { this.setState({ emoji: !this.state.emoji });
-      } else if (type === 'comment') {
-        this.props.requestAllRepliesOfMessage(message.id);
-        this.props.history.push(`/main/${currentChannel}/message/${message.id}`);
       } else if (type === 'edit') {
         if (message.user_id === this.props.currentUser.id) {
           this.setState({ edit: !this.state.edit });
@@ -119,7 +116,7 @@ class MessageItem extends React.Component {
       } else if (type === 'delete') {
         if (message.user_id === this.props.currentUser.id) {
           this.props.deleteMessage(message.id)
-            .then(() => this.props.requestAllMessagesOfChannel(currentChannel));
+            .then(() => this.props.requestAllRepliesOfMessage(currentMessage));
           this.props.notification('deleteSuccess');
       } else { this.props.notification('modifyFail');}}
     };
@@ -141,21 +138,21 @@ class MessageItem extends React.Component {
   }
 
   handleChange(type) {
-    return (e) => {
+    return (e) => {``
       this.setState({[type]: e.currentTarget.value});
     };
   }
 
+  debugger;
+
   render() {
-    // debugger;
-    const countReplies = this.props.replies.length;
     const editStatus = (this.state.created_at === this.state.updated_at) ? "" : "  (edited)";
 
     return (
-      <li className='individual-message-container' key={this.message.id}>
+      <li className='reply-message-container' key={this.message.id}>
         <img className='profile-pic'
           src={(this.props.allUsers[this.message.user_id].image_url)}/>
-        <ul className='message-content-container'>
+        <ul className='reply-content-container'>
           <li>
             <span className='username'>
               {(this.props.allUsers[this.message.user_id].username)}
@@ -164,11 +161,11 @@ class MessageItem extends React.Component {
               {this.time(this.message.created_at)}
             </span>
           </li>
-          <li className="message-content">
+          <li className="message-content reply-content">
             { (this.state.edit) ?
-              (<form onSubmit={this.handleEdit} className="mesage-edit-input-div">
+              (<form onSubmit={this.handleEdit} className="reply-edit-input-div">
                   <input
-                  className="message-edit-input"
+                  className="reply-edit-input"
                   onChange={this.handleChange('content')}
                   type='text'
                   value={this.state.content}>
@@ -185,9 +182,6 @@ class MessageItem extends React.Component {
         <ul className='message-buttons'>
           <li>
             <button onClick={this.handleClick('emoji', this.message)}><i className="fa fa-smile-o message-button-emoticon" aria-hidden="true"></i></button>
-            <button onClick={this.handleClick('comment', this.message)}><i className="fa fa-commenting" aria-hidden="true"></i></button>
-          </li>
-          <li>
             <button onClick={this.handleClick('edit', this.message)}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button>
             <button onClick={this.handleClick('delete', this.message)}><i className="fa fa-trash" aria-hidden="true"></i></button>
           </li>
@@ -199,7 +193,6 @@ class MessageItem extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    replies: selector(state.replies),
 
   };
 };
@@ -209,12 +202,10 @@ const mapDispatchToProps = dispatch => {
     deleteMessage: message_id => dispatch(deleteMessage(message_id)),
     updateMessage: (messageId, messageData) =>
       dispatch(updateMessage(messageId, messageData)),
-    requestAllRepliesOfMessage: message_id =>
-      dispatch(requestAllRepliesOfMessage(message_id)),
   };
 };
 
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(MessageItem));
+)(ReplyItem));

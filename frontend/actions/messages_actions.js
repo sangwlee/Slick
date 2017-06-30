@@ -5,6 +5,8 @@ export const RECEIVE_SINGLE_MESSAGE = "RECEIVE_SINGLE_MESSAGE";
 export const RECEIVE_ALL_MESSAGES_OF_USER = "RECEIVE_ALL_MESSAGES_OF_USER";
 export const RECEIVE_MESSAGE_ERRORS = "RECEIVE_MESSAGE_ERRORS";
 export const RECEIVE_ALL_MESSAGES_OF_CHANNEL = "RECEIVE_ALL_MESSAGES_OF_CHANNEL";
+export const RECEIVE_ALL_REPLIES_OF_MESSAGE = "RECEIVE_ALL_REPLIES_OF_MESSAGE";
+export const RECEIVE_SINGLE_REPLY = "RECEIVE_SINGLE_REPLY";
 
 // REGULAR ACTIONS
 export const receiveMessageErrors = errors => {
@@ -21,10 +23,24 @@ export const receiveAllMessages = messages => {
   };
 };
 
+export const receiveAllRepliesOfMessage = replies => {
+  return {
+    type: RECEIVE_ALL_REPLIES_OF_MESSAGE,
+    replies
+  };
+};
+
 export const receiveSingleMessage = message => {
   return {
     type: RECEIVE_SINGLE_MESSAGE,
     message
+  };
+};
+
+export const receiveSingleReply = reply => {
+  return {
+    type: RECEIVE_SINGLE_REPLY,
+    reply
   };
 };
 
@@ -61,6 +77,11 @@ export const requestAllMessagesOfUser = user_id => dispatch => {
     .fail(err => dispatch(receiveMessageErrors(err.responseJSON)));
 };
 
+export const requestAllRepliesOfMessage = message_id => dispatch => {
+  return MessagesUtil.fetchAllRepliesOfMessage(message_id)
+    .then(replies => dispatch(receiveAllRepliesOfMessage(replies)));
+};
+
 export const requestAllMessagesOfChannel = channel_id => dispatch => {
   return MessagesUtil.fetchAllMessagesOfChannel(channel_id)
     .then(messages => dispatch(receiveAllMessagesOfChannel(messages)))
@@ -71,6 +92,12 @@ export const createMessage = messageData => dispatch => {
   return MessagesUtil.createMessage(messageData)
     .then(message => dispatch(receiveSingleMessage(message)))
     .fail(err => dispatch(receiveMessageErrors(err.responseJSON)));
+};
+
+export const createReply = replyData => dispatch => {
+  return MessagesUtil.createMessage(replyData)
+    .then(message => dispatch(requestAllRepliesOfMessage(message.id)));
+    // .fail(err => dispatch(receiveMessageErrors(err.responseJSON)));
 };
 
 export const updateMessage = (messageId, messageData) => dispatch => {

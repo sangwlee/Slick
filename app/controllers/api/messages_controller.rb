@@ -5,9 +5,13 @@ class Api::MessagesController < ApplicationController
     if params.include?(:user_id)
       Message.where(user_id: params[:user_id]).each{|message| messages << message}
       @messages = messages
-    elsif params.include?(:channel_id)
+    elsif params[:channel_id] != nil
       messages = []
       Message.where(channel_id: params[:channel_id]).each{|message| messages << message}
+      @messages = messages
+    elsif params[:message_id] != nil
+      messages = []
+      Message.where(message_id: params[:message_id]).each{|message| messages <<message}
       @messages = messages
     else
       @messages = Message.all
@@ -25,19 +29,23 @@ class Api::MessagesController < ApplicationController
   end
 
   def create
+    # debugger
     @message = Message.new(message_params)
 
     if @message.save
-      #lets publish an event
-      @channel = @message.channel
-      Pusher.trigger(@channel.id.to_s, 'message_published', {
-        message: @message, channel: @channel
-      })
-      # debugger;
 
-      render json: @message
-    else
-      render json: @message.errors.full_messages, status: 422
+      if @message.channel_id != nil
+        @channel = @message.channel
+        Pusher.trigger(@channel.id.to_s, 'message_published', {
+          message: @message, channel: @channel
+        })
+        render json: @message
+      elsif @message.channel_id == nil
+        @message = Message.find(@message.message_id)
+        render json: @message
+      else
+        render json: @message.errors.full_messages, status: 422
+      end
     end
   end
 
@@ -61,7 +69,7 @@ class Api::MessagesController < ApplicationController
 
   private
   def message_params
-    params.require(:message).permit(:content, :kind, :user_id, :channel_id)
+    params.require(:message).permit(:content, :kind, :user_id, :channel_id, :message_id)
   end
 end
 

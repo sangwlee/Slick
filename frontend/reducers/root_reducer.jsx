@@ -6,6 +6,7 @@ import { MessagesReducer } from './messages_reducer';
 import { CurrentChannelReducer } from './current_channel_reducer';
 import { AllUsersReducer } from './all_users_reducer';
 import { AllChannelsReducer } from './all_channels_reducer';
+import { RepliesReducer } from './replies_reducer';
 
 // import {reducer as notifications} from 'react-notification-system-redux';
 
@@ -17,5 +18,5 @@ export const rootReducer = combineReducers({
   messages: MessagesReducer,
   allUsers: AllUsersReducer,
   allChannels: AllChannelsReducer,
-  // notifications
+  replies: RepliesReducer,
 });

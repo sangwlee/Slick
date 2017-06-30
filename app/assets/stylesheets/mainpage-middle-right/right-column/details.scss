@@ -20,7 +20,8 @@
   padding: 20px 0px 25px 10px;
   border-bottom: 1px solid lightgray;
   background-color: lighten(lightgray, 15);
-  font-size: 18px;
+  font-size: 20px;
+  font-family: 'Poiret One', cursive;
 }
 
 .channel-detail-created-date {
@@ -91,10 +92,13 @@
 }
 
 .details-number-heading {
-  padding: 20px 0px 10px 10px;
-  font-size: 20px;
-  color: darken($lightpurple, 10);
-  font-weight: bold;
+  padding-left: 10px;
+  padding-top: 10px;
+  color: darken(darkgray, 18);
+  font-size: 21px;
+  font-family: 'Poiret One', cursive;
+  margin-bottom: 13px;
+  margin-top: 11px;
 }
 
 .edit-on {
