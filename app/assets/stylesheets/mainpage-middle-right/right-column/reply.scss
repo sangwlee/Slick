@@ -124,5 +124,18 @@
   border-radius: 5px;
   padding: 7px;
   margin: 3px 0px 3px 0px;
+}
 
+.messages-replies-count {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 2px;
+  width: 60px;
+  text-align: center;
+  border: 1px solid lightgray;
+  font-weight: lighter;
+  color: darken($skyblue, 50);
+  cursor: pointer;
 }

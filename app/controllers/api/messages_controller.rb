@@ -9,6 +9,8 @@ class Api::MessagesController < ApplicationController
       messages = []
       Message.where(channel_id: params[:channel_id]).each{|message| messages << message}
       @messages = messages
+
+      @replies = Message.where(message: @messages)
     elsif params[:message_id] != nil
       messages = []
       Message.where(message_id: params[:message_id]).each{|message| messages <<message}
@@ -17,7 +19,7 @@ class Api::MessagesController < ApplicationController
       @messages = Message.all
     end
 
-    render json: @messages
+    render :index
   end
 
   def new

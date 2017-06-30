@@ -17,13 +17,15 @@ export const MessagesReducer = (state = defaultState, action) => {
 
   switch (action.type) {
     case RECEIVE_ALL_MESSAGES:
-      return merge({}, defaultState, action.messages);
+    // debugger;
+      return merge({}, defaultState, action.messages.messages);
     case RECEIVE_SINGLE_MESSAGE:
       return Object.assign({}, state, {[action.message.id]: action.message});
     case RECEIVE_ALL_MESSAGES_OF_USER:
-      return Object.assign({}, defaultState, action.messages);
+      return Object.assign({}, defaultState, action.messages.messages);
     case RECEIVE_ALL_MESSAGES_OF_CHANNEL:
-      return Object.assign({}, defaultState, action.messages);
+    // debugger
+      return Object.assign({}, defaultState, action.messages.messages);
     case RECEIVE_MESSAGE_ERRORS:
       return Object.assign({}, defaultState, { errors: action.errors });
     default:

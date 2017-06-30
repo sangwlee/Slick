@@ -95,8 +95,8 @@ export const createMessage = messageData => dispatch => {
 };
 
 export const createReply = replyData => dispatch => {
-  return MessagesUtil.createMessage(replyData)
-    .then(message => dispatch(requestAllRepliesOfMessage(message.id)));
+  return MessagesUtil.createMessage(replyData);
+    // .then(message => dispatch(requestAllRepliesOfMessage(message.id)));
     // .fail(err => dispatch(receiveMessageErrors(err.responseJSON)));
 };
 

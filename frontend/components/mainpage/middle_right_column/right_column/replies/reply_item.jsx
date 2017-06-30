@@ -143,9 +143,9 @@ class ReplyItem extends React.Component {
     };
   }
 
-  debugger;
 
   render() {
+    // debugger;
     const editStatus = (this.state.created_at === this.state.updated_at) ? "" : "  (edited)";
 
     return (

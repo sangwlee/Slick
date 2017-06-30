@@ -110,7 +110,7 @@ class MessageItem extends React.Component {
     return () => {
       if (type === 'emoji') { this.setState({ emoji: !this.state.emoji });
       } else if (type === 'comment') {
-        this.props.requestAllRepliesOfMessage(message.id);
+        // this.props.requestAllRepliesOfMessage(message.id);
         this.props.history.push(`/main/${currentChannel}/message/${message.id}`);
       } else if (type === 'edit') {
         if (message.user_id === this.props.currentUser.id) {
@@ -148,8 +148,11 @@ class MessageItem extends React.Component {
 
   render() {
     // debugger;
-    const countReplies = this.props.replies.length;
-    const editStatus = (this.state.created_at === this.state.updated_at) ? "" : "  (edited)";
+    const countReplies = (this.props.replies.length === 0) ?
+      (<span></span>) : (<button id="button" className="messages-replies-count">{this.props.replies.length.toString() + ' replies'}</button>);
+    const editStatus = (this.state.created_at === this.state.updated_at) ? '' : "  (edited)";
+    // const countRepliesHtml = (countReplies)
+
 
     return (
       <li className='individual-message-container' key={this.message.id}>
@@ -179,6 +182,7 @@ class MessageItem extends React.Component {
               (this.state.content) + editStatus}
           </li>
           <li>
+            { countReplies }
             { (this.state.emoji) ? <ReactingComponent className="emoji-container"/> : '' }
           </li>
         </ul>
@@ -197,10 +201,10 @@ class MessageItem extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    replies: selector(state.replies),
-
+    replies: selector(state.replies).filter(reply =>
+      reply.message_id === ownProps.message.id)
   };
 };
 

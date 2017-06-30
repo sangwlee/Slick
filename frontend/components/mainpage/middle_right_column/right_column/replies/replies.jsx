@@ -7,7 +7,8 @@ import Modal from 'react-modal';
 import NewDm from '../../../left_column/channels/new_dm';
 import SearchBar from '../search_bar';
 import {
-  createReply
+  createReply,
+  requestAllMessagesOfChannel,
 } from '../../../../../actions/messages_actions';
 import ReplyItem from './reply_item';
 
@@ -82,16 +83,22 @@ class Replies extends React.Component {
   }
 
   handleSubmit(e) {
-    if (this.state.content !== '') {
-      e.preventDefault();
+    // debugger;
 
-      this.state.message_id = this.messageId;
-      const messageData = Object.assign({}, this.state);
-      this.props.createReply(messageData)
-      .then(() => {
-        this.setState({content: ''});
+    e.preventDefault();
+    return () => {
+      if (this.state.content !== '') {
+        // debugger;
+
+        this.state.message_id = this.currentMessage.id;
+        const messageData = Object.assign({}, this.state);
+        this.props.createReply(messageData)
+        .then(() => this.props.requestAllMessagesOfChannel(parseInt(this.props.location.pathname.slice(6))))
+        .then(() => { this.setState({content: ''});
       });
     }
+
+  };
   }
 
   redirect(channelId) {
@@ -122,7 +129,7 @@ class Replies extends React.Component {
 
     const sortedReplies = this.props.replies.sort(
       function(a, b) {
-        return parseFloat(a.id) - parseFloat(b.id);
+        return parseFloat(b.id) - parseFloat(a.id);
       }
     );
 
@@ -137,15 +144,15 @@ class Replies extends React.Component {
     const usernamesString = this.uniqueParticipants.join(', ');
     const finalUsernames = (usernamesString.length > 40) ? (usernamesString.slice(40) + " ...") : usernamesString;
 
-    let currentMessage;
+    const currentMessage = this.props.currentMessage;
 
-    this.props.messages.forEach(message => {
-      if (message.id === this.messageId) {
-        currentMessage = message;
-      } else {
-        currentMessage = {};
-      }
-    });
+    // this.props.messages.forEach(message => {
+    //   if (message.id === this.messageId) {
+    //     currentMessage = message;
+    //   } else {
+    //     currentMessage = {};
+    //   }
+    // });
 
     // debugger;
 
@@ -223,14 +230,17 @@ class Replies extends React.Component {
 }
 
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  const currentMessage = state.messages[parseInt(ownProps.match.params.message_id)]
+  // debugger;
   return {
     currentUser: state.session.currentUser,
     currentChannel: state.currentChannel,
     users: state.users,
     allUsers: state.allUsers,
-    replies: selector(state.replies),
-    messages: selector(state.messages),
+    replies: selector(state.replies).filter(reply =>
+      reply.message_id === parseInt(ownProps.match.params.message_id)),
+    currentMessage
   }
 }
 
@@ -239,7 +249,8 @@ const mapDispatchToProps = dispatch => {
     createReply: replyData => dispatch(createReply(replyData)),
     requestAllRepliesOfMessage: message_id =>
       dispatch(requestAllRepliesOfMessage(message_id)),
-
+    requestAllMessagesOfChannel: message_id =>
+      dispatch(requestAllMessagesOfChannel(message_id))
   }
 }
 

@@ -79,6 +79,8 @@ class Messages extends React.Component {
       }
     );
 
+    // debugger;
+
     return(
       <div className="all-messages-container">
         <NotificationSystem
