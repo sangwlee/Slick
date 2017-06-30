@@ -103,9 +103,11 @@ class MessageItem extends React.Component {
   }
 
   handleClick(type, message) {
+    const currentChannel = parseInt(this.props.location.pathname.slice(6));
+
     return () => {
       if (type === 'emoji') { this.setState({ emoji: !this.state.emoji });
-    } else if (type === 'comment') { this.openModal('comment')();
+    } else if (type === 'comment') { this.props.history.push(`/main/${currentChannel}/message/${message.id}`);
       } else if (type === 'edit') {
         if (message.user_id === this.props.currentUser.id) {
           this.setState({ edit: !this.state.edit });
@@ -113,7 +115,7 @@ class MessageItem extends React.Component {
       } else if (type === 'delete') {
         if (message.user_id === this.props.currentUser.id) {
           this.props.deleteMessage(message.id)
-            .then(() => this.props.requestAllMessagesOfChannel(parseInt(this.props.location.pathname.slice(6))));
+            .then(() => this.props.requestAllMessagesOfChannel(currentChannel));
           this.props.notification('deleteSuccess');
       } else { this.props.notification('modifyFail');}}
     };
