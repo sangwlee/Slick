@@ -142,6 +142,8 @@ class Replies extends React.Component {
     this.props.messages.forEach(message => {
       if (message.id === this.messageId) {
         currentMessage = message;
+      } else {
+        currentMessage = {};
       }
     });
 
