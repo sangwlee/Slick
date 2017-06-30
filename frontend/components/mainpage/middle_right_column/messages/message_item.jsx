@@ -147,9 +147,9 @@ class MessageItem extends React.Component {
   }
 
   render() {
-    // debugger;
     const countReplies = (this.props.replies.length === 0) ?
       (<span></span>) : (<button id="button" className="messages-replies-count">{this.props.replies.length.toString() + ' replies'}</button>);
+
     const editStatus = (this.state.created_at === this.state.updated_at) ? '' : "  (edited)";
     // const countRepliesHtml = (countReplies)
 

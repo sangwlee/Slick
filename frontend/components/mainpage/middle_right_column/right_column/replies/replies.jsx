@@ -9,6 +9,7 @@ import SearchBar from '../search_bar';
 import {
   createReply,
   requestAllMessagesOfChannel,
+  requestAllRepliesOfMessage,
 } from '../../../../../actions/messages_actions';
 import ReplyItem from './reply_item';
 
@@ -82,16 +83,16 @@ class Replies extends React.Component {
     };
   }
 
-  handleSubmit(e) {
-    // debugger;
+  handleSubmit(currentMessage) {
 
-    e.preventDefault();
+    // e.preventDefault();
     return () => {
       if (this.state.content !== '') {
         // debugger;
 
-        this.state.message_id = this.currentMessage.id;
+        this.state.message_id = currentMessage.id;
         const messageData = Object.assign({}, this.state);
+        // debugger;
         this.props.createReply(messageData)
         .then(() => this.props.requestAllMessagesOfChannel(parseInt(this.props.location.pathname.slice(6))))
         .then(() => { this.setState({content: ''});
@@ -119,14 +120,6 @@ class Replies extends React.Component {
     };
 
     const currentChannelId = parseInt(this.props.location.pathname.slice(6));
-    const users = selector(this.props.users);
-    const usersCount = users.length;
-
-    const kind = this.props.currentChannel.kind;
-    const about = (kind === 'dm') ? `About @${this.props.currentChannel.name}` : `About #${this.props.currentChannel.name}`;
-    const details = (kind === 'dm') ? 'Message Details' : 'Channel Details';
-    const description = (kind === 'dm') ? 'Message Description' : 'Channel Description';
-
     const sortedReplies = this.props.replies.sort(
       function(a, b) {
         return parseFloat(b.id) - parseFloat(a.id);
@@ -134,7 +127,6 @@ class Replies extends React.Component {
     );
 
     const countReplies = (sortedReplies.length === 0) ? 'No' : sortedReplies.length;
-
     const participants = sortedReplies.map(reply => this.props.allUsers[reply.user_id]);
     participants.forEach(participant => {
       if (!this.uniqueParticipants.includes(participant.username)) {
@@ -143,18 +135,9 @@ class Replies extends React.Component {
     });
     const usernamesString = this.uniqueParticipants.join(', ');
     const finalUsernames = (usernamesString.length > 40) ? (usernamesString.slice(40) + " ...") : usernamesString;
-
     const currentMessage = this.props.currentMessage;
 
-    // this.props.messages.forEach(message => {
-    //   if (message.id === this.messageId) {
-    //     currentMessage = message;
-    //   } else {
-    //     currentMessage = {};
-    //   }
-    // });
-
-    // debugger;
+    debugger;
 
     return(
       <div className="right-column-detail-div">
@@ -179,7 +162,7 @@ class Replies extends React.Component {
             <h1>{countReplies} Replies</h1>
             <i id="button" onClick={this.redirect(currentChannelId)} className="fa fa-times" aria-hidden="true"></i>
           </li>
-          <form className="reply-form-container" onSubmit={this.handleSubmit}>
+          <form className="reply-form-container" onSubmit={this.handleSubmit(this.props.currentMessage)}>
             <input
               className='reply-input'
               placeholder='Reply...'
@@ -249,8 +232,8 @@ const mapDispatchToProps = dispatch => {
     createReply: replyData => dispatch(createReply(replyData)),
     requestAllRepliesOfMessage: message_id =>
       dispatch(requestAllRepliesOfMessage(message_id)),
-    requestAllMessagesOfChannel: message_id =>
-      dispatch(requestAllMessagesOfChannel(message_id))
+    requestAllMessagesOfChannel: channel_id =>
+      dispatch(requestAllMessagesOfChannel(channel_id))
   }
 }
 

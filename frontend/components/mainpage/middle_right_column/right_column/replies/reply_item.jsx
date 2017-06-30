@@ -116,7 +116,7 @@ class ReplyItem extends React.Component {
       } else if (type === 'delete') {
         if (message.user_id === this.props.currentUser.id) {
           this.props.deleteMessage(message.id)
-            .then(() => this.props.requestAllRepliesOfMessage(currentMessage));
+            .then(() => this.props.requestAllMessagesOfChannel(currentChannel));
           this.props.notification('deleteSuccess');
       } else { this.props.notification('modifyFail');}}
     };
@@ -202,6 +202,8 @@ const mapDispatchToProps = dispatch => {
     deleteMessage: message_id => dispatch(deleteMessage(message_id)),
     updateMessage: (messageId, messageData) =>
       dispatch(updateMessage(messageId, messageData)),
+    requestAllMessagesOfChannel: channel_id =>
+      dispatch(requestAllMessagesOfChannel(channel_id)),
   };
 };
 

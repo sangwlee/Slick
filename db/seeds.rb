@@ -33,6 +33,19 @@ user6 = User.create(username: 'adumbledore', email: 'adumbledore@hogwarts.com', 
 user7 = User.create(username: 'ssnape', email: 'ssnape@hogwarts.com', firstname: 'Severus', lastname: 'Snape', password: 'ssnape')
 user8 = User.create(username: 'dmalfoy', email: 'dmalfoy@hogwarts.com', firstname: 'Draco', lastname: 'Malfoy', password: 'dmalfoy')
 user9 = User.create(username: 'voldemort', email: 'HeWhoMustNotBeNamed@hogwarts.com', firstname: 'Tom', lastname: 'Riddle', password: 'voldemort')
+user10 = User.create(username: 'mmcgonagall', email: 'mmcgonagall@hogwarts.com', firstname: 'Minerva', lastname: 'McGonagall', password: 'mmcgonagall')
+user11 = User.create(username: 'lmalfoy', email: 'lmalfoy@hogwarts.com', firstname: 'Lucius', lastname: 'Malfoy', password: 'lmalfoy')
+user12 = User.create(username: 'cchang', email: 'cchang@hogwarts.com', firstname: 'Cho', lastname: 'Chang', password: 'cchang')
+user13 = User.create(username: 'nlupin', email: 'nlupin@hogwarts.com', firstname: 'Nymphadora', lastname: 'Lupin', password: 'nlupin')
+user14 = User.create(username: 'rhagrid', email: 'rhagrid@hogwarts.com', firstname: 'Rubeus', lastname: 'Hagrid', password: 'rhagrid')
+user15 = User.create(username: 'sblack', email: 'sblack@hogwarts.com', firstname: 'Sirius', lastname: 'Black', password: 'sblack')
+user16 = User.create(username: 'dumbridge', email: 'dumbridge@hogwarts.com', firstname: 'Dolores', lastname: 'Umbridge', password: 'dumbridge')
+user17 = User.create(username: 'llovegood', email: 'llovegood@hogwarts.com', firstname: 'Luna', lastname: 'Lovegood', password: 'llovegood')
+user18 = User.create(username: 'nlongbottom', email: 'nlongbottom@hogwarts.com', firstname: 'Neville', lastname: 'Longbottom', password: 'nlongbottom')
+user19 = User.create(username: 'mweasely', email: 'mweasely@hogwarts.com', firstname: 'Molly', lastname: 'Weasely', password: 'mweasely')
+user20 = User.create(username: 'amoody', email: 'amoody@hogwarts.com', firstname: 'Alastor', lastname: 'Moody', password: 'amoody')
+user21 = User.create(username: 'ddursley', email: 'ddursley@hogwarts.com', firstname: 'Dudley', lastname: 'Dursley', password: 'ddursley')
+user22 = User.create(username: 'kreacher', email: 'kreacher@hogwarts.com', firstname: 'Kreacher', lastname: '', password: 'kreacher')
 
 # assign pictures
 user0.image = File.open("app/assets/images/seed_images/sortinghat.jpg")
@@ -45,6 +58,19 @@ user6.image = File.open("app/assets/images/seed_images/adumbledore.jpg")
 user7.image = File.open("app/assets/images/seed_images/ssnape.jpg")
 user8.image = File.open("app/assets/images/seed_images/dmalfoy.jpg")
 user9.image = File.open("app/assets/images/seed_images/voldemort.jpg")
+user10.image = File.open("app/assets/images/seed_images/mmcgonagall.jpg")
+user11.image = File.open("app/assets/images/seed_images/lmalfoy.jpg")
+user12.image = File.open("app/assets/images/seed_images/cchang.jpg")
+user13.image = File.open("app/assets/images/seed_images/nlupin.jpg")
+user14.image = File.open("app/assets/images/seed_images/rhagrid.jpg")
+user15.image = File.open("app/assets/images/seed_images/sblack.jpg")
+user16.image = File.open("app/assets/images/seed_images/dumbridge.jpg")
+user17.image = File.open("app/assets/images/seed_images/llovegood.jpg")
+user18.image = File.open("app/assets/images/seed_images/nlongbottom.jpg")
+user19.image = File.open("app/assets/images/seed_images/mweasely.jpg")
+user20.image = File.open("app/assets/images/seed_images/amoody.jpg")
+user21.image = File.open("app/assets/images/seed_images/ddursley.jpg")
+user22.image = File.open("app/assets/images/seed_images/kreacher.jpg")
 
 user0.save!
 user1.save!
@@ -56,6 +82,19 @@ user6.save!
 user7.save!
 user8.save!
 user9.save!
+user10.save!
+user11.save!
+user12.save!
+user13.save!
+user14.save!
+user15.save!
+user16.save!
+user17.save!
+user18.save!
+user19.save!
+user20.save!
+user21.save!
+user22.save!
 
 
 # CHANNELS
@@ -77,8 +116,11 @@ channel4 = Channel.create(name: 'professors only', description: 'Chat Room for P
 channel5 = Channel.create(name: 'death eaters', description: 'Chat Room for Death Eaters', kind: 'private')
 
 # DIRECT MESSAGES
-channel6 = Channel.create(name: 'hgranger, rweasely', description: 'Harry - Ron - Hermione', kind: 'dm')
-channel7 = Channel.create(name: 'voldemort', description: 'Harry - Voldemort', kind: 'dm')
+channel6 = Channel.create(name: 'hpotter, hgranger, rweasely', description: 'Harry - Ron - Hermione', kind: 'dm')
+channel7 = Channel.create(name: 'hpotter, voldemort', description: 'Harry - Voldemort', kind: 'dm')
+
+#NEW
+channel8 = Channel.create(name: 'the order of pheonix', description: 'Chat Room for the Order of Pheonix', kind: 'private')
 
 # MESSAGES
 #  id         :integer          not null, primary key
@@ -92,7 +134,7 @@ channel7 = Channel.create(name: 'voldemort', description: 'Harry - Voldemort', k
 # the trio convo
 message1 = Message.create(content: 'Hi Harry!', kind: 'normal', user_id: user4.id, channel_id: channel6.id)
 message2 = Message.create(content: 'Hi Hermione!', kind: 'normal', user_id: user1.id, channel_id: channel6.id)
-message3 = Message.create(content: 'What about me?!', kind: 'normal', user_id: user5.id, channel_id: channel6.id)
+message3 = Message.create(content: 'Hi Ron!', kind: 'normal', user_id: user5.id, channel_id: channel6.id)
 
 # mortal enemies convo
 message1 = Message.create(content: 'Avada Kedavra!', kind: 'normal', user_id: user9.id, channel_id: channel7.id)
@@ -112,49 +154,68 @@ message1 = Message.create(content: 'Avada Kedavra!!!!!!!!', kind: 'normal', user
 #  updated_at :datetime         not null
 
 # Gryffindor Subscriptions
-subscription1 = Subscription.create(user_id: user1.id, channel_id: channel1.id)
-subscription2 = Subscription.create(user_id: user2.id, channel_id: channel1.id)
-subscription3 = Subscription.create(user_id: user3.id, channel_id: channel1.id)
-subscription4 = Subscription.create(user_id: user4.id, channel_id: channel1.id)
-subscription5 = Subscription.create(user_id: user5.id, channel_id: channel1.id)
-subscription6 = Subscription.create(user_id: user6.id, channel_id: channel1.id)
+Subscription.create(user_id: user1.id, channel_id: channel1.id)
+Subscription.create(user_id: user2.id, channel_id: channel1.id)
+Subscription.create(user_id: user3.id, channel_id: channel1.id)
+Subscription.create(user_id: user4.id, channel_id: channel1.id)
+Subscription.create(user_id: user5.id, channel_id: channel1.id)
+Subscription.create(user_id: user6.id, channel_id: channel1.id)
 
 # Slytherin Subscriptions
-subscription7 = Subscription.create(user_id: user7.id, channel_id: channel2.id)
-subscription8 = Subscription.create(user_id: user8.id, channel_id: channel2.id)
-subscription9 = Subscription.create(user_id: user9.id, channel_id: channel2.id)
+Subscription.create(user_id: user7.id, channel_id: channel2.id)
+Subscription.create(user_id: user8.id, channel_id: channel2.id)
+Subscription.create(user_id: user9.id, channel_id: channel2.id)
 
 # PotterFamily Subscriptions
-subscription10 = Subscription.create(user_id: user1.id, channel_id: channel3.id)
-subscription11 = Subscription.create(user_id: user2.id, channel_id: channel3.id)
-subscription12 = Subscription.create(user_id: user3.id, channel_id: channel3.id)
+Subscription.create(user_id: user1.id, channel_id: channel3.id)
+Subscription.create(user_id: user2.id, channel_id: channel3.id)
+Subscription.create(user_id: user3.id, channel_id: channel3.id)
 
 # ProfessorsOnly Subscriptions
-subscription13 = Subscription.create(user_id: user6.id, channel_id: channel4.id)
-subscription14 = Subscription.create(user_id: user7.id, channel_id: channel4.id)
+Subscription.create(user_id: user6.id, channel_id: channel4.id)
+Subscription.create(user_id: user7.id, channel_id: channel4.id)
 
 # DeathEaters Subscriptions
-subscription15 = Subscription.create(user_id: user7.id, channel_id: channel5.id)
-subscription16 = Subscription.create(user_id: user8.id, channel_id: channel5.id)
-subscription17 = Subscription.create(user_id: user9.id, channel_id: channel5.id)
+Subscription.create(user_id: user7.id, channel_id: channel5.id)
+Subscription.create(user_id: user8.id, channel_id: channel5.id)
+Subscription.create(user_id: user9.id, channel_id: channel5.id)
 
 # The Trio Subscriptions
-subscription18 = Subscription.create(user_id: user1.id, channel_id: channel6.id)
-subscription19 = Subscription.create(user_id: user4.id, channel_id: channel6.id)
-subscription20 = Subscription.create(user_id: user5.id, channel_id: channel6.id)
+Subscription.create(user_id: user1.id, channel_id: channel6.id)
+Subscription.create(user_id: user4.id, channel_id: channel6.id)
+Subscription.create(user_id: user5.id, channel_id: channel6.id)
 
 # Mortal Enemies Subscriptions
-subscription21 = Subscription.create(user_id: user1.id, channel_id: channel7.id)
-subscription22 = Subscription.create(user_id: user9.id, channel_id: channel7.id)
+Subscription.create(user_id: user1.id, channel_id: channel7.id)
+Subscription.create(user_id: user9.id, channel_id: channel7.id)
 
 # General Chat Subscriptions
-subscription23 = Subscription.create(user_id: user0.id, channel_id: channel0.id)
-subscription24 = Subscription.create(user_id: user1.id, channel_id: channel0.id)
-subscription25 = Subscription.create(user_id: user2.id, channel_id: channel0.id)
-subscription26 = Subscription.create(user_id: user3.id, channel_id: channel0.id)
-subscription27 = Subscription.create(user_id: user4.id, channel_id: channel0.id)
-subscription28 = Subscription.create(user_id: user5.id, channel_id: channel0.id)
-subscription29 = Subscription.create(user_id: user6.id, channel_id: channel0.id)
-subscription30 = Subscription.create(user_id: user7.id, channel_id: channel0.id)
-subscription31 = Subscription.create(user_id: user8.id, channel_id: channel0.id)
-subscription32 = Subscription.create(user_id: user9.id, channel_id: channel0.id)
+Subscription.create(user_id: user0.id, channel_id: channel0.id)
+Subscription.create(user_id: user1.id, channel_id: channel0.id)
+Subscription.create(user_id: user2.id, channel_id: channel0.id)
+Subscription.create(user_id: user3.id, channel_id: channel0.id)
+Subscription.create(user_id: user4.id, channel_id: channel0.id)
+Subscription.create(user_id: user5.id, channel_id: channel0.id)
+Subscription.create(user_id: user6.id, channel_id: channel0.id)
+Subscription.create(user_id: user7.id, channel_id: channel0.id)
+Subscription.create(user_id: user8.id, channel_id: channel0.id)
+Subscription.create(user_id: user9.id, channel_id: channel0.id)
+Subscription.create(user_id: user10.id, channel_id: channel0.id)
+Subscription.create(user_id: user11.id, channel_id: channel0.id)
+Subscription.create(user_id: user12.id, channel_id: channel0.id)
+Subscription.create(user_id: user13.id, channel_id: channel0.id)
+Subscription.create(user_id: user14.id, channel_id: channel0.id)
+Subscription.create(user_id: user15.id, channel_id: channel0.id)
+Subscription.create(user_id: user16.id, channel_id: channel0.id)
+Subscription.create(user_id: user17.id, channel_id: channel0.id)
+Subscription.create(user_id: user18.id, channel_id: channel0.id)
+Subscription.create(user_id: user19.id, channel_id: channel0.id)
+Subscription.create(user_id: user20.id, channel_id: channel0.id)
+Subscription.create(user_id: user21.id, channel_id: channel0.id)
+Subscription.create(user_id: user22.id, channel_id: channel0.id)
+
+# The Order Of Pheonix Subscriptions
+Subscription.create(user_id: user1.id, channel_id: channel8.id)
+Subscription.create(user_id: user2.id, channel_id: channel8.id)
+Subscription.create(user_id: user3.id, channel_id: channel8.id)
+Subscription.create(user_id: user6.id, channel_id: channel8.id)
