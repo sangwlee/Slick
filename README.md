@@ -1,69 +1,64 @@
-# SLICK
-
-SLICK is clone of popular web application, SLACK. SLICK will be developed
-using skills and knowledges learned during App Academy's curriculum. When completed,
-SLICK will be able to perform essential functions of SLACK - live chat, team chat, direct messages,
-and channels. In addition, SLACK will also have implemented authentication system that is
-commonly seen among many web application today.
-
-Heroku: https://slick-aa.herokuapp.com/
-
-Trello: https://trello.com/b/hNl1uezS/slick
+# Slick
 
 
+[Slick](https://slick-aa.herokuapp.com/#/)
 
-## Design Docs
-* [View Wireframes][wireframes]
-* [React Components][components]
-* [API endpoints][api-endpoints]
-* [DB schema][schema]
-* [Sample State][sample-state]
+Slick is a clone of popular chatting-app, Slack. To it, certain personal preferences in colors, fonts, designs, and utilities were included.
 
-[wireframes]: ./wireframes/
-[components]: ./component-hierarchy.md
-[sample-state]: ./sample-state.md
-[api-endpoints]: ./api-endpoints.md
-[schema]: ./schema.md
+## Features and implementation
 
-## Implementation Timeline
+## Users
 
-### Phase 1: BACKEND DATA & AUTH (2 days; W8D2 - W8D3)
+Slick allows user to create, read, update its information. Creation of users are done in the frontpage, where new users are invited to join the app.
+Once signed up or logged in, user can update their profile information (firstname, lastname, email, picture) in the edit section of the app.
 
-**Objective:** The goal of phase 1 is to ensure that the database is appropriately set up, and implementation of authentication system is sound. By the end of this phase, application should be able to create user, login user, and logout user.
+## Channels & Subscriptions
 
-### Phase 2: FRONTPAGE SETUP & REACT COMPONENTS SETUP (1 day; W8D4)
+Channels & Subscriptions can be created, read, and destroyed. Updating channel information has been intentionally left out to ensure that the choices of
+name and descriptions are carefully chosen at their creation.
 
-**Objective:** Phase 2 of the project will be dedicated towards creating minimal frontpage and basic file structure of react components. This will include
-revisiting the react component hierarchy with the project manager to ensure sound implementation. By the end of this phase, application should be able to show minimal frontpage as well as handle redirects to the main page.
+There are three types of channels in Slick - private, public, and Direct Message. The difference between private and public is that all users can see public chat,
+ but they cannot see private chats. Then, the difference between private chats and direct messages is that users do not have to go through naming and describing them.
 
-### Phase 3: LIVE CHAT (2 days; W8D5 - W8D6)
-
-**Objective:** During phase 3, the beginning portion will be dedicated towards learning WebSockets. After acquiring familiarity with the technology, it will be tested and implemented to the subject web application. By the end of this phase, the application should be sound database and programming to indicate successful live chat.
-
-### Phase 4: CHANNELS (1 day; W9D1)
-
-**Objective:** Continuing from the phase 3, phase 4 will be dedicated to implementing channels and ensure live chatting between participants of a channel is successful. By the end of this phase, the application should be able to indicate successful chatting system in a channel.
-
-### Phase 5: DIRECT MESSAGES (1 day; W9D2)
-
-**Objective:** In phase 5, connection between two persons for a direct messaging is to be completed.
-
-### Phase 6: MULTIPLE PERSON DM (1 day; W9D3)
-
-**Objective:** Adding onto the result from phase 5, in phase 6, the application should be able to create chatting system of multiple direct-messages.
-
-### Phase 7: MAIN PAGE SETUP(1 days; W9D4)
-
-**Objective:** With the MVP's completed (live chat, channel, direct message, multiple-person DM), the object of phase 7 is to set up the main page. During this page,
-much time will be spent to accomplish satisfactory styling. In addition, flawless navigation through frontpage and mainpage should be attained.
-
-### Phase 8: STYLING & FINAL TOUCH (1 day; W9D5)
-
-**Objective:** In this last phase, much of essential functionalities of application will have been implemented, tested, and styled. During this time, minor features, such as creating a channel, switching right column (between details and replies) will be attempted for implementation. However, main goal of this last phase is to ensure that the main features operates without bugs and that styling is presentable.
+Channels can be created at the left channel navigation of the application. Once initiated, creator of the channel are welcomed to invite any other users available in the app.
+Lastly, direct messages can be created similar to private & public channels, or the user can simply click the list of participants in the right column of the app.
 
 
-### Bonus Features (TBD)
-- [ ] Search Messages
-- [ ] Notifications
-- [ ] Post Emojis
-- [ ] Post Giphys
+## Messages
+
+Messages are created when the user submits content in the most bottom part of middle column. Upon submitting, the message will be displayed in the main message content.
+After the message has been created, author is able to delete and update the messages within the postings.
+
+## Live Chat
+
+Live chat is not an option for any chat application. Slick users pusher api to establish connection between all users of the app.
+There are three events that happen in real time, which are:
+
+1. Messaging
+2. Channel Invitations
+3. Participant changes
+
+## Notifications
+
+Going hand to hand with live chat functionality, user can also experience notifications during these events.
+Bottom left space has been purposely left out to allow users to see any notifications during their navigation around the app.
+Users will receive following notifications:
+
+1. Message from other user in the other channel
+2. Joining of channel
+3. Successful profile update
+4. Attempt for invalid modifications
+
+## EXTRA FEATURES
+
+There are few noteworthy features in Slick.
+1. Inviting other users to created channel
+2. Joining a public channel
+
+## Future Directions for the Project
+
+As for future directions, following are desired features for Slick:
+
+1. Persisting emoticon data
+2. Creation of replies
+3. Addition of giphy support
