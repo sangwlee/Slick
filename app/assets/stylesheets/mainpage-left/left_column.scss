@@ -1,5 +1,5 @@
 .left-column-container {
-  height: 95%;
+  height: 85%;
   list-style-type: none;
 
   h1:hover {
@@ -33,18 +33,47 @@
 
 .personal-info-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+
+  a {
+    text-decoration: none;
+
+  }
+
+  i {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
   i:first-child {
-    margin-left: 45px;
+    padding-left: 35px;
   }
 
   i:last-child {
-    margin-right: 45px;
+    padding-right: 20px;
   }
 
   i:hover {
     font-size: 20px;
     cursor: pointer;
   }
+}
+
+.intro {
+  // font-family: 'Marvel', sans-serif;
+  font-size: 14px;
+  font-family: 'Poiret One', cursive;
+
+  li {
+    margin-left: 20px;
+    list-style-type: none;
+  }
+
+  li:last-child {
+    font-style: italic;
+    font-weight: bolder;
+    margin-bottom: 15px;
+    margin-top: 10px;
+  }
+
 }

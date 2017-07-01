@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
   deleteMessage,
   updateMessage,
-  requestAllMessageOfChannel,
+  requestAllMessagesOfChannel,
   requestAllRepliesOfMessage,
 } from '../../../../actions/messages_actions';
 import NotificationSystem from 'react-notification-system';
@@ -106,21 +106,28 @@ class MessageItem extends React.Component {
 
   handleClick(type, message) {
     const currentChannel = parseInt(this.props.location.pathname.slice(6));
-
+    debugger;
     return () => {
       if (type === 'emoji') { this.setState({ emoji: !this.state.emoji });
       } else if (type === 'comment') {
         // this.props.requestAllRepliesOfMessage(message.id);
         this.props.history.push(`/main/${currentChannel}/message/${message.id}`);
+
       } else if (type === 'edit') {
         if (message.user_id === this.props.currentUser.id) {
           this.setState({ edit: !this.state.edit });
         } else { this.props.notification('modifyFail');}
+
       } else if (type === 'delete') {
         if (message.user_id === this.props.currentUser.id) {
-          this.props.deleteMessage(message.id)
-            .then(() => this.props.requestAllMessagesOfChannel(currentChannel));
+          this.props.deleteMessage(message.id);
+          this.props.requestAllMessagesOfChannel(currentChannel);
+
+          if (this.props.location.pathname.includes(message.id.toString())) {
+            this.props.history.push(`/main/${currentChannel}`);
+          }
           this.props.notification('deleteSuccess');
+
       } else { this.props.notification('modifyFail');}}
     };
   }
@@ -136,10 +143,10 @@ class MessageItem extends React.Component {
             created_at: message.created_at,
             updated_at: message.updated_at,
           })
+          .then(() =>this.props.requestAllMessagesOfChannel(parseInt(this.props.location.pathname.slice(6))))
         );
     }
   }
-
   handleChange(type) {
     return (e) => {
       this.setState({[type]: e.currentTarget.value});
@@ -188,12 +195,12 @@ class MessageItem extends React.Component {
         </ul>
         <ul className='message-buttons'>
           <li>
-            <button onClick={this.handleClick('emoji', this.message)}><i className="fa fa-smile-o message-button-emoticon" aria-hidden="true"></i></button>
-            <button onClick={this.handleClick('comment', this.message)}><i className="fa fa-commenting" aria-hidden="true"></i></button>
+            <button onClick={this.handleClick('emoji', this.props.message)}><i className="fa fa-smile-o message-button-emoticon" aria-hidden="true"></i></button>
+            <button onClick={this.handleClick('comment', this.props.message)}><i className="fa fa-commenting" aria-hidden="true"></i></button>
           </li>
           <li>
-            <button onClick={this.handleClick('edit', this.message)}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-            <button onClick={this.handleClick('delete', this.message)}><i className="fa fa-trash" aria-hidden="true"></i></button>
+            <button onClick={this.handleClick('edit', this.props.message)}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+            <button onClick={this.handleClick('delete', this.props.message)}><i className="fa fa-trash" aria-hidden="true"></i></button>
           </li>
         </ul>
       </li>
@@ -215,6 +222,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(updateMessage(messageId, messageData)),
     requestAllRepliesOfMessage: message_id =>
       dispatch(requestAllRepliesOfMessage(message_id)),
+    requestAllMessagesOfChannel: (channel_id) =>
+      dispatch(requestAllMessagesOfChannel(channel_id)),
   };
 };
 

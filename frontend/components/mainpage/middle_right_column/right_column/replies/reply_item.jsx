@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
   deleteMessage,
   updateMessage,
-  requestAllMessageOfChannel,
+  requestAllMessagesOfChannel,
 } from '../../../../../actions/messages_actions';
 import NotificationSystem from 'react-notification-system';
 import { withRouter } from 'react-router-dom';

@@ -137,63 +137,67 @@ class Replies extends React.Component {
     const finalUsernames = (usernamesString.length > 40) ? (usernamesString.slice(40) + " ...") : usernamesString;
     const currentMessage = this.props.currentMessage;
 
-    debugger;
+    // debugger;
 
-    return(
-      <div className="right-column-detail-div">
-        <li className="search-bar"><SearchBar /></li>
-        <div className="right-column-container">
-            <li className="channel-detail-about">
-              Thread
-              <span className='channel-description-heading'>
-                {finalUsernames}
-              </span>
-            </li>
-            <ReplyItem
-              className="original-thread"
-              requestAllRepliesOfMessage={this.props.requestAllRepliesOfMessage}
-              key={currentMessage.id}
-              notification={this.notification}
-              allUsers={this.props.allUsers}
-              currentUser={this.props.currentUser}
-              message={currentMessage} />
+    // return(
+      if (currentMessage) {
+        return (
+          <div className="right-column-detail-div">
+            <li className="search-bar"><SearchBar /></li>
+            <div className="right-column-container">
+              <li className="channel-detail-about">
+                Thread
+                <span className='channel-description-heading'>
+                  {finalUsernames}
+                </span>
+              </li>
+              <ReplyItem
+                className="original-thread"
+                requestAllRepliesOfMessage={this.props.requestAllRepliesOfMessage}
+                key={currentMessage.id}
+                notification={this.notification}
+                allUsers={this.props.allUsers}
+                currentUser={this.props.currentUser}
+                message={currentMessage} />
 
-          <li className="details-number-heading reply-heading">
-            <h1>{countReplies} Replies</h1>
-            <i id="button" onClick={this.redirect(currentChannelId)} className="fa fa-times" aria-hidden="true"></i>
-          </li>
-          <form className="reply-form-container" onSubmit={this.handleSubmit(this.props.currentMessage)}>
-            <input
-              className='reply-input'
-              placeholder='Reply...'
-              onChange={this.handleChange('content')}
-              type="text"
-              value={this.state.content}>
-            </input>
-          </form>
-          <div className="reply-space">
-            <div className="all-replies-container">
-              <NotificationSystem
-                style={notificationStyle}
-                ref={n => this._notificationSystem = n} />
-              <ul>
-                {
-                  sortedReplies.map( reply => {
-                    return (<ReplyItem
-                      requestAllRepliesOfMessage={this.props.requestAllRepliesOfMessage}
-                      key={reply.id}
-                      notification={this.notification}
-                      allUsers={this.props.allUsers}
-                      currentUser={this.props.currentUser}
-                      message={reply} />)
-                  })
-                }
-              </ul>
+              <li className="details-number-heading reply-heading">
+                <h1>{countReplies} Replies</h1>
+                <i id="button" onClick={this.redirect(currentChannelId)} className="fa fa-times" aria-hidden="true"></i>
+              </li>
+              <form className="reply-form-container" onSubmit={this.handleSubmit(this.props.currentMessage)}>
+                <input
+                  className='reply-input'
+                  placeholder='Reply...'
+                  onChange={this.handleChange('content')}
+                  type="text"
+                  value={this.state.content}>
+                </input>
+              </form>
+              <div className="reply-space">
+                <div className="all-replies-container">
+                  <NotificationSystem
+                    style={notificationStyle}
+                    ref={n => this._notificationSystem = n} />
+                  <ul>
+                    {
+                      sortedReplies.map( reply => {
+                        return (<ReplyItem
+                          requestAllRepliesOfMessage={this.props.requestAllRepliesOfMessage}
+                          key={reply.id}
+                          notification={this.notification}
+                          allUsers={this.props.allUsers}
+                          currentUser={this.props.currentUser}
+                          message={reply} />)
+                        })
+                      }
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    );
+        )
+      } else {return <div></div>}
+    // );
   }
 
   notification(condition) {

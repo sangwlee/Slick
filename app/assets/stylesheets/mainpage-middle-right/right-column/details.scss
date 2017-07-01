@@ -63,8 +63,8 @@
 }
 
 .channel-detail-members-list {
-  height: 610px;
-  // height: 100%;
+  // height: 600px;
+  height: 67.5%;
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -88,6 +88,15 @@
     height: 20px;
     vertical-align: middle;
     object-fit: cover;
+    transition: height 1s ease-out;
+    // transition: width 1s ease-in-out;
+  }
+
+  img:hover {
+    width: 80px;
+    height: 80px;
+    // transition: width 1s ease-in-out;
+    transition: height 1s ease-out;
   }
 }
 
