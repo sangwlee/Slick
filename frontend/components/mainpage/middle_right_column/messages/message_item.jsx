@@ -173,7 +173,7 @@ class MessageItem extends React.Component {
         }
       }
 
-      uniqueUsers = uniqueRepliersIds.map(uniqueReplierId => this.props.channelUsers[uniqueReplierId]);
+      uniqueUsers = uniqueRepliersIds.map(uniqueReplierId => this.props.allUsers[uniqueReplierId]);
 
       uniqueUsersImgs = uniqueUsers.map(uniqueUser =>
         <img key={uniqueUser.id} src={uniqueUser.image_url}/>

@@ -46,15 +46,15 @@ class FrontPage extends React.Component{
         <button
           id='button'
           className="guest-button"
-          onClick={this.guestLogin('hpotter')}>
-          Login as <span className="voldemort">Harry Potter</span>
+          onClick={this.guestLogin('voldemort')}>
+          Login as <span className="voldemort">Voldemort</span>
         </button>
 
         <button
           id='button'
           className="guest-button first-guest-button"
-          onClick={this.guestLogin('voldemort')}>
-          Login as <span className="voldemort">Voldemort</span>
+          onClick={this.guestLogin('hpotter')}>
+          Login as <span className="voldemort">Harry Potter</span>
         </button>
       </div>
     );
