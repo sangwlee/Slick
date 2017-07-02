@@ -123,7 +123,7 @@ class ReplyItem extends React.Component {
           if (this.state.channel_id === currentChannel) {
             this.props.history.push(`/main/${currentChannel}`);
           }
-          
+
           this.props.notification('deleteSuccess');
       } else { this.props.notification('modifyFail');}}
     };
@@ -187,7 +187,7 @@ class ReplyItem extends React.Component {
                   <button type="button" id="button" onClick={this.handleClick('edit')}>Cancel</button>
                   <button type="button" id="button" onClick={this.handleEdit}>Save Changes</button>
                 </form>) :
-              (this.state.content) + editStatus}
+              (<span>{this.props.message.content} <span className="edit-marker">{editStatus}</span></span>)}
           </li>
           <li>
             { (this.state.emoji) ? <ReactingComponent className="emoji-container"/> : '' }

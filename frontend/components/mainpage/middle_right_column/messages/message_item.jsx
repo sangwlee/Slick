@@ -159,9 +159,38 @@ class MessageItem extends React.Component {
   }
 
   render() {
-    // debugger;
-    const countReplies = (this.props.replies.length === 0) ?
-      (<span></span>) : (<button id="button" className="messages-replies-count">{this.props.replies.length.toString() + ' replies'}</button>);
+    let uniqueRepliersIds = [], uniqueUsers, uniqueUsersImgs, lastPosted;
+    let countReplies = ('');
+
+    debugger;
+
+    if (this.props.replies.length !== 0) {
+      const hash = {};
+      for ( var i = 0, l = this.props.replies.length; i < l; ++i ) {
+        if (!hash.hasOwnProperty(this.props.replies[i].user_id)) {
+          hash[this.props.replies[i].user_id] = true;
+          uniqueRepliersIds.push(this.props.replies[i].user_id);
+        }
+      }
+
+      uniqueUsers = uniqueRepliersIds.map(uniqueReplierId => this.props.channelUsers[uniqueReplierId]);
+
+      uniqueUsersImgs = uniqueUsers.map(uniqueUser =>
+        <img src={uniqueUser.image_url}/>
+      )
+
+      countReplies =
+      (<button
+        onClick={this.handleClick('comment', this.props.message)}
+        type="button"
+        id="button"
+        className="messages-replies-count">
+        {this.props.replies.length.toString() + ' replies'}
+      </button>);
+      let fullLastPosted = this.time(this.props.replies[this.props.replies.length - 1].created_at);
+      lastPosted = <span>{fullLastPosted.slice(fullLastPosted.indexOf("|") + 1)}</span>;
+
+    }
 
     const editStatus = (this.state.created_at === this.state.updated_at) ? '' : "  (edited)";
 
@@ -190,11 +219,17 @@ class MessageItem extends React.Component {
                   <button type="button" id="button" onClick={this.handleClick('edit')}>Cancel</button>
                   <button type="button" id="button" onClick={this.handleEdit}>Save Changes</button>
                 </form>) :
-              (this.props.message.content) + editStatus}
+              (<span>{this.props.message.content} <span className="edit-marker">{editStatus}</span></span>)}
           </li>
           <li>
-            { countReplies }
-            { (this.state.emoji) ? <ReactingComponent className="emoji-container"/> : '' }
+            <ul>
+              <li>{ (this.state.emoji) ? <ReactingComponent className="emoji-container"/> : '' }</li>
+              <li className="replies-info">
+                { countReplies }
+                { uniqueUsersImgs }
+                { lastPosted }
+              </li>
+            </ul>
           </li>
         </ul>
         <ul className='message-buttons'>
@@ -215,7 +250,12 @@ class MessageItem extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     replies: selector(state.replies).filter(reply =>
-      reply.message_id === ownProps.message.id)
+      reply.message_id === ownProps.message.id).sort(
+        function(a, b) {
+
+        }
+      ),
+    channelUsers: state.users,
   };
 };
 

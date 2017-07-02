@@ -127,3 +127,59 @@
     cursor: pointer;
   }
 }
+
+.messages-replies-count {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  margin-top: 5px;
+  border-radius: 5px;
+  padding: 2px;
+  width: 60px;
+  text-align: center;
+  border: 1px solid lightgray;
+  // font-weight: lighter;
+  color: darken($skyblue, 20);
+  cursor: pointer;
+}
+
+.edit-marker {
+  font-size: 12px;
+  color: gray;
+  margin-left: 5px;
+  font-weight: lighter;
+}
+
+.unique-user-image {
+}
+
+.replies-info {
+  img {
+    width: 15px;
+    height: 15px;
+    border-radius: 2px;
+    margin-top: 2px;
+    position: relative;
+    top: 3px;
+    margin-left: 3px;
+    transition: width 1s ease-out;
+    object-fit: cover;
+  }
+
+  img:hover {
+    // width: 42px;
+    // height: 42px;
+    // transition: width 1s ease-out;
+    // object-fit: cover;
+  }
+
+  span {
+    font-size: 10px;
+    color: gray;
+    margin-left: 3px;
+    font-weight: lighter;
+    position: relative;
+    bottom: 1px;
+  }
+}
+.unique-user-image:hover {
+}
