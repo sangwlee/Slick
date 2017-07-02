@@ -91,7 +91,6 @@ class Channels extends React.Component {
    }
 
    componentDidMount() {
-    //  Pusher.logToConsole = true;
      const channel = this.pusher.subscribe("channels");
      channel.bind("channel_created", (data) => {
        this.props.requestAllChannelsOfUser(this.state.userId);

@@ -105,12 +105,10 @@ class MessageItem extends React.Component {
   }
 
   handleClick(type, message) {
-    // const message = this.props.message;
     const currentChannel = parseInt(this.props.location.pathname.slice(6));
     return () => {
       if (type === 'emoji') { this.setState({ emoji: !this.state.emoji });
       } else if (type === 'comment') {
-        // this.props.requestAllRepliesOfMessage(message.id);
         this.props.history.push(`/main/${currentChannel}/message/${message.id}`);
 
       } else if (type === 'edit') {
@@ -161,8 +159,6 @@ class MessageItem extends React.Component {
   render() {
     let uniqueRepliersIds = [], uniqueUsers, uniqueUsersImgs, lastPosted;
     let countReplies = ('');
-
-    debugger;
 
     if (this.props.replies.length !== 0) {
       const hash = {};

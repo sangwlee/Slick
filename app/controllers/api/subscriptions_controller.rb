@@ -6,9 +6,7 @@ class Api::SubscriptionsController < ApplicationController
 
   def create
     @subscription = Subscription.new(subscription_params)
-    # debugger
     if @subscription.save
-      # debugger;
       channel = @subscription.channel
       Pusher.trigger("channels", "subscriptions_changed", {})
 
@@ -31,7 +29,6 @@ class Api::SubscriptionsController < ApplicationController
 
   private
   def subscription_params
-    # debugger;
     params.require(:subscription).permit(:user_id, :channel_id)
   end
 end

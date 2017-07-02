@@ -51,7 +51,6 @@ export const deleteChannel = channel_id => {
 
 // Subscription utils
 export const createSubscription = subscription => {
-  // debugger
   return $.ajax({
     method: 'post',
     url: 'api/subscriptions',

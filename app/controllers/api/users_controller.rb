@@ -3,20 +3,11 @@ class Api::UsersController < ApplicationController
     if params.include?(:channel_id)
       users = []
 
-      # debugger;
       @users = Channel.find(params[:channel_id]).users
-
-      # Subscription
-      #   .includes(:user)
-      #   .where(channel_id: params[:channel_id])
-      #   .each {|subs| users << subs.user}
-      # @users = users
     else
 
       @users = User.all
     end
-    #
-    # render json: @users
   end
 
   def new
@@ -24,13 +15,11 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    # debugger
     @user = User.find(params[:id])
     render json: @user
   end
 
   def create
-    # debugger
     @user = User.new(user_params)
     if @user.save
 
@@ -43,10 +32,8 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    # debugger
 
     if @user.update(user_params)
-      # debugger;
       @user.channels.each do |channel|
         Pusher.trigger(channel.id.to_s, 'user_updated', {})
       end

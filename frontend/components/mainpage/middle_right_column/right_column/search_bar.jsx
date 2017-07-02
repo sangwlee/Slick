@@ -83,8 +83,6 @@ class SearchBar extends React.Component {
   handleSubmit(e) {
     if (this.state.publicChannels.length === 1) {
       e.preventDefault();
-      // this.setState({selectedChannel: this.state.publicChannels[0]});
-      // let channel = this.state.selectedChannel;
       let channel = this.state.publicChannels[0];
       this.props.createSubscription({user_id: this.props.currentUser.id, channel_id: channel.id});
       this.props.requestAllChannelsOfUser(this.props.currentUser.id);
@@ -141,7 +139,6 @@ const mapStateToProps = state => {
 
   selector(state.allChannels).forEach(channel => {
     if (channel.kind === 'public' && !(myChannels.includes(channel.id))) {
-      // debugger;
       publicChannels.push(channel);
     }
   })

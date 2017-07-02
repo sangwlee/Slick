@@ -9,7 +9,6 @@
   border-radius: 3px;
   margin-right: 10px;
   width: 42px;
-  // min-width: 42px;
   height: 42px;
   object-fit: cover;
 }
@@ -43,7 +42,6 @@
 
 ::-webkit-scrollbar {
     width: 7px;
-    // border: 3px solid white;
 }
 
 ::-webkit-scrollbar-track-piece {
@@ -137,7 +135,6 @@
   width: 60px;
   text-align: center;
   border: 1px solid lightgray;
-  // font-weight: lighter;
   color: darken($skyblue, 20);
   cursor: pointer;
 }
@@ -153,6 +150,8 @@
 }
 
 .replies-info {
+  transition: width 1s ease-out;
+
   img {
     width: 15px;
     height: 15px;
@@ -161,15 +160,7 @@
     position: relative;
     top: 3px;
     margin-left: 3px;
-    transition: width 1s ease-out;
     object-fit: cover;
-  }
-
-  img:hover {
-    // width: 42px;
-    // height: 42px;
-    // transition: width 1s ease-out;
-    // object-fit: cover;
   }
 
   span {
@@ -180,6 +171,4 @@
     position: relative;
     bottom: 1px;
   }
-}
-.unique-user-image:hover {
 }

@@ -8,8 +8,6 @@ import { AllUsersReducer } from './all_users_reducer';
 import { AllChannelsReducer } from './all_channels_reducer';
 import { RepliesReducer } from './replies_reducer';
 
-// import {reducer as notifications} from 'react-notification-system-redux';
-
 export const rootReducer = combineReducers({
   session: SessionReducer,
   currentChannel: CurrentChannelReducer,

@@ -17,7 +17,6 @@ export const SessionReducer = (state = defaultState, action) => {
 
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-    // debugger;
       return merge({}, state, { currentUser: action.currentUser });
     case RECEIVE_LOGIN_ERRORS:
       return Object.assign({}, state, { login_errors: action.errors });

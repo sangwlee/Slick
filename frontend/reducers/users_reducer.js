@@ -7,8 +7,6 @@ import {
 } from '../actions/users_actions';
 
 const defaultState = Object.freeze({
-  // users: {},
-  // errors: {}
 });
 
 export const UsersReducer = (state = defaultState, action) => {
@@ -19,7 +17,6 @@ export const UsersReducer = (state = defaultState, action) => {
     case RECEIVE_SINGLE_USER:
       return action.user;
     case RECEIVE_ALL_USERS_OF_CHANNEL:
-      // debugger
       return action.users;
     default:
       return state;

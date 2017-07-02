@@ -8,7 +8,6 @@ import { requestAllUsersOfChannel } from '../../../../actions/users_actions';
 import selector from '../../../../util/selector';
 
 const mapStateToProps = state => {
-  // debugger
   return {
     currentUser: state.session.currentUser,
     messages: selector(state.messages),

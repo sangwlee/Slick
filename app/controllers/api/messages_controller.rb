@@ -31,7 +31,6 @@ class Api::MessagesController < ApplicationController
   end
 
   def create
-    # debugger
     @message = Message.new(message_params)
 
     if @message.save
@@ -52,9 +51,7 @@ class Api::MessagesController < ApplicationController
   end
 
   def update
-    # debugger
     @message = Message.find(params[:id].to_i)
-    # debugger;
     if @message.update(message_params)
       render json: @message
     else

@@ -5,7 +5,6 @@ import {
 } from '../actions/channels_actions';
 
 const defaultState = Object.freeze({
-  // currentChannel: null,
 });
 
 export const AllChannelsReducer = (state = defaultState, action) => {
@@ -18,7 +17,3 @@ export const AllChannelsReducer = (state = defaultState, action) => {
       return state;
   }
 };
-
-// test
-window.merge = merge;
-// test

@@ -49,7 +49,6 @@ class ChannelDetail extends React.Component {
     let newChannelId = parseInt(this.props.match.params.channelId);
     this.props.requestCurrentChannel(newChannelId);
     this.props.requestAllUsersOfChannel(newChannelId);
-    // debugger
   }
 
   componentWillReceiveProps(nextProps) {
@@ -70,8 +69,6 @@ class ChannelDetail extends React.Component {
         unsubscribedUsers.push(user);
       }
     });
-
-    // debugger;
 
     const channel = this.props.currentChannel;
     const channelName = (name) => {

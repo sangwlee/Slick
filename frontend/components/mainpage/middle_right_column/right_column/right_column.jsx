@@ -9,15 +9,6 @@ class RightColumn extends React.Component {
   }
 
   render() {
-    // if (this.props.history.location.pathname.includes('message')) {
-    //   return (
-    //     <RepliesContainer />
-    //   );
-    // } else {
-    //   return (
-    //     <DetailContainer />
-    //   );
-    // }
     return (
       <Switch>
         <Route exact path='/main/:channel_id/' component={DetailContainer}>

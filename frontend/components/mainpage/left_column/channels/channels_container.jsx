@@ -2,12 +2,15 @@ import { connect } from 'react-redux';
 import Channels from './channels';
 import selector from '../../../../util/selector';
 import { withRouter } from 'react-router-dom';
+
 import {
   requestAllMessagesOfChannel
 } from '../../../../actions/messages_actions';
+
 import {
   requestAllUsersOfChannel
 } from '../../../../actions/users_actions';
+
 import {
   updateChannel,
   requestAllChannelsOfUser,
@@ -15,7 +18,6 @@ import {
 
 const mapStateToProps = state => {
   let channels = [];
-  // debugger
   selector(state.channels).forEach( channel => {
     if (channel.kind === 'public' || channel.kind === 'private') {
       channels.push(channel);
@@ -28,8 +30,6 @@ const mapStateToProps = state => {
       directMessages.push(channel);
     }
   });
-
-  // debugger
 
   return {
     currentUser : state.session.currentUser,

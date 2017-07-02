@@ -78,7 +78,6 @@
 
   li:hover {
     background-color: lighten($lightpurple, 15);
-    // transition: background-color 0.1s ease-in-out;
   }
 
   img {
@@ -89,13 +88,11 @@
     vertical-align: middle;
     object-fit: cover;
     transition: height 1s ease-out;
-    // transition: width 1s ease-in-out;
   }
 
   img:hover {
     width: 80px;
     height: 80px;
-    // transition: width 1s ease-in-out;
     transition: height 1s ease-out;
   }
 }

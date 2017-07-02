@@ -28,7 +28,6 @@ export const createUser = user => {
 };
 
 export const updateUser = formData => {
-  // debugger;
   return $.ajax({
     method: 'patch',
     url: `api/users/${formData.get('user[id]')}`,

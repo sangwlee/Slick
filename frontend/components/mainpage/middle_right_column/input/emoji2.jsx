@@ -2,9 +2,6 @@ import EmojiReact from 'react-emoji-react';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-//emojis do not persist through the data base
-//emojis per message take too long to load
-
 const emojis = [
   // {
   //   name: 'rage',

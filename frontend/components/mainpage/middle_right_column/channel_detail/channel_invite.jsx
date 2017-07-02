@@ -25,8 +25,6 @@ class ChannelInvite extends React.Component {
       privateColor: 'black'
     };
 
-    // debugger;
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addMember = this.addMember.bind(this);
@@ -80,8 +78,6 @@ class ChannelInvite extends React.Component {
     const allUsers = selector(this.props.allUsers);
     allUsers.splice((this.props.currentUser.id - 1), 1);
     const otherUsers = allUsers;
-
-    // debugger;
 
     return(
       <div className="create-channel-container">

@@ -107,7 +107,6 @@ class ReplyItem extends React.Component {
     const pathname = this.props.history.location.pathname;
     const currentChannel = parseInt(this.props.location.pathname.slice(6));
     const currentMessage = parseInt(pathname.slice(pathname.indexOf('message') + 8));
-    // debugger;
 
     return () => {
       if (type === 'emoji') { this.setState({ emoji: !this.state.emoji });
@@ -133,8 +132,6 @@ class ReplyItem extends React.Component {
     const currentChannel = parseInt(this.props.location.pathname.slice(6));
     const currentLocation = this.props.history.location.pathname;
 
-    // debugger;
-
     if (this.state.content !== '') {
       e.preventDefault();
       this.props.updateMessage(this.state.id, this.state)
@@ -159,7 +156,6 @@ class ReplyItem extends React.Component {
 
 
   render() {
-    // debugger;
     const editStatus = (this.state.created_at === this.state.updated_at) ? "" : "  (edited)";
 
     return (

@@ -8,8 +8,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // requestAllUsersOfChannel: channel_id =>
-  //   dispatch(requestAllUsersOfChannel(channel_id)),
 });
 
 export default connect(

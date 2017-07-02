@@ -81,7 +81,6 @@ class NewDm extends React.Component {
 
     const otherUsers = allUsers;
     const membersIds = this.state.members.map(member => member.id);
-    // debugger;
 
     return(
       <div className="create-channel-container">
@@ -110,7 +109,6 @@ class NewDm extends React.Component {
           <ul className="create-channel-userslist">
             {
               otherUsers.map( user => {
-                // debugger;
                 if (!membersIds.includes(user.id)) {
                     return (
                       <li

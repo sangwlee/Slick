@@ -4,7 +4,6 @@ import {
 } from '../actions/channels_actions';
 
 const defaultState = Object.freeze({
-  // currentChannel: null,
 });
 
 export const CurrentChannelReducer = (state = defaultState, action) => {
@@ -17,7 +16,3 @@ export const CurrentChannelReducer = (state = defaultState, action) => {
       return state;
   }
 };
-
-// test
-window.merge = merge;
-// test

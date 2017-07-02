@@ -5,7 +5,6 @@ export const RECEIVE_SINGLE_CHANNEL = "RECEIVE_SINGLE_CHANNEL";
 export const RECEIVE_ALL_CHANNELS_OF_USER = "RECEIVE_ALL_CHANNELS_OF_USER";
 export const RECEIVE_CHANNEL_ERRORS = "RECEIVE_CHANNEL_ERRORS";
 export const RECEIVE_CURRENT_CHANNEL = "RECEIVE_CURRENT_CHANNEL";
-// export const RECEIVE_ALL_SUBSCRIPTIONS = 
 
 // REGULAR ACTIONS
 export const receiveChannelErrors = errors => {
@@ -29,7 +28,6 @@ export const receiveSingleChannel = channel => {
   };
 };
 export const receiveAllChannelsOfUser = channels => {
-  // debugger
   return {
     type: RECEIVE_ALL_CHANNELS_OF_USER,
     channels
@@ -83,7 +81,6 @@ export const updateChannel = (channelId, channelData) => dispatch => {
 export const deleteChannel = channel_id => dispatch => {
   return ChannelsUtil.deleteChannel(channel_id)
     .fail(err => {
-      // debugger
       return dispatch(receiveChannelErrors(err.responseJSON));
     });
 };

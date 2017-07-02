@@ -61,7 +61,6 @@ export const createUser = userData => dispatch => {
 
 export const updateUser = (formData) => dispatch => {
   return UsersUtil.updateUser(formData)
-    // .then(user => dispatch(receiveSingleUser(user)))
     .fail(err => dispatch(receiveUserErrors(err.responseJSON)));
 };
 
