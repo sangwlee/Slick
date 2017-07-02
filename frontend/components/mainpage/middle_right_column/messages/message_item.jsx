@@ -176,7 +176,7 @@ class MessageItem extends React.Component {
       uniqueUsers = uniqueRepliersIds.map(uniqueReplierId => this.props.channelUsers[uniqueReplierId]);
 
       uniqueUsersImgs = uniqueUsers.map(uniqueUser =>
-        <img src={uniqueUser.image_url}/>
+        <img key={uniqueUser.id} src={uniqueUser.image_url}/>
       )
 
       let replyLength = this.props.replies.length.toString();
@@ -195,7 +195,7 @@ class MessageItem extends React.Component {
 
     }
 
-    const editStatus = (this.state.created_at === this.state.updated_at) ? '' : "  (edited)";
+    const editStatus = (this.props.message.created_at === this.props.message.updated_at) ? '' : "  (edited)";
 
     return (
       <li className='individual-message-container' key={this.props.message.id}>
