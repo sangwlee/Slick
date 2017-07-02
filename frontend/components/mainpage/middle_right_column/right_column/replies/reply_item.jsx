@@ -8,6 +8,7 @@ import {
 } from '../../../../../actions/messages_actions';
 import NotificationSystem from 'react-notification-system';
 import { withRouter } from 'react-router-dom';
+import selector from '../../../../../util/selector';
 
 class ReplyItem extends React.Component {
   constructor(props) {
@@ -76,7 +77,7 @@ class ReplyItem extends React.Component {
     let todaySec = today.getSeconds();
 
     if (todayYr - yr > 0) {ago = "more than a year ago";}
-    else if (todayMo - mo === 1 && todayMo >= mo) {ago = "a month ago";}
+    else if (todayMo - mo === 1 && todayDate >= day) {ago = "a month ago";}
     else if (Math.abs(todayMo - mo) > 1)
     {ago = `${((todayMo - mo < 0) ? (todayMo - mo + 12) : (todayMo - mo))} months ago`;}
     else if (todayDate - day === 1 && todayHr >= hr) {ago = 'a day ago';}
@@ -106,23 +107,34 @@ class ReplyItem extends React.Component {
     const pathname = this.props.history.location.pathname;
     const currentChannel = parseInt(this.props.location.pathname.slice(6));
     const currentMessage = parseInt(pathname.slice(pathname.indexOf('message') + 8));
+    // debugger;
 
     return () => {
       if (type === 'emoji') { this.setState({ emoji: !this.state.emoji });
       } else if (type === 'edit') {
-        if (message.user_id === this.props.currentUser.id) {
+        if (this.props.message.user_id === this.props.currentUser.id) {
           this.setState({ edit: !this.state.edit });
         } else { this.props.notification('modifyFail');}
       } else if (type === 'delete') {
         if (message.user_id === this.props.currentUser.id) {
           this.props.deleteMessage(message.id)
             .then(() => this.props.requestAllMessagesOfChannel(currentChannel));
+
+          if (this.state.channel_id === currentChannel) {
+            this.props.history.push(`/main/${currentChannel}`);
+          }
+          
           this.props.notification('deleteSuccess');
       } else { this.props.notification('modifyFail');}}
     };
   }
 
   handleEdit(e) {
+    const currentChannel = parseInt(this.props.location.pathname.slice(6));
+    const currentLocation = this.props.history.location.pathname;
+
+    // debugger;
+
     if (this.state.content !== '') {
       e.preventDefault();
       this.props.updateMessage(this.state.id, this.state)
@@ -132,8 +144,10 @@ class ReplyItem extends React.Component {
             content: message.content,
             created_at: message.created_at,
             updated_at: message.updated_at,
-          })
-        );
+          }))
+          .then(() =>this.props.requestAllMessagesOfChannel(parseInt(this.props.location.pathname.slice(6))))
+          .then(() => this.props.history.push(`/main/${currentChannel}`))
+          .then(() => this.props.history.push(`${currentLocation}`));
     }
   }
 
@@ -170,8 +184,8 @@ class ReplyItem extends React.Component {
                   type='text'
                   value={this.state.content}>
                   </input>
-                  <button id="button" onClick={this.handleClick('edit')}>Cancel</button>
-                  <button id="button" onClick={this.handleEdit}>Save Changes</button>
+                  <button type="button" id="button" onClick={this.handleClick('edit')}>Cancel</button>
+                  <button type="button" id="button" onClick={this.handleEdit}>Save Changes</button>
                 </form>) :
               (this.state.content) + editStatus}
           </li>
@@ -191,9 +205,10 @@ class ReplyItem extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
-
+    replies: selector(state.replies).filter(reply =>
+      reply.message_id === ownProps.message.id)
   };
 };
 

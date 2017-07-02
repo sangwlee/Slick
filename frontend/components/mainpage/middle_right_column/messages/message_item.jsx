@@ -78,7 +78,7 @@ class MessageItem extends React.Component {
     let todaySec = today.getSeconds();
 
     if (todayYr - yr > 0) {ago = "more than a year ago";}
-    else if (todayMo - mo === 1 && todayMo >= mo) {ago = "a month ago";}
+    else if (todayMo - mo === 1 && todayDate >= day) {ago = "a month ago";}
     else if (Math.abs(todayMo - mo) > 1)
     {ago = `${((todayMo - mo < 0) ? (todayMo - mo + 12) : (todayMo - mo))} months ago`;}
     else if (todayDate - day === 1 && todayHr >= hr) {ago = 'a day ago';}
@@ -105,8 +105,8 @@ class MessageItem extends React.Component {
   }
 
   handleClick(type, message) {
+    // const message = this.props.message;
     const currentChannel = parseInt(this.props.location.pathname.slice(6));
-    debugger;
     return () => {
       if (type === 'emoji') { this.setState({ emoji: !this.state.emoji });
       } else if (type === 'comment') {
@@ -114,7 +114,7 @@ class MessageItem extends React.Component {
         this.props.history.push(`/main/${currentChannel}/message/${message.id}`);
 
       } else if (type === 'edit') {
-        if (message.user_id === this.props.currentUser.id) {
+        if (this.props.message.user_id === this.props.currentUser.id) {
           this.setState({ edit: !this.state.edit });
         } else { this.props.notification('modifyFail');}
 
@@ -133,6 +133,9 @@ class MessageItem extends React.Component {
   }
 
   handleEdit(e) {
+    const currentChannel = parseInt(this.props.location.pathname.slice(6));
+    const currentLocation = this.props.history.location.pathname;
+
     if (this.state.content !== '') {
       e.preventDefault();
       this.props.updateMessage(this.state.id, this.state)
@@ -142,9 +145,11 @@ class MessageItem extends React.Component {
             content: message.content,
             created_at: message.created_at,
             updated_at: message.updated_at,
-          })
+          }))
           .then(() =>this.props.requestAllMessagesOfChannel(parseInt(this.props.location.pathname.slice(6))))
-        );
+          .then(() => this.props.history.push(`/main/${currentChannel}`))
+          .then(() => this.props.history.push(`${currentLocation}`));
+
     }
   }
   handleChange(type) {
@@ -154,24 +159,23 @@ class MessageItem extends React.Component {
   }
 
   render() {
+    // debugger;
     const countReplies = (this.props.replies.length === 0) ?
       (<span></span>) : (<button id="button" className="messages-replies-count">{this.props.replies.length.toString() + ' replies'}</button>);
 
     const editStatus = (this.state.created_at === this.state.updated_at) ? '' : "  (edited)";
-    // const countRepliesHtml = (countReplies)
-
 
     return (
-      <li className='individual-message-container' key={this.message.id}>
+      <li className='individual-message-container' key={this.props.message.id}>
         <img className='profile-pic'
-          src={(this.props.allUsers[this.message.user_id].image_url)}/>
+          src={(this.props.allUsers[this.props.message.user_id].image_url)}/>
         <ul className='message-content-container'>
           <li>
             <span className='username'>
-              {(this.props.allUsers[this.message.user_id].username)}
+              {(this.props.allUsers[this.props.message.user_id].username)}
             </span>
             <span className="timePosting">
-              {this.time(this.message.created_at)}
+              {this.time(this.props.message.created_at)}
             </span>
           </li>
           <li className="message-content">
@@ -183,10 +187,10 @@ class MessageItem extends React.Component {
                   type='text'
                   value={this.state.content}>
                   </input>
-                  <button id="button" onClick={this.handleClick('edit')}>Cancel</button>
-                  <button id="button" onClick={this.handleEdit}>Save Changes</button>
+                  <button type="button" id="button" onClick={this.handleClick('edit')}>Cancel</button>
+                  <button type="button" id="button" onClick={this.handleEdit}>Save Changes</button>
                 </form>) :
-              (this.state.content) + editStatus}
+              (this.props.message.content) + editStatus}
           </li>
           <li>
             { countReplies }
@@ -195,12 +199,12 @@ class MessageItem extends React.Component {
         </ul>
         <ul className='message-buttons'>
           <li>
-            <button onClick={this.handleClick('emoji', this.props.message)}><i className="fa fa-smile-o message-button-emoticon" aria-hidden="true"></i></button>
-            <button onClick={this.handleClick('comment', this.props.message)}><i className="fa fa-commenting" aria-hidden="true"></i></button>
+            <button type="button" onClick={this.handleClick('emoji', this.props.message)}><i className="fa fa-smile-o message-button-emoticon" aria-hidden="true"></i></button>
+            <button type="button" onClick={this.handleClick('comment', this.props.message)}><i className="fa fa-commenting" aria-hidden="true"></i></button>
           </li>
           <li>
-            <button onClick={this.handleClick('edit', this.props.message)}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-            <button onClick={this.handleClick('delete', this.props.message)}><i className="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" onClick={this.handleClick('edit', this.props.message)}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+            <button type="button" onClick={this.handleClick('delete', this.props.message)}><i className="fa fa-trash" aria-hidden="true"></i></button>
           </li>
         </ul>
       </li>

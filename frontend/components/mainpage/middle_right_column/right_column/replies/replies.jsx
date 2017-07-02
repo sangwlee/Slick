@@ -138,7 +138,7 @@ class Replies extends React.Component {
     const currentMessage = this.props.currentMessage;
 
     // debugger;
-
+    // debugger;
     // return(
       if (currentMessage) {
         return (
