@@ -179,13 +179,16 @@ class MessageItem extends React.Component {
         <img src={uniqueUser.image_url}/>
       )
 
+      let replyLength = this.props.replies.length.toString();
+      let replyPlurality = (replyLength === "1") ? " reply" : " replies";
+
       countReplies =
       (<button
         onClick={this.handleClick('comment', this.props.message)}
         type="button"
         id="button"
         className="messages-replies-count">
-        {this.props.replies.length.toString() + ' replies'}
+        {replyLength + replyPlurality}
       </button>);
       let fullLastPosted = this.time(this.props.replies[this.props.replies.length - 1].created_at);
       lastPosted = <span>{fullLastPosted.slice(fullLastPosted.indexOf("|") + 1)}</span>;
