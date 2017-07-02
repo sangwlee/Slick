@@ -134,6 +134,12 @@ class Channels extends React.Component {
             aria-hidden="true"></i>
         );}}
 
+    const sorted = (channels) => {
+      return channels.sort(
+        (a, b) => parseFloat(a.id) - parseFloat(b.id)
+      )
+    }
+
     return(
       <div>
         <NotificationSystem
@@ -156,7 +162,7 @@ class Channels extends React.Component {
           </Modal>
           <ul className="channel-list channel-unique">
             {
-              this.props.channels.map(channel => {
+              sorted(this.props.channels).map(channel => {
                 return (
                   <li
                     onClick={this.props.requestAllUsersOfChannel.bind(null, channel.id)}
@@ -188,7 +194,7 @@ class Channels extends React.Component {
           </Modal>
           <ul className="channel-list">
             {
-              selector(this.props.directMessages).map(directMessage =>
+              sorted(this.props.directMessages).map(directMessage =>
                 <li
                   onClick={this.props.requestAllUsersOfChannel.bind(null, directMessage.id)}
                   key={directMessage.id}>

@@ -205,12 +205,12 @@ message40 = Message.create(content: "No one cares about hufflepuff", kind: 'norm
 message41 = Message.create(content: "No one cares about ravenclaw", kind: 'normal', user_id: user0.id, channel_id: channel10.id)
 
 # chat for Harry Dudley
-message42 = Message.create(content: "Mom, Dad.. WHERE ARE YOU?!?!!!", kind: 'normal', user_id: user0.id, channel_id: channel13.id)
-message43 = Message.create(content: "Dudley.. we are finally alone.", kind: 'normal', user_id: user0.id, channel_id: channel13.id)
-message44 = Message.create(content: "Harry..!", kind: 'normal', user_id: user0.id, channel_id: channel13.id)
-message45 = Message.create(content: "Stupefy!!", kind: 'normal', user_id: user0.id, channel_id: channel13.id)
-message46 = Message.create(content: "Crucio!!", kind: 'normal', user_id: user0.id, channel_id: channel13.id)
-message47 = Message.create(content: "Petrificus Totalus", kind: 'normal', user_id: user0.id, channel_id: channel13.id)
+message42 = Message.create(content: "Mom, Dad.. WHERE ARE YOU?!?!!!", kind: 'normal', user_id: user21.id, channel_id: channel13.id)
+message43 = Message.create(content: "Dudley.. we are finally alone.", kind: 'normal', user_id: user1.id, channel_id: channel13.id)
+message44 = Message.create(content: "Harry..!", kind: 'normal', user_id: user21.id, channel_id: channel13.id)
+message45 = Message.create(content: "Stupefy!!", kind: 'normal', user_id: user1.id, channel_id: channel13.id)
+message46 = Message.create(content: "Crucio!!", kind: 'normal', user_id: user1.id, channel_id: channel13.id)
+message47 = Message.create(content: "... Petrificus Totalus!", kind: 'normal', user_id: user1.id, channel_id: channel13.id)
 
 # chat for Muggles
 message48 = Message.create(content: "Muggles... sigh. Why do they exist?", kind: 'normal', user_id: user0.id, channel_id: channel12.id)
