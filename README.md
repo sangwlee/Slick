@@ -3,9 +3,18 @@
 
 [Slick](https://slick-aa.herokuapp.com/#/)
 
-Slick is a clone of popular chatting-app, Slack. To it, certain personal preferences in colors, fonts, designs, and utilities were included.
+Slick is a clone of popular communication app, Slack. While maintaining all of Slack's basic functionalities such as live chatting system and the flexibilities of chatting group, to it, certain personal flavors in colors, fonts, designs, and extra utilities were included.
 
 ## Features and implementation
+
+To provide most sensible explanation of what Slick is capable of, its features will be described in the following order:
+1. Users (Create, Read, Update)
+2. Channels & SUbscriptions (Create, Read, Delete)
+3. Messages (Create, Read, Update, Delete)
+4. Live Chat
+5. Notifications
+6. Other notable features
+
 
 ## Users
 
@@ -49,7 +58,7 @@ Users will receive following notifications:
 3. Successful profile update
 4. Attempt for invalid modifications
 
-## EXTRA FEATURES
+## Other Notable Features
 
 There are few noteworthy features in Slick.
 1. Inviting other users to created channel
