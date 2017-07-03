@@ -118,7 +118,7 @@ class Replies extends React.Component {
     const currentChannelId = parseInt(this.props.location.pathname.slice(6));
     const sortedReplies = this.props.replies.sort(
       function(a, b) {
-        return parseFloat(b.id) - parseFloat(a.id);
+        return parseFloat(a.id) - parseFloat(b.id);
       }
     );
 
