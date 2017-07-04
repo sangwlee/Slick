@@ -9,7 +9,7 @@ Slick is a web application inspired by a well-known communication app, Slack. Wh
 
 To provide most sensible explanation of what Slick is capable of, its features  will be described in the following order:
 1. [Users](#users)
-2. [Channels & Subscriptions](#channels)
+2. [Channels and Subscriptions](#channels-and-subscriptions)
 3. [Messages](#messages)
 4. [Live Chat](#live-chat)
 5. [Notifications](#notifications)
@@ -21,7 +21,7 @@ To provide most sensible explanation of what Slick is capable of, its features  
 Slick allows user to create, read, update its information. Creation of users are done in the frontpage, where new users are invited to join the app.
 Once signed up or logged in, user can update their profile information (firstname, lastname, email, picture) in the edit section of the app.
 
-## Channels & Subscriptions
+## Channels and Subscriptions
 
 Channels & Subscriptions can be created, read, and destroyed. Updating channel information has been intentionally left out to ensure that the choices of
 name and descriptions are carefully chosen at their creation.
