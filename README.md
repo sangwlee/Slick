@@ -11,7 +11,7 @@ To provide most sensible explanation of what Slick is capable of, its features  
 1. [Users](#users) (Create, Read, Update)
 2. [Channels & Subscriptions](#channels-&-subscriptions) (Create, Read, Delete)
 3. [Messages](#messages) (Create, Read, Update, Delete)
-4. [Live Chat](#live-Chat)
+4. [Live Chat](#live-chat)
 5. [Notifications](#notifications)
 6. [Other notable features](#other-notable-features)
 
