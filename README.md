@@ -8,12 +8,12 @@ Slick is a clone of popular communication app, Slack. While maintaining all of S
 ## Features and implementation
 
 To provide most sensible explanation of what Slick is capable of, its features  will be described in the following order:
-1. [Users] (#users) (Create, Read, Update)
-2. [Channels & Subscriptions] (#channels-&-subscriptions) (Create, Read, Delete)
-3. [Messages] (#messages) (Create, Read, Update, Delete)
-4. [Live Chat] (#live-Chat)
-5. [Notifications] (#notifications)
-6. [Other notable features] (#other-notable-features)
+1. [Users](#users) (Create, Read, Update)
+2. [Channels & Subscriptions](#channels-&-subscriptions) (Create, Read, Delete)
+3. [Messages](#messages) (Create, Read, Update, Delete)
+4. [Live Chat](#live-Chat)
+5. [Notifications](#notifications)
+6. [Other notable features](#other-notable-features)
 
 
 ## Users
