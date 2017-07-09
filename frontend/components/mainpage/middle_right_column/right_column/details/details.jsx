@@ -114,7 +114,6 @@ class Details extends React.Component {
                   key={user.id}>
                   <img src={user.image_url}/>
                   {user.username}
-
                 </li>
               )
             }

@@ -38,7 +38,7 @@ class FrontPage extends React.Component{
           <ul className="motto">
             <li>START</li>
             <li>YOUR</li>
-            <li>COMMUNICATION</li>
+            <li>COMMUNICATION<img className="chat-image" src={window.staticImages.background}/></li>
           </ul>
           <SignupContainer className="sign-up-container"/>
         </section>

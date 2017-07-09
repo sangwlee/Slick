@@ -1,10 +1,18 @@
+.middle-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .middle-ul {
   width: 75%;
   height: 100%;
 }
 
 .channel-detail-container {
-  height: 57px;
+  height: 5.9%;
+  // height: 57px;
   border-bottom: 1px solid lightgray;
 }
 
@@ -18,4 +26,10 @@
 
 .input-container {
   height: 7.5%;
+}
+
+
+.right-container {
+  height: 100%;
+  width: 25%;
 }

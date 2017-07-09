@@ -6,6 +6,9 @@ import {
   createChannel,
   requestAllChannelsOfUser,
 } from '../../../../actions/channels_actions';
+import {
+  requestAllUsersOfChannel,
+} from '../../../../actions/users_actions';
 import selector from '../../../../util/selector';
 import { merge } from 'lodash';
 
@@ -50,8 +53,10 @@ class NewDm extends React.Component {
     this.state.name = this.setName();
     this.props.createChannel(this.state)
       .then(channel => {
-        this.props.history.push(`/main/${channel.channel.id}`);})
-      .then(() => this.props.closeModal());
+        this.props.closeModal();
+        // this.props.requestAllUsersOfChannel(channel.id);
+        this.props.history.push(`/main/${channel.channel.id}`);});
+      // .then(() => this.props.closeModal());
   }
 
   addMember(member, members) {
@@ -148,6 +153,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(createChannel(channelData)),
     requestAllChannelsOfUser: user_id =>
       dispatch(requestAllChannelsOfUser(user_id)),
+    requestAllUsersOfChannel: channel_id =>
+      dispatch(requestAllUsersOfChannel(channel_id)),
   }
 }
 

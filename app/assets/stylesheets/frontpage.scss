@@ -3,10 +3,10 @@
   height: 100%;
   font-family: sans-serif;
 
-  background: url('background.png');
-  background-size: 10% 15%;
-  background-repeat: no-repeat;
-  background-position: 55% 95%;
+  // background: url(window.staticImages.background);
+  // background-size: 10% 15%;
+  // background-repeat: no-repeat;
+  // background-position: 55% 95%;
 
   ul.motto {
     position: relative;
@@ -221,4 +221,10 @@ div hr {
 
 label {
   display: block;
+}
+
+.chat-image {
+  width: 68px;
+  position: absolute;
+  bottom: 10%;
 }

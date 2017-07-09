@@ -35,9 +35,12 @@
 
 .invite-icon {
   position: absolute;
-  right: 23%;
-  top: 2.5%;
+  right: 1%;
+  padding: 5px;
+  padding-top: 1.5%;
+  padding-bottom: 1%;
   color: $lightpurple;
+  z-index: 1;
 }
 
 .invite-icon:hover {

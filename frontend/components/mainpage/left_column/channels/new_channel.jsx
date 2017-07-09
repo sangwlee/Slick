@@ -51,9 +51,13 @@ class NewChannel extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.createChannel(this.state)
-      .then(channel => {
-        this.props.history.push(`/main/${channel.channel.id}`);})
-      .then(() => this.props.closeModal());
+    .then(channel => {
+      this.props.closeModal();
+      this.props.history.push(`/main/${channel.channel.id}`);
+      return channel;
+    });
+      // .then(channel => {
+      //   this.props.history.push(`/main/${channel.channel.id}`);});
   }
 
   setPrivate() {

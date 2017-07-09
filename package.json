@@ -54,5 +54,11 @@
   "engines": {
     "node": "4.2.6",
     "npm": "3.5.2"
+  },
+  "devDependencies": {
+    "bundle-collapser": "^1.2.1",
+    "envify": "^4.1.0",
+    "uglify-js": "^3.0.24",
+    "uglifyify": "^4.0.2"
   }
 }
