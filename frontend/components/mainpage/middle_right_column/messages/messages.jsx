@@ -79,26 +79,33 @@ class Messages extends React.Component {
       }
     );
 
-    return(
-      <div className="all-messages-container">
-        <NotificationSystem
-          style={notificationStyle}
-          ref={n => this._notificationSystem = n} />
-        <ul>
-          {
-            sortedMessages.map( message => {
-              return (<MessageItem
-                requestAllMessagesOfChannel={this.props.requestAllMessagesOfChannel}
-                key={message.id}
-                notification={this.notification}
-                allUsers={this.props.allUsers}
-                currentUser={this.props.currentUser}
-                message={message} />)
-            })
-          }
-        </ul>
-      </div>
-    );
+    if (sortedMessages !== []) {
+      return (
+        <div className="all-messages-container">
+          <NotificationSystem
+            style={notificationStyle}
+            ref={n => this._notificationSystem = n} />
+          <ul>
+            {
+              sortedMessages.map( message => {
+                return (<MessageItem
+                  requestAllMessagesOfChannel={this.props.requestAllMessagesOfChannel}
+                  key={message.id}
+                  notification={this.notification}
+                  allUsers={this.props.allUsers}
+                  currentUser={this.props.currentUser}
+                  message={message} />)
+                })
+              }
+            </ul>
+          </div>
+
+      )
+    } else {
+      return (
+        <div></div>
+      );
+    }
   }
 }
 
