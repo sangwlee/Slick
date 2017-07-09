@@ -245,7 +245,9 @@ class MessageItem extends React.Component {
         </li>
       );
     } else {
-      <li></li>
+      return (
+        <li></li>
+      );
     }
   }
 }
