@@ -193,56 +193,60 @@ class MessageItem extends React.Component {
 
     const editStatus = (this.props.message.created_at === this.props.message.updated_at) ? '' : "  (edited)";
 
-    return (
-      <li className='individual-message-container' key={this.props.message.id}>
-        <img className='profile-pic'
-          src={(this.props.allUsers[this.props.message.user_id].image_url)}/>
-        <ul className='message-content-container'>
-          <li>
-            <span className='username'>
-              {(this.props.allUsers[this.props.message.user_id].username)}
-            </span>
-            <span className="timePosting">
-              {this.time(this.props.message.created_at)}
-            </span>
-          </li>
-          <li className="message-content">
-            { (this.state.edit) ?
-              (<form onSubmit={this.handleEdit} className="mesage-edit-input-div">
-                  <input
+    if (this.props.allUsers[this.props.message.user_id]) {
+      return (
+        <li className='individual-message-container' key={this.props.message.id}>
+          <img className='profile-pic'
+            src={(this.props.allUsers[this.props.message.user_id].image_url)}/>
+          <ul className='message-content-container'>
+            <li>
+              <span className='username'>
+                {(this.props.allUsers[this.props.message.user_id].username)}
+              </span>
+              <span className="timePosting">
+                {this.time(this.props.message.created_at)}
+              </span>
+            </li>
+            <li className="message-content">
+              { (this.state.edit) ?
+                (<form onSubmit={this.handleEdit} className="mesage-edit-input-div">
+                <input
                   className="message-edit-input"
                   onChange={this.handleChange('content')}
                   type='text'
                   value={this.state.content}>
-                  </input>
-                  <button type="button" id="button" onClick={this.handleClick('edit')}>Cancel</button>
-                  <button type="button" id="button" onClick={this.handleEdit}>Save Changes</button>
-                </form>) :
+                </input>
+                <button type="button" id="button" onClick={this.handleClick('edit')}>Cancel</button>
+                <button type="button" id="button" onClick={this.handleEdit}>Save Changes</button>
+              </form>) :
               (<span>{this.props.message.content} <span className="edit-marker">{editStatus}</span></span>)}
-          </li>
-          <li>
-            <ul>
-              <li>{ (this.state.emoji) ? <ReactingComponent className="emoji-container"/> : '' }</li>
-              <li className="replies-info">
-                { countReplies }
-                { uniqueUsersImgs }
-                { lastPosted }
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <ul className='message-buttons'>
-          <li>
-            <button type="button" onClick={this.handleClick('emoji', this.props.message)}><i className="fa fa-smile-o message-button-emoticon" aria-hidden="true"></i></button>
-            <button type="button" onClick={this.handleClick('comment', this.props.message)}><i className="fa fa-commenting" aria-hidden="true"></i></button>
-          </li>
-          <li>
-            <button type="button" onClick={this.handleClick('edit', this.props.message)}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-            <button type="button" onClick={this.handleClick('delete', this.props.message)}><i className="fa fa-trash" aria-hidden="true"></i></button>
-          </li>
-        </ul>
-      </li>
-    );
+            </li>
+            <li>
+              <ul>
+                <li>{ (this.state.emoji) ? <ReactingComponent className="emoji-container"/> : '' }</li>
+                <li className="replies-info">
+                  { countReplies }
+                  { uniqueUsersImgs }
+                  { lastPosted }
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <ul className='message-buttons'>
+            <li>
+              <button type="button" onClick={this.handleClick('emoji', this.props.message)}><i className="fa fa-smile-o message-button-emoticon" aria-hidden="true"></i></button>
+              <button type="button" onClick={this.handleClick('comment', this.props.message)}><i className="fa fa-commenting" aria-hidden="true"></i></button>
+            </li>
+            <li>
+              <button type="button" onClick={this.handleClick('edit', this.props.message)}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+              <button type="button" onClick={this.handleClick('delete', this.props.message)}><i className="fa fa-trash" aria-hidden="true"></i></button>
+            </li>
+          </ul>
+        </li>
+      );
+    } else {
+      <li></li>
+    }
   }
 }
 
