@@ -90,8 +90,10 @@ class Replies extends React.Component {
         this.state.message_id = currentMessage.id;
         const messageData = Object.assign({}, this.state);
         this.props.createReply(messageData)
-        .then(() => this.props.requestAllMessagesOfChannel(parseInt(this.props.location.pathname.slice(6))))
-        .then(() => { this.setState({content: ''});
+        .then(() => {
+          this.props.requestAllMessagesOfChannel(parseInt(this.props.location.pathname.slice(6)));
+          this.props.history.push(this.props.location.pathname);
+          this.setState({content: ''});
       });
     }
 
