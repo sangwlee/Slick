@@ -92,7 +92,7 @@ class Replies extends React.Component {
         this.props.createReply(messageData)
         .then(() => {
           this.props.requestAllMessagesOfChannel(parseInt(this.props.location.pathname.slice(6)));
-          this.props.history.push(this.props.location.pathname);
+          // this.props.history.push(this.props.location.pathname);
           this.setState({content: ''});
       });
     }
