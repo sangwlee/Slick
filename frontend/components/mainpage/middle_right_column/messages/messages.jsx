@@ -88,13 +88,15 @@ class Messages extends React.Component {
           <ul>
             {
               sortedMessages.map( message => {
-                return (<MessageItem
-                  requestAllMessagesOfChannel={this.props.requestAllMessagesOfChannel}
-                  key={message.id}
-                  notification={this.notification}
-                  allUsers={this.props.allUsers}
-                  currentUser={this.props.currentUser}
-                  message={message} />)
+                if (message) {
+                  return (<MessageItem
+                    requestAllMessagesOfChannel={this.props.requestAllMessagesOfChannel}
+                    key={message.id}
+                    notification={this.notification}
+                    allUsers={this.props.allUsers}
+                    currentUser={this.props.currentUser}
+                    message={message} />)
+                  }
                 })
               }
             </ul>
