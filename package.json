@@ -32,7 +32,6 @@
     "emoji-mart": "^1.0.1",
     "emoji-picker": "0.0.7",
     "emojione-picker": "^2.2.1",
-    "envify": "^4.1.0",
     "lodash": "^4.17.4",
     "react": "^15.6.1",
     "react-click-outside": "^2.3.1",
