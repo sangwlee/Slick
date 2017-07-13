@@ -20,7 +20,7 @@ module FullStack
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.paperclip_defaults = {
-      :s3_protocol => :https
+      :s3_protocol => :https,
       :storage => :s3,
       :s3_credentials => {
         :bucket => ENV['s3_bucket'],
