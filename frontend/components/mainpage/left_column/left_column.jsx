@@ -24,9 +24,9 @@ class LeftColumn extends React.Component {
           <li>sangw.lee02@gmail.com</li>
         </ul>
         <div className="personal-info-container">
-          <a href="https://sangwlee.github.io/"><i id="button" className="fa fa-globe" aria-hidden="true"></i></a>
-          <a href="https://github.com/sangwlee?tab=repositories"><i id="button" className="fa fa-github" aria-hidden="true"></i></a>
-          <a href="https://www.linkedin.com/in/sangwlee02/"><i id="button" className="fa fa-linkedin" aria-hidden="true"></i></a>
+          <a href="https://sangwlee.github.io/" target="_blank"><i id="button" className="fa fa-globe" aria-hidden="true"></i></a>
+          <a href="https://github.com/sangwlee?tab=repositories" target="_blank"><i id="button" className="fa fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/sangwlee02/" target="_blank"><i id="button" className="fa fa-linkedin" aria-hidden="true"></i></a>
         </div>
       </div>
     );
