@@ -3,16 +3,20 @@
 }
 
 .search-icon {
-  position: relative;
-  margin-top: 4.5%;
-  margin-left: 91%;
+  position: fixed;
+  right: 0%;
+  top: 0.2%;
+  // position: relative;
+  // margin-top: 4.5%;
+  // margin-left: 91%;
   cursor: pointer;
   padding: 7px;
 }
 
 .search-icon:hover {
-  position: relative;
-  bottom: 2px;
+  padding-top: 0.5px;
+  // position: relative;
+  // bottom: 2px;
   color: $skyblue;
 }
 

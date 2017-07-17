@@ -17,6 +17,7 @@ const notificationStyle = {
 
 const modalStyle = {
   content : {
+    width                 : '337px',
     top                   : '50%',
     left                  : '50%',
     right                 : '60%',
@@ -152,6 +153,7 @@ class Channels extends React.Component {
             <i className="fa fa-plus-circle" aria-hidden="true"></i>
           </h1>
           <Modal
+            width="337px"
             onRequestClose={this.closeModal("channelModal")}
             style={modalStyle}
             contentLabel="Modal"
@@ -184,6 +186,7 @@ class Channels extends React.Component {
             <i className="fa fa-plus-circle" aria-hidden="true"></i>
           </h1>
           <Modal
+            width="337px"
             onRequestClose={this.closeModal('dmModal')}
             style={modalStyle}
             contentLabel="Modal"
