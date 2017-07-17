@@ -13,7 +13,7 @@
 
 .profile-container {
   height: 5.9%;
-  // height: 60px;
+  min-height: 60px;
 }
 
 .profile-container:hover {
@@ -29,8 +29,8 @@
 }
 
 .left-column-div {
-  min-width: 220px;
   height: 100%;
+  min-width: 220px;
 }
 
 .personal-info-container {
@@ -78,4 +78,9 @@
     margin-top: 10px;
   }
 
+}
+
+.info-container {
+  position: absolute;
+  bottom: 2%;
 }

@@ -1,7 +1,8 @@
 # Slick
 
-
 [LIVE](https://slick-aa.herokuapp.com/#/)
+
+
 
 Slick is a web application inspired by a well-known communication app, Slack. While maintaining all of Slack's basic functionalities such as live chatting system and the flexibilities of chatting group, to it, certain personal flavors in colors, fonts, designs, and extra utilities were added.
 
@@ -17,6 +18,9 @@ To provide most sensible explanation of what Slick is capable of, its features  
 
 
 ## Users
+
+<img src="app/assets/gifs/signup.gif" alt="signup">
+<img src="app/assets/gifs/login.gif" alt="signup">
 
 Slick allows user to create, read, update its information. Creation of users are done in the frontpage, where new users are invited to join the app.
 Once signed up or logged in, user can update their profile information (firstname, lastname, email, picture) in the edit section of the app.

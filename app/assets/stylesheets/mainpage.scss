@@ -10,7 +10,7 @@
 
 .main-page-left-column {
   width: 11.7%;
-  // min-width: 220px;
+  min-width: 220px;
   background-color: darken($skyblue, 50);
   color: lightgray;
   max-height: 100vh;
@@ -20,5 +20,5 @@
 }
 
 .main-page-middle-right-column {
-  width: 88.3%;
+  width: 88.2%;
 }

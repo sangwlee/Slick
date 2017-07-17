@@ -1,6 +1,7 @@
 .front-page-container {
   background-color: white;
-  height: 100%;
+  width: 99%;
+  height: 98vh;
   font-family: sans-serif;
 
   // background: url(window.staticImages.background);
@@ -9,10 +10,11 @@
   // background-position: 55% 95%;
 
   ul.motto {
-    position: relative;
+    // position: relative;
     bottom: 10%;
     top: 30%;
-    left: 50px;
+    // left: 50px;
+    margin-left: 5%;
 
     li {
       font-size: 150px;
@@ -32,6 +34,8 @@
 }
 
 .front-page-header-container {
+  height: 6%;
+  // width: 100%;
   display: flex;
   justify-content: space-between;
   border-bottom: 5px solid darken($skyblue, 50);
@@ -40,6 +44,8 @@
 }
 
 .front-page-body-container {
+  // height: 93%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
 
@@ -81,10 +87,10 @@
 }
 
 .signup-container {
-  position: relative;
+  position: absolute;
   right: 13%;
   color: $lightpurple;
-  height: 30%;
+  // height: 30%;
 
   h3 {
     font-size: 50px;
@@ -227,4 +233,12 @@ label {
   width: 68px;
   position: absolute;
   bottom: 10%;
+}
+
+.button-container {
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+  display: flex;
+  width: 390px;
 }

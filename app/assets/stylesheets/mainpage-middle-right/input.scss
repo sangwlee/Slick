@@ -2,11 +2,12 @@
   width: 96%;
   height: 55%;
   border: 1.5px solid darkgray;
-  margin: 1.5% 2% 5% 1%;
+  // margin: 1.5% 2% 5% 1%;
   border-radius: 5px;
   padding-left: 1%;
   font-weight: lighter;
   color: darken(darkgray,50);
+  text-align: start;
 }
 
 .input-message:focus {
@@ -17,6 +18,10 @@
 
 .input-container-div {
   height: 100%;
+  text-align: center;
+  vertical-align: middle;
+  display: table;
+  width: 100%;
 }
 
 input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
@@ -25,4 +30,7 @@ input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
 
 .input-form-container {
   height: 100%;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
 }

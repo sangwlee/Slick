@@ -21,7 +21,7 @@ class FrontPage extends React.Component{
 
   render() {
     return(
-      <div className="front-page-container landing-wrapper">
+      <div className="front-page-container">
         <section className="front-page-header-container">
           <h1>
             <img
@@ -41,21 +41,22 @@ class FrontPage extends React.Component{
             <li>COMMUNICATION<img className="chat-image" src={window.staticImages.background}/></li>
           </ul>
           <SignupContainer className="sign-up-container"/>
+          <div className="button-container">
+            <button
+              id='button'
+              className="guest-button"
+              onClick={this.guestLogin('voldemort')}>
+              Login as <span className="voldemort">Voldemort</span>
+            </button>
+
+            <button
+              id='button'
+              className="guest-button first-guest-button"
+              onClick={this.guestLogin('hpotter')}>
+              Login as <span className="voldemort">Harry Potter</span>
+            </button>
+          </div>
         </section>
-
-        <button
-          id='button'
-          className="guest-button"
-          onClick={this.guestLogin('voldemort')}>
-          Login as <span className="voldemort">Voldemort</span>
-        </button>
-
-        <button
-          id='button'
-          className="guest-button first-guest-button"
-          onClick={this.guestLogin('hpotter')}>
-          Login as <span className="voldemort">Harry Potter</span>
-        </button>
       </div>
     );
   }
