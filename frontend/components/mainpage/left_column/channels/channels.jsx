@@ -186,8 +186,7 @@ class Channels extends React.Component {
             <i className="fa fa-plus-circle" aria-hidden="true"></i>
           </h1>
           <Modal
-            width="337px"
-            onRequestClose={this.closeModal('dmModal')}
+s            onRequestClose={this.closeModal('dmModal')}
             style={modalStyle}
             contentLabel="Modal"
             isOpen={this.state.dmModal}
