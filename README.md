@@ -18,7 +18,7 @@ To provide most sensible explanation of what Slick is capable of, its features  
 
 
 ## Users
-<div style="width: 100%; display: flex; justify-content: space-between;">
+<div style="display: flex; justify-content: space-between;">
   <img src="app/assets/gifs/signup.gif" alt="signup" width="50%";>
   <img src="app/assets/gifs/login.gif" alt="signup" width="50%";>
 </div>
