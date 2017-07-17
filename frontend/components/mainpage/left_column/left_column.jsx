@@ -26,7 +26,7 @@ class LeftColumn extends React.Component {
           </ul>
           <div className="personal-info-container">
             <a href="https://sangwlee.github.io/" target="_blank"><i id="button" className="fa fa-globe" aria-hidden="true"></i></a>
-            <a href="https://github.com/sangwlee?tab=repositories" target="_blank"><i id="button" className="fa fa-github" aria-hidden="true"></i></a>
+            <a href="https://github.com/sangwlee" target="_blank"><i id="button" className="fa fa-github" aria-hidden="true"></i></a>
             <a href="https://www.linkedin.com/in/sangwlee02/" target="_blank"><i id="button" className="fa fa-linkedin" aria-hidden="true"></i></a>
           </div>
         </div>
