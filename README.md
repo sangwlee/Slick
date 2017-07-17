@@ -1,10 +1,8 @@
 # Slick
 
 [LIVE](https://slick-aa.herokuapp.com/#/)
-<div style="display: flex; justify-content: space-between;">
-  <img src="app/assets/gifs/new-dm.gif" alt="new-dm" width="45%";>
-  <img src="app/assets/gifs/delete-message.gif" alt="delete-message" width="45%";>
-</div>
+<img src="app/assets/gifs/new-dm.gif" alt="new-dm" width="100%";>
+<img src="app/assets/gifs/delete-message.gif" alt="delete-message" width="100%";>
 
 
 Slick is a web application inspired by a well-known communication app, Slack. While maintaining all of Slack's basic functionalities such as live chatting system and the flexibilities of chatting group, to it, certain personal flavors in colors, fonts, designs, and extra utilities were added.
