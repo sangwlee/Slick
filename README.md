@@ -19,8 +19,8 @@ To provide most sensible explanation of what Slick is capable of, its features  
 
 ## Users
 <div style="display: flex; justify-content: space-between;">
-  <img src="app/assets/gifs/signup.gif" alt="signup" width="50%";>
-  <img src="app/assets/gifs/login.gif" alt="signup" width="50%";>
+  <img src="app/assets/gifs/signup.gif" alt="signup" width="45%";>
+  <img src="app/assets/gifs/login.gif" alt="signup" width="45%";>
 </div>
 
 Slick allows user to create, read, update its information. Creation of users are done in the frontpage, where new users are invited to join the app.
