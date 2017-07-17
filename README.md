@@ -2,8 +2,7 @@
 
 [LIVE](https://slick-aa.herokuapp.com/#/)
 <div>
-  <img src="app/assets/gifs/new-dm.gif" alt="new-dm" width="100%";>
-  <img src="app/assets/gifs/delete-message.gif" alt="delete-message" width="100%";>
+  <img src="app/assets/gifs/slick.png" alt="slick" width="100%";>
 </div>
 
 
@@ -32,7 +31,6 @@ Once signed up or logged in, user can update their profile information (firstnam
 ## Channels and Subscriptions
 <div style="display: flex; justify-content: space-between;">
   <img src="app/assets/gifs/new-channel.gif" alt="new-channel" width="45%";>
-  <img src="app/assets/gifs/leave-channel.gif" alt="leave-channel" width="45%";>
 </div>
 
 Channels & Subscriptions can be created, read, and destroyed. Updating channel information has been intentionally left out to ensure that the choices of
@@ -47,7 +45,6 @@ Lastly, direct messages can be created similar to private & public channels, or 
 
 ## Messages
 <div style="display: flex; justify-content: space-between;">
-  <img src="app/assets/gifs/new-message.gif" alt="new-message" width="45%";>
   <img src="app/assets/gifs/edit-message.gif" alt="edit-message" width="45%";>
 </div>
 
