@@ -8,6 +8,7 @@ import SearchBar from '../search_bar';
 
 const customStyles = {
   content : {
+    width                 : '337px',
     top                   : '50%',
     left                  : '50%',
     right                 : '60%',
