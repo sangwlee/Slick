@@ -11,9 +11,11 @@
 }
 
 .right-column-container {
+  width: 100%;
+  overflow-x: hidden;
   height: 94%;
   border-left: 1px solid lightgray;
-  overflow-x: auto;
+  // overflow-x: auto;
   overflow-y: hidden;
 }
 
