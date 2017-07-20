@@ -34,7 +34,7 @@ class FrontPage extends React.Component{
           </h1>
           <LoginContainer />
         </section>
-        <section className="front-page-body-container">
+          <section className="front-page-body-container">
           <ul className="motto">
             <li>START</li>
             <li>YOUR</li>
@@ -44,17 +44,17 @@ class FrontPage extends React.Component{
           <div className="button-container">
             <button
               id='button'
+              className="guest-button first-guest-button"
+              onClick={this.guestLogin('hpotter')}>
+              Login as <span className="voldemort">Harry Potter</span>
+            </button>
+            <button
+              id='button'
               className="guest-button"
               onClick={this.guestLogin('voldemort')}>
               Login as <span className="voldemort">Voldemort</span>
             </button>
 
-            <button
-              id='button'
-              className="guest-button first-guest-button"
-              onClick={this.guestLogin('hpotter')}>
-              Login as <span className="voldemort">Harry Potter</span>
-            </button>
           </div>
         </section>
       </div>

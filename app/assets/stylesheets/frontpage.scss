@@ -1,6 +1,6 @@
 .front-page-container {
   background-color: white;
-  width: 99%;
+  width: 100%;
   height: 98vh;
   font-family: sans-serif;
 
@@ -17,7 +17,7 @@
     margin-left: 5%;
 
     li {
-      font-size: 150px;
+      font-size: 133px;
       font-family: 'Indie Flower', cursive;
       color: darken($skyblue, 30);
     }
@@ -34,7 +34,7 @@
 }
 
 .front-page-header-container {
-  height: 6%;
+  min-height: 8%;
   // width: 100%;
   display: flex;
   justify-content: space-between;
@@ -88,7 +88,7 @@
 
 .signup-container {
   position: absolute;
-  right: 13%;
+  right: 7%;
   color: $lightpurple;
   // height: 30%;
 
@@ -181,10 +181,15 @@ div hr {
 }
 
 .error-messages {
+  // position: absolute;
   list-style-type: none;
   font-family: 'Lato', sans-serif;
   font-size: 13.5px;
   color: red;
+}
+
+.login-error {
+  position: absolute;
 }
 
 .welcome-message {
@@ -241,4 +246,10 @@ label {
   right: 2%;
   display: flex;
   width: 390px;
+}
+
+.bg2 {
+  width: 80%;
+  background: transparent;
+  opacity: 0.5;
 }

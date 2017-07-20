@@ -32,7 +32,7 @@ class Login extends React.Component {
           <input onChange={this.handleChange('password')} type='password'/>
           <input id="button" className="login-button" type="submit" value="Log In"/>
         </form>
-        <ul className="error-messages">
+        <ul className="error-messages login-error">
           {
             this.props.login_errors.map((error, idx) => (
               <li key={idx}>{error}</li>
