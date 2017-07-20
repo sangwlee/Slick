@@ -18,7 +18,7 @@ class LeftColumn extends React.Component {
         </ul>
         <div className="info-container">
           <ul className="intro">
-            <li>Slick is a clone of Slack.</li>
+            <li>Slick is an app inspired by Slack.</li>
             <li>For more information, </li>
             <li>please check out below links!</li>
             <li>Or send an email to: </li>
